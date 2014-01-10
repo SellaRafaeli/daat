@@ -1,4 +1,8 @@
 daat
 ====
 
-Practice project with Eyal Arubas
+This is a practice project. 
+
+Participants:
+Eyal Arubas
+Sella Rafaeli
