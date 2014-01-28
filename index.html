@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>               
+<head>
+    <title>AngularJS Tutorial</title>
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/foundation/5.0.2/css/foundation.min.css">  
+</head>
+<body> 
+    <div ng-app="myApp">       
+        <div id="qListCtrl" ng-controller="qListCtrl">                  
+            <input type="search" ng-model="qFilter" placeholder="filter questions...">            
+                <ul>
+                    <li ng-repeat="q in data.qList | filter:qFilter">                      
+                        <div>
+                            <h3><strong> {{q.title}} </strong> <span> {{q.body}} </span></h3> 
+                        </div>
+                        <ul>
+                            <li ng-repeat="a in q.answers">                                                      
+                                User: {{a.user}}
+                                Answer: {{a.body}}
+                            </li>                                                                                          
+                        </ul>
+                        <textarea ng-model="q.myAnswer"></textarea>
+                        <div>{{q.myAnswer}}</div>
+                    </li>
+                </ul>
+
+                <input type="text-box" ng-model="data.message">            
+                <h3>{{data.message}}</h1>      
+                </div>
+            </div>   
+            
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+            <script type="text/javascript" src="main.js"></script>
+        </body>
+
+        </html>
