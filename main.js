@@ -35,7 +35,7 @@ function FirstCtrl($scope, Data) {
 function qListCtrl($scope, Data){
     $scope.data = Data; 
     $scope.foo = 'bar'; 
-    $scope.answers = function(q){
-        q.answers;
+    $scope.submitAnswer = function(qid, myAnswer){
+        alert("submitting my answer to qID"+qid+": "+myAnswer);
     }
 }

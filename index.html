@@ -22,9 +22,12 @@
                         </ul>
                         <textarea ng-model="q.myAnswer"></textarea>
                         <div>{{q.myAnswer}}</div>
+                        <div>{{foo}}</div>
+                        <button ng-click="submitAnswer(q.id,q.myAnswer)">Submit!</button>
                     </li>
+                    
                 </ul>
-
+                
                 <input type="text-box" ng-model="data.message">            
                 <h3>{{data.message}}</h1>      
                 </div>
