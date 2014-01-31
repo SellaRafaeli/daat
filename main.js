@@ -10,11 +10,14 @@ getA = function(user,body){
     return {user: user, body: body};
 }
 
-myApp.factory('Data', function() {
-    return {
-        message: 'new data from a service',
-        qList: [
-            getQ('What time is it?','Is it 16:20?',[getA("Bob",'it\'s 16:15'), getA("Yossi",' it is 10:30')]),
+//lorem_ipsums
+lps=[];
+lps.push('De finibus bonorum et malorum (On the ends of good and evil) is a philosophical work by the Roman orator, politician and philosopher Marcus Tullius Cicero. It consists of five books, in which Cicero explains the philosophical views of Epicureanism, Stoicism, and the Platonism of Antiochus of Ascalon. The book was developed in the summer of the year 45 BC within about one and a half months. Together with the Tusculanae Quaestiones written shortly afterwards, De finibus is the most extensive philosophical work of Cicero. It is dedicated to Marcus Junius Brutus.');
+lps.push('The terms foobar (/ˈfuːbɑr/), fubar, or foo, bar, baz and qux (alternatively, quux) are sometimes used as placeholder names (also referred to as metasyntactic variables) in computer programming or computer-related documentation.[1] They have been used to name entities such as variables, functions, and commands whose purpose is unimportant and serve only to demonstrate a concept. The words themselves have no meaning in this usage. Foobar is sometimes used alone; foo, bar, and baz are sometimes used, when multiple entities are needed. The usage in computer programming examples and pseudocode varies; in certain circles, it is used extensively, but many prefer descriptive names, while others prefer to use single letters. Eric S. Raymond has called it an "important hackerism" alongside kludge and cruft.[2]');
+
+
+qList = [
+            getQ('What time is it?','Is it 16:20?',[getA("Bob Cohen",lps[0]), getA("Yossi Mizrachi",lps[1])]),
             getQ('Which university is the best?', 'Technion? Hebrew U?', 
                 [getA("Yossi",'I don\'t know where to go to school'),
                  getA("Moshe",'Hebrew University'),
@@ -23,7 +26,11 @@ myApp.factory('Data', function() {
                 [getA("Moshe",'I think it should be Fuad'),
                 getA("Haim",'Yair Lapid!')])            
         ]
-        
+
+myApp.factory('Data', function() {
+    return {
+        message: 'new data from a service',
+        qList: qList
     };
 });
 
