@@ -4,16 +4,20 @@ var myApp = angular.module('myApp', ['ngRoute']);
 
 myApp.config(['$routeProvider',
   function($routeProvider) {
+    var base = '/ui/partials/';
     $routeProvider.
-      when('/feed', {
-        templateUrl: '/ui/qList.html',        
+      when('/about', {
+        templateUrl: base + 'about.html',        
       }).
-      when('/showOrders', {
-        templateUrl: 'templates/show-orders.html',
-        controller: 'ShowOrdersController'
+      when('/hello', {
+        templateUrl: base + 'hello.html',        
+      }).
+      when('/:type/:name', {
+        templateUrl: base + 'qList.html',
+        //controller: 'ShowOrdersController'
       }).
       otherwise({
-        templateUrl: '/ui/qList.html'
+        templateUrl: base + '/qList.html'
       });
   }]);
 
@@ -52,7 +56,11 @@ getQ('Who do you think should be president?', 'Dalya Itzik? Shechtman?',
 myApp.factory('Data', function() {
     return {
         message: 'new data from a service',
-        qList: qList
+        qList: qList,
+        get: function(type,name){
+            console.log("getting "+type+" + "+name);
+            return {qList: qList}
+        }
     };
 });
 
@@ -61,9 +69,13 @@ function FirstCtrl($scope, Data) {
 }
 
 
-function qListCtrl($scope, Data){
-    $scope.data = Data; 
+function qListCtrl($scope, Data, $routeParams){
+     
     $scope.foo = 'bar'; 
+    $routeParams.orderId
+    $scope.route_type = $routeParams.type
+    $scope.route_name = $routeParams.name
+    $scope.data = Data.get($scope.route_type, $scope.route_name);
     $scope.submitAnswer = function(qid, myAnswer){
         alert("submitting my answer to qID"+qid+": "+myAnswer);
     }
