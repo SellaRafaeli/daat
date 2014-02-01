@@ -1,0 +1,25 @@
+{
+    "port": 7000,
+    "solr": {
+        "host": "localhost",
+        "port": "8983",
+        "core": ""
+    },
+    "globals" : {
+        "max_page_size" : 80,
+        "default_page_size" : 30,
+        "featured_gigs_in_homepage" : 4,
+        "featured_gigs_to_retrieve" : 16,
+        "number_of_recent_gigs_to_use": 200
+    },
+    "logger" :{
+        "servers" :[{ "host": "127.0.0.1", "port": 12201 }],
+        "hostname" : "",
+        "facility" : "fiverr_searcher"
+    },
+    "statsd" : {
+        "host" : "localhost",
+        "port" : "8125",
+        "prefix" : "fiverr_searcher."
+    }
+}
