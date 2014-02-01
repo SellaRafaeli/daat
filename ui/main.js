@@ -1,25 +1,27 @@
-var myApp = angular.module('myApp', []);
+//var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute']);
 
-myApp.directive('answer', function() {
-    return {
-        restrict: 'E',
-        template: '<div class="answer-user"> {{a.user}} </div> <div heb> {{a.body}} </div>',
-   };
-});
 
-//todo: should just be part of page CSS once we remove 'foundation'
-myApp.directive('heb', function() {
-    return function (scope, element, attr) {
-        element.addClass('heb')
-    }   
-});
+myApp.config(['$routeProvider',
+  function($routeProvider) {
+    var base = '/ui/partials/';
+    $routeProvider.
+      when('/about', {
+        templateUrl: base + 'about.html',        
+      }).
+      when('/hello', {
+        templateUrl: base + 'hello.html',        
+      }).
+      when('/:type/:name', {
+        templateUrl: base + 'qList.html',
+        //controller: 'ShowOrdersController'
+      }).
+      otherwise({
+        templateUrl: base + '/qList.html'
+      });
+  }]);
 
-myApp.directive('questionAndAnswers', function(){
-    return {
-        restrict: 'E',
-        templateUrl: 'directives/question-and-answers.html'
-    }                   
-});
+//hello
 
 
 id = 0;
@@ -54,7 +56,11 @@ getQ('Who do you think should be president?', 'Dalya Itzik? Shechtman?',
 myApp.factory('Data', function() {
     return {
         message: 'new data from a service',
-        qList: qList
+        qList: qList,
+        get: function(type,name){
+            console.log("getting "+type+" + "+name);
+            return {qList: qList}
+        }
     };
 });
 
@@ -63,9 +69,13 @@ function FirstCtrl($scope, Data) {
 }
 
 
-function qListCtrl($scope, Data){
-    $scope.data = Data; 
+function qListCtrl($scope, Data, $routeParams){
+     
     $scope.foo = 'bar'; 
+    $routeParams.orderId
+    $scope.route_type = $routeParams.type
+    $scope.route_name = $routeParams.name
+    $scope.data = Data.get($scope.route_type, $scope.route_name);
     $scope.submitAnswer = function(qid, myAnswer){
         alert("submitting my answer to qID"+qid+": "+myAnswer);
     }
