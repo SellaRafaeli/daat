@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>               
+<head>
+    <title>AngularJS Tutorial</title>
+    <meta charset="utf-8"> 
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/foundation/5.0.2/css/foundation.min.css">      
+    <link rel="stylesheet" href="main.css">  
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+</head>
+<body> 
+    <div class="app" ng-app="myApp">       
+        <div id="qListCtrl" ng-controller="qListCtrl">                                          
+            <ul class="qList">
+                <h1>Directives!</h1>  
+                <input heb type="search" ng-model="filter" placeholder="חיפוש בשאלות ותשובות...">            
+                <li ng-repeat="q in data.qList | filter:filter">                      
+                    <div>
+                        <h4 heb class="question"><strong> {{q.title}} </strong> <span> {{q.body}} </span></h4> 
+                    </div>
+                    <ul class='answer-list'>
+                        <li class="answer heb" ng-repeat="a in q.answers | filter:filter">                                                      
+                            <answer></answer>
+                        </li>                                                                                          
+                    </ul>
+                    <textarea ng-model="q.myAnswer" placeholder="What do you think?"></textarea>
+                    <div >{{q.myAnswer}}</div>                        
+                    <button class="heb" ng-click="submitAnswer(q.id,q.myAnswer)">שלח!</button>
+                </li>
+
+            </ul>            
+        </div>
+    </div>   
+
+        
+        
+ </body>
+
+</html>

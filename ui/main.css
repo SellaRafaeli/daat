@@ -1,0 +1,32 @@
+.app {  
+    direction: rtl !important;
+    text-align: right !important;  
+}
+
+.qList {
+    width: 600px;
+    margin: 0 auto;
+    list-style-type: none;    
+}
+
+.answer-user {
+    color: blue;
+}
+
+.answer {
+    padding-bottom: 10px;  
+    border-bottom: 1px solid;  
+    border-color: lightgray;
+    margin-bottom: 10px;
+}
+
+.answer-list {
+    list-style-type: none;
+    margin: 0;
+}
+
+/*to use when css libraries override rtl*/
+.heb {
+    direction: rtl !important;  
+    text-align: right !important;    
+}

@@ -1,0 +1,8 @@
+<div id="qListCtrl" ng-controller="qListCtrl">                                          
+    <ul class="qList">
+        <input heb type="search" ng-model="filter" placeholder="חיפוש בשאלות ותשובות...">            
+        <li ng-repeat="q in data.qList | filter:filter">                      
+            <question-and-answers></question-and-answers>
+        </li>
+    </ul>            
+</div>
