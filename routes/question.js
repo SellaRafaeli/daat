@@ -4,7 +4,7 @@
 //Get Question By Category
 
 exports.list = function(req, res){
-    res.send("I am a list of all top rated questions");
+    res.json("I am a list of all top rated questions");
 };
 
 exports.get = function(req, res){
