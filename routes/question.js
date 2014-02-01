@@ -1,20 +1,22 @@
+var questions = require('../lib/questions/questions.js');
 
 //NEW Question
 //Get Question by ID
 //Get Question By Category
 
 exports.list = function(req, res){
-    res.send("I am a list of all top rated questions");
+    res.json(questions.list_top_rates(req.params));
 };
 
 exports.get = function(req, res){
-    res.send("I am a specific question by ID");
+    res.json(questions.fetch_question(req.params.id));
 };
 
 exports.get_cat = function(req, res){
-    res.send("I am a list of questions be category");
+    var category = req.params.cat;
+    res.json(questions.fetch_question_by_category(category));
 };
 
 exports.new_question = function(req, res){
-    res.send("I have just created a new question (Yeah, right).");
+    res.json(questions.new_question(req.params));
 };
