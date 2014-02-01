@@ -14,9 +14,12 @@ myApp.directive('heb', function() {
     }   
 });
 
-
-
-
+myApp.directive('questionAndAnswers', function(){
+    return {
+        restrict: 'E',
+        templateUrl: 'directives/question-and-answers.html'
+    }                   
+});
 
 
 id = 0;
