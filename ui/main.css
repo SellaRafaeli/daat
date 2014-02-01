@@ -30,3 +30,15 @@
     direction: rtl !important;  
     text-align: right !important;    
 }
+
+.top-nav-bar {
+    width: 100%;
+    float: left;
+    margin: 0 0 30px 0;
+    padding: 0;
+    list-style: none;
+}
+.top-nav-bar-link {
+    float: left; 
+    margin-right: 30px;
+}
