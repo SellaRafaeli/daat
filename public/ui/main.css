@@ -54,3 +54,16 @@ input {
     margin: 0;
     padding-right: 0;
 }
+
+input[type=checkbox] {
+    -webkit-appearance: none;
+    width: 1em;
+    height: 1em;
+}
+input[type=checkbox]:after {
+    content: '▹';
+}
+input.open[type=checkbox]:after {
+    content: '▿';
+}
+
