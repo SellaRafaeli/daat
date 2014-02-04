@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>               
+<head>
+    <title>דעת - תוכן טוב, בעברית </title>
+    <meta charset="utf-8"> 
+    <!-- <link rel="stylesheet" href="http://cdn.jsdelivr.net/foundation/5.0.2/css/foundation.min.css">       -->
+    <link rel="stylesheet" href="main.css">  
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular-route.js"></script>    
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="routes.js"></script>
+    <script type="text/javascript" src="directives_elements.js"></script>
+    <script type="text/javascript" src="directives_attributes.js"></script>
+
+</head>
+
+<body> 
+    <div ng-app="myApp" class="app">       
+        <top-nav-bar>
+        </top-nav-bar>        
+        <div class="ng-view-container">
+            <div ng-view>            
+            </div>
+        </div>        
+    </div>           
+ </body>
+
+</html>
