@@ -3,7 +3,8 @@
 myApp.directive('answer', function() {
     return {
         restrict: 'E',
-        template: '<div><span class="answer-user"> {{a.user}} ◁  <input type=checkbox ng-model=show ng-class=\'{open:show}\'></input> </span> <span ng-show=show> {{a.body}} </div>'        
+        templateUrl: 'partials/answer.html'
+        //template: '<div><span class="answer-user"> {{a.user}} ◁  <input type=checkbox ng-model=show ng-class=\'{open:show}\'></input> </span> <span ng-show=show> {{a.body}} </div>'        
    };
 });
 
