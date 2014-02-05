@@ -7,7 +7,7 @@ getQ = function(title,body,answers) {
 }
 
 getA = function(user,body){
-    return {user: user, body: body};
+    return {user: user, body: body, upvotes:Math.floor(Math.random()*40)};
 }
 
 //lorem_ipsums
@@ -44,15 +44,3 @@ function FirstCtrl($scope, Data) {
     $scope.data = Data;
 }
 
-
-function qListCtrl($scope, Data, $routeParams){
-     
-    $scope.foo = 'bar'; 
-    $routeParams.orderId
-    $scope.route_type = $routeParams.type
-    $scope.route_name = $routeParams.name
-    $scope.data = Data.get($scope.route_type, $scope.route_name);
-    $scope.submitAnswer = function(qid, myAnswer){
-        alert("submitting my answer to qID"+qid+": "+myAnswer);
-    }
-}

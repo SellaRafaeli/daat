@@ -1,0 +1,10 @@
+<div>
+    <div ng-click="hide=!hide" >
+        <span class="answer-user" > 
+            {{a.user}} ◁ 
+         </span> 
+         <span ng-hide=!hide> {{shortAnswer(a.body)}} </span>         
+         <span ng-hide=hide> {{a.body}} </span>         
+    </div>
+    <div ng-click="upvote(a)">{{a.upvotes}} Upvote! </div>
+</div>
