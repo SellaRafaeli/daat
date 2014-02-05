@@ -1,14 +1,31 @@
+/* all */
 .app {  
     position: absolute;
     direction: rtl !important;
     text-align: right !important;  
     width: 100%;
     font-family: Tahoma;
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 1.4em;
 }
 
 body {
     margin: 0; /*no idea why chrome adds margin to body*/
+}
+
+.ng-view-container {
+    width: 600px;
+    margin: 30px auto auto auto;  /*top right bottom left*/
+}
+
+/* general */ 
+input {
+    width: 100%;
+    font-size: 50px;
+}
+
+.clickable {
+    cursor: pointer;
 }
 
 top-nav-bar {
@@ -23,23 +40,17 @@ top-nav-bar {
     margin-right: 30px;
 }
 
-.ng-view-container {
-    margin-top: 30px;
-    width: 600px;
-    margin: 0 auto;
-}
-
 .qList {    
     list-style-type: none;    
 }
 
-.answer-user {
-    color: blue;
+.question-title {
+    text-decoration: none;
+    font-size: 24px;
 }
 
-input {
-    width: 100%;
-    font-size: 50px;
+.question-body {
+    font-style: italic;
 }
 
 .answer {
@@ -49,9 +60,13 @@ input {
     margin-bottom: 10px;
 }
 
+.answer-user {
+    color: blue;
+    text-decoration: none;
+}
+
 .answer-list {
     list-style-type: none;
     margin: 0;
     padding-right: 0;
 }
-
