@@ -13,6 +13,8 @@ function qListCtrl($scope, Data, $routeParams){
     }
 
     $scope.shortAnswer = function(answerBody){
-        return answerBody.substring(0,30)+"... (לחץ להרחיב)"
+        shortLengthChars = 30;
+        shortAnswer = answerBody.length < shortLengthChars ? answerBody : answerBody.substring(0,30)+"... (עוד)"
+        return shortAnswer;
     }
 }
