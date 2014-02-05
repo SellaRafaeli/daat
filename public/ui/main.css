@@ -1,0 +1,72 @@
+/* all */
+.app {  
+    position: absolute;
+    direction: rtl !important;
+    text-align: right !important;  
+    width: 100%;
+    font-family: Tahoma;
+    font-size: 16px;
+    line-height: 1.4em;
+}
+
+body {
+    margin: 0; /*no idea why chrome adds margin to body*/
+}
+
+.ng-view-container {
+    width: 600px;
+    margin: 30px auto auto auto;  /*top right bottom left*/
+}
+
+/* general */ 
+input {
+    width: 100%;
+    font-size: 50px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+top-nav-bar {
+    position: fixed;
+    width: 100%;    
+    padding: 0;
+    background-color: lightblue;
+}
+
+.top-nav-bar-link {
+    float: right; 
+    margin-right: 30px;
+}
+
+.qList {    
+    list-style-type: none;    
+}
+
+.question-title {
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.question-body {
+    font-style: italic;
+}
+
+.answer {
+    padding-bottom: 10px;  
+    border-bottom: 1px solid;  
+    border-color: lightgray;    
+    margin-bottom: 10px;
+}
+
+.answer-user {
+    color: blue;
+    text-decoration: none;
+}
+
+.answer-list {
+    list-style-type: none;
+    margin: 0;
+    padding-right: 0;
+}

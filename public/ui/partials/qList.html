@@ -1,0 +1,11 @@
+<div id="qListCtrl" ng-controller="qListCtrl">                                                  
+    <ul class="qList">
+    <div>
+        <div> Displaying results for type: {{route_type}}  and name: {{route_name}} </div>
+    </div>
+        <input type="search" ng-model="filter" placeholder="חיפוש בשאלות ותשובות...">            
+        <li ng-repeat="q in data.qList | filter:filter">                      
+            <question-and-answers></question-and-answers>
+        </li>
+    </ul>            
+</div>
