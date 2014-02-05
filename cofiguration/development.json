@@ -2,5 +2,9 @@
     "port": 7000,
     "globals" : {
 
+    },
+    "memcached": {
+       "host"       : "localhost",
+        "options"   : {}
     }
 }

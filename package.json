@@ -5,8 +5,22 @@
   "scripts": {
     "start": "node app.js"
   },
+  "contributers": [
+    {
+      "name": "Ohad Partuck",
+      "email": "ohadprtuck@gmail.com"
+    },
+    {
+      "name": "Sella Raphaeli",
+      "email": ""
+    }
+  ],
   "dependencies": {
     "express": "3.4.8",
-    "jade": "*"
+    "jade": "*",
+    "orm": "~2.1.3"
+  },
+  "devDependencies": {
+    "express-debug": "~1.0.3"
   }
 }

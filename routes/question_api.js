@@ -5,7 +5,8 @@ var questions = require('../lib/questions/questions.js');
 //Get Question By Category
 
 exports.list = function(req, res){
-    res.json(questions.list_top_rates(req.params));
+    res.send(questions.list_top_rates(req, res));
+//    res.json(questions.list_top_rates(req, res));
 };
 
 exports.get = function(req, res){
@@ -14,7 +15,7 @@ exports.get = function(req, res){
 
 exports.get_cat = function(req, res){
     var category = req.params.cat;
-    res.json(questions.fetch_question_by_category(category));
+    res.json(questions.fetch_question_by_category(req.params, category));
 };
 
 exports.new_question = function(req, res){
