@@ -24,12 +24,12 @@ top-nav-bar {
 }
 
 .ng-view-container {
-    margin-top: 20px;
-}
-
-.qList {
+    margin-top: 30px;
     width: 600px;
     margin: 0 auto;
+}
+
+.qList {    
     list-style-type: none;    
 }
 
