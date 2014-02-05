@@ -41,7 +41,6 @@ app.use(orm.express("mysql://root@127.0.0.1/daat", {
     }
 }));
 
-
 // all environments
 app.set('port', process.env.PORT || 8000);
 app.set('views', path.join(__dirname, 'views'));
@@ -59,18 +58,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 //TODO - load environment config file
 //TODO - add stub data(to be selected by the global config file).
 
-
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-
 //homepage
 //app.get('/', routes.index);
 app.get("/", function (req, res) {
-    result = req.models.question.find({id: 4}, function(err, question) {
-        res.json(question[0]);
+//    result = req.models.question.find({id: 4}, function(err, question) {
+//        res.json(question[0]);
+//    });
+
+    result = req.models.question.find({}, 20, ["rating", "Z"], function(err, questions) {
+        res.json(questions);
     });
 });
 
