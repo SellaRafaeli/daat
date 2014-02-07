@@ -5,7 +5,9 @@ function qListCtrl($scope, Data, $routeParams){
     $scope.route_name = $routeParams.name
     $scope.data = Data.get($scope.route_type, $scope.route_name);
     $scope.submitAnswer = function(qid, myAnswer){
-        alert("submitting my answer to qID"+qid+": "+myAnswer);
+        var qid = this.data.qList[0].id;
+        var answer = this.myAnswer;
+        alert("submitting my answer to qID"+qid+": "+answer);
     }
     $scope.upvote = function(a,b,c) {
         alert("Upvoting answer "+a.body)

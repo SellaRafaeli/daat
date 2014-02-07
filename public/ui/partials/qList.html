@@ -7,5 +7,12 @@
         <li ng-repeat="q in data.qList | filter:filter">                      
             <question-and-answers></question-and-answers>
         </li>
-    </ul>            
+
+        <div ng-show=data.qList.length==1>
+            <div>{{data.qList.length}} is three</div>
+            <textarea class='new-answer-details-input' ng-model="myAnswer" placeholder="הוסף את התשובה שלך..."></textarea>
+            <div>{{q.myAnswer}}</div>                        
+            <button class='submit-button' ng-show="myAnswer" ng-click="submitAnswer()">שלח!</button>
+        </div>
+    </ul>                
 </div>

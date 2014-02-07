@@ -4,9 +4,10 @@
             {{a.user}} ◁ 
          </a> 
          <span class='clickable' ng-click="hide=!hide" ng-init="hide=true">
+            <span class='answer-upvotes-icon'>⇧ {{a.upvotes}}</span>
             <span ng-hide=!hide> {{shortAnswer(a.body)}} </span>         
             <span ng-hide=hide> {{a.body}} </span>         
         </span>
     </div>
-    <div><a class='clickable' ng-click="upvote(a)">Upvote! </a> {{a.upvotes}}<div>
+    <div><a class='clickable nice-link' ng-click="upvote(a)">לייק! </a><div>
 </div>

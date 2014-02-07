@@ -18,12 +18,18 @@ body {
     margin: 70px auto auto auto;  `/*top right bottom left*/
 }
 
+/* GENERIC */
+
 input[type=text]:focus, textarea:focus {
   box-shadow: 0 0 10px rgba(81, 203, 238, 1);
 }
 
 .clickable {
     cursor: pointer;
+}
+
+.nice-link {
+    color: #538dc2
 }
 
 a {
@@ -33,6 +39,15 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+.submit-button {
+    width:100%;
+    height: 40px;
+    background-color: blue;
+    color: white;
+}
+
+
 /*top nav bar */
 
 top-nav-bar {
@@ -99,13 +114,6 @@ top-nav-bar {
     margin-bottom: 20px;
 }
 
-.new-question-submit-button {
-    width:100%;
-    height: 40px;
-    background-color: blue;
-    color: white;
-}
-
 /* QUESTIONS LIST */
 
 .qList {    
@@ -135,8 +143,20 @@ top-nav-bar {
     font-weight: bold;    
 }
 
+.answer-upvotes-icon {
+    float: left;
+    color: blue;
+}
+
 .answer-list {
     list-style-type: none;
     margin: 0;
     padding-right: 0;
+}
+
+.new-answer-details-input { same as /*.new-question-details-input*/
+    height: 60px;
+    width:  100%;
+    font-size: 1.1em;
+    margin-bottom: 20px;
 }
