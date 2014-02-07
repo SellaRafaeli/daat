@@ -5,7 +5,7 @@
     text-align: right !important;  
     width: 100%;
     font-family: Tahoma;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.4em;
 }
 
@@ -26,6 +26,13 @@ input[type=text]:focus, textarea:focus {
     cursor: pointer;
 }
 
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
 /*top nav bar */
 
 top-nav-bar {
@@ -73,13 +80,11 @@ top-nav-bar {
     float: left;
 }
 
-
 /*NEW QUESTION*/
 
 .new-question-input-area {
     width: 600px;
 }
-
 
 .new-question-title-input {
     width: 100%;
@@ -101,8 +106,7 @@ top-nav-bar {
     color: white;
 }
 
-
-
+/* QUESTIONS LIST */
 
 .qList {    
     list-style-type: none;    
@@ -110,7 +114,9 @@ top-nav-bar {
 
 .question-title {
     text-decoration: none;
-    font-size: 24px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #19558d; 
 }
 
 .question-body {
@@ -125,8 +131,8 @@ top-nav-bar {
 }
 
 .answer-user {
-    color: blue;
-    text-decoration: none;
+    color: black;
+    font-weight: bold;    
 }
 
 .answer-list {
