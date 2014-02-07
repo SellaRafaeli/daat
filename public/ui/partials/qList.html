@@ -3,7 +3,7 @@
     <div>
         <div> Displaying results for type: {{route_type}}  and name: {{route_name}} </div>
     </div>
-        <input type="search" ng-model="filter" placeholder="חיפוש בשאלות ותשובות...">            
+        <input ng-show=false type="search" ng-model="filter" placeholder="חיפוש בשאלות ותשובות...">            
         <li ng-repeat="q in data.qList | filter:filter">                      
             <question-and-answers></question-and-answers>
         </li>
