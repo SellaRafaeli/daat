@@ -5,7 +5,8 @@
     text-align: right !important;  
     width: 100%;
     font-family: Tahoma;
-    font-size: 15px;
+    /*font-size: 15px;*/
+    font-size: 90%;
     line-height: 1.4em;
 }
 
@@ -30,6 +31,11 @@ input[type=text]:focus, textarea:focus {
 
 .nice-link {
     color: #538dc2
+}
+
+.bullet {
+    font-size: .8em;
+    color: #ccc;
 }
 
 a {
