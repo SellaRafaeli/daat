@@ -5,6 +5,9 @@ myApp.config(['$routeProvider',
       when('/about', {
         templateUrl: base + 'about.html',        
       }).
+      when('/new_question', {
+        templateUrl: base + 'new_question.html',        
+      }).
       when('/hello', {
         templateUrl: base + 'hello.html',        
       }).
