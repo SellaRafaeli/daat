@@ -1,11 +1,11 @@
 <div>
     <div class="question">
-        <a ng-href="#/question/{{q.title}}" class="question-title"> {{q.title}} </a>
-        <span ng-show=false class="question-body"> {{q.body}} </span>
+        <a ng-href="#/question/{{q.title}}" class='question-title'> {{q.title}} </a>
+        <span ng-show=false class='question-body'> {{q.body}} </span>
      </div>                     
 </div>
-<ul class="answer-list">
-    <li class="answer" ng-repeat="a in q.answers | filter:filter">                                                      
+<ul class='answer-list'>
+    <li class='answer' ng-repeat="a in q.answers | filter:filter">                                                      
         <answer></answer>
     </li>                                                                                          
 </ul>
