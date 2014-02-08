@@ -1,0 +1,10 @@
+<div>
+    <ul class='comments-list'>
+        <li ng-repeat="c in a.comments" class='comment'>                                  
+            <a class='comment-user' ng-href='#/user/{{c.user}}'> {{c.user}} </a>
+            <div class='comment-body'>
+                {{c.body}}
+            </div>
+        </li>
+    </ul>
+</div>

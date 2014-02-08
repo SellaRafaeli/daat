@@ -9,9 +9,12 @@
             <span ng-hide=hide> {{a.body}} </span>         
         </span>
     </div>
-    <div>
+    <div class='answer-links'>
         <a class='clickable nice-link' ng-click="upvote(a)">לייק! </a> 
         <span class='bullet'> • </span>
-        <a class='clickable nice-link'>תגובות (לא פעיל עדיין)</a> 
+        <a class='clickable nice-link' ng-click="showComments=!showComments" ng-init='showComments=true'>תגובות ({{a.comments.length}})</a> 
     <div>
+
+    <comments ng-show=showComments>
+    </comments>    
 </div>
