@@ -5,7 +5,7 @@
      </div>                     
 </div>
 <ul class='answer-list'>
-    <li class='answer' ng-repeat="a in q.answers | filter:filter">                                                      
+    <li class='answer' ng-repeat="a in q.answers | orderBy:'upvotes' | filter:filter ">                                                      
         <answer></answer>
     </li>                                                                                          
 </ul>

@@ -1,13 +1,22 @@
 var myApp = angular.module('myApp', ['ngRoute']);
 
 id = 0;
+
+getComments = function(){
+    return [
+        {user: 'יוסי בן-אברהם',body: 'תגובה ראשונה: אחלה תשובה', timestamp: Date()},
+        {user: 'רחל אמנו',body: 'עוד תגובה: רציתי להגיד שזה היה אחלה.', timestamp: Date()},
+        {user: 'אליהו חכים',body: 'תגובה שלישית - יש לי עוד מה לומר', timestamp: Date()}
+    ]
+}
+
 getQ = function(title,body,answers) {
     id = id+1;
     return {id: id, title: title, body: body, answers:answers}
 }
 
 getA = function(user,body){
-    return {user: user, body: body, upvotes:Math.floor(Math.random()*40)};
+    return {user: user, body: body, upvotes:Math.floor(Math.random()*40), comments: getComments()};
 }
 
 //lorem_ipsums
