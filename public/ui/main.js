@@ -29,13 +29,13 @@ lps.push('The terms foobar (/ˈfuːbɑr/), fubar, or foo, bar, baz and qux (alte
 
 qList = [
 getQ('מה הייתה הקלטת הלוהטת?','ואיך היא השפיעה על הליכוד?',[getA("משה כהן",lps[0]), getA("יוסי מזרחי",lps[1])]),
-getQ('Which university is the best?', 'Technion? Hebrew U?', 
-    [getA("Yossi",'I don\'t know where to go to school'),
-    getA("Moshe",'Hebrew University'),
-    getA("Haim",'Technion')]),
-getQ('Who do you think should be president?', 'Dalya Itzik? Shechtman?', 
-    [getA("Moshe",'I think it should be Fuad'),
-    getA("Haim",'Yair Lapid!')])            
+getQ('מה האוניברסיטה הטובה ביותר?', 'הטכניון? האוניברסיטה העברית?', 
+    [getA("יוסי",'אני לא יודע לאן ללכת ללמוד'),
+    getA("משה",'ברור שהאוניברסיטה העברית'),
+    getA("חיים",'הטכניון')]),
+getQ('מי אתם חושבים צריך להיות נשיא המדינה?', 'דליה איציק? שכטמן?', 
+    [getA("משה",'אני חושב שזה צריך להיות פואד'),
+    getA("חיים",'יאיר לפיד כמובן!')])            
 ]
 
 myApp.factory('Data', function() {
