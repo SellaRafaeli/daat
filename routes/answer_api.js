@@ -1,18 +1,19 @@
+var answers = require('../lib/answers/answers.js');
 
+//TODO support comments
 //NEW Answer
-//Get Question by ID
-//Get Question By Category
+//Get Answers by Question ID
 
 exports.list = function(req, res){
-    res.send("I am a list of all top rated answers");
+   res.json(answers.list_top_rated(req, res));
 };
 
 exports.get = function(req, res){
     res.send("I am a specific answer by ID");
 };
 
-exports.get_question = function(req, res){
-    res.send("I am a list of answers be question id");
+exports.get_answers = function(req, res){
+    res.send("I am a list of answers by question id");
 };
 
 exports.new_answer = function(req, res){
