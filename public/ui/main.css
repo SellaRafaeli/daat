@@ -15,13 +15,13 @@ body {
 
 .ng-view-container {
     width: 600px;
-    margin: 30px auto auto auto;  /*top right bottom left*/
+    margin: 70px auto auto auto;  `/*top right bottom left*/
 }
 
 /* general */ 
 input {
-    width: 100%;
-    font-size: 50px;
+    /*width: 100%;*/
+/*    font-size: 50px;*/
 }
 
 .clickable {
@@ -30,14 +30,47 @@ input {
 
 top-nav-bar {
     position: fixed;
-    width: 100%;    
-    padding: 0;
-    background-color: lightblue;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;    
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    /*background-color: lightgrey;*/
+    background-color: #e0e0e0; /*quora-gray*/
 }
 
+.top-nav-bar-contents {
+    width: 72%;
+    margin-right: auto;
+    margin-left: auto;    
+    float: center;
+}
+
+.top-nav-bar-image {
+    float:right;
+    height: 33px;
+    width: 60px;
+    background: url(//d1vgw4v7ja2ido.cloudfront.net/-db865070861a00c7.gif) no-repeat center top;
+}
+
+.top-nav-bar-search {
+    margin-right: 10px;
+    margin-top: -0.5px;
+    border: 1px;
+    font-size: 26.5px; 
+    /*square corners*/
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
 .top-nav-bar-link {
-    float: right; 
-    margin-right: 30px;
+    height:100%;
+    text-decoration: none;
+    font-color: black;
+    margin-left: 60px;
+    margin-top: 5px;
+    float: left;
 }
 
 .qList {    
@@ -56,7 +89,7 @@ top-nav-bar {
 .answer {
     padding-bottom: 10px;  
     border-bottom: 1px solid;  
-    border-color: lightgray;    
+    border-color: lightgrey;    
     margin-bottom: 10px;
 }
 
