@@ -79,13 +79,13 @@ app.get('/users', user.list);
 
 app.get('/questions', question.list);
 app.get('/questions/:id', question.get);
-app.get('/questions/category/:cat', question.get_cat);
+app.get('/questions/category/:cat', question.category);
 app.get('/questions/new/:name', question.new_question);
 
 
 app.get('/answers', answer.list);
 app.get('/answers/:id', answer.get);
-app.get('/answers/question/:question', answer.get_question);
+app.get('/answers/question/:question', answer.get_answers);
 app.get('/answers/new/:name', answer.new_answer);
 
 
