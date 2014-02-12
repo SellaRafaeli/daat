@@ -1,3 +1,4 @@
+//TODO - here should be stubbed/real by configuration
 var questions = require('../lib/questions/questions.js');
 
 //NEW Question
@@ -12,13 +13,19 @@ exports.list = function(req, res){
 };
 
 exports.get = function(req, res){
-    res.json(questions.fetch_question(req.params.id));
+    questions.fetch_question(req, function(final_result) {
+        res.json(final_result);
+    });
 };
 
 exports.category = function(req, res){
-    res.json(questions.fetch_question_by_category(req.params));
+    questions.fetch_question_by_category(req, function(final_result) {
+        res.json(final_result);
+    });
 };
 
-exports.new_question = function(req, res){
-    res.json(questions.new_question(req.params));
+exports.new_questions = function(req, res){
+    questions.new_question(req, function(result) {
+        res.json(result);
+    });
 };
