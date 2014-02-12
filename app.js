@@ -8,6 +8,7 @@ var env                = (process.env.NODE_ENV || 'DEVELOPMENT').toLowerCase();
 
 var express             = require('express'),
     routes              = require('./routes'),
+    $                   = require('jquery'),
     user                = require('./routes/user_api'),
     question            = require('./routes/question_api'),
     answer              = require('./routes/answer_api'),
@@ -30,11 +31,6 @@ app.use(orm.express("mysql://root@127.0.0.1/daat", {
             sub_category_id : Number,
             rating          : Number
         }, {
-            methods : {
-                fullName: function () {
-                    return this.title;
-                }
-            }
         });
         models.question = question_model;
         next();
@@ -79,14 +75,14 @@ app.get('/users', user.list);
 
 app.get('/questions', question.list);
 app.get('/questions/:id', question.get);
-app.get('/questions/category/:cat', question.category);
-app.get('/questions/new/:name', question.new_question);
+app.get('/questions/category/:category_id', question.category);
+app.get('/questions/new/:fake_param', question.new_questions);
 
 
 app.get('/answers', answer.list);
 app.get('/answers/:id', answer.get);
 app.get('/answers/question/:question', answer.get_answers);
-app.get('/answers/new/:name', answer.new_answer);
+app.get('/answers/new/', answer.new_answer);
 
 
 
