@@ -1,4 +1,10 @@
 
+
+//TODO - add localization
+//TODO - load environment config file
+//TODO - add stub data(to be selected by the global config file).
+//TODO - to fix the dependencies
+
 /**
  * Module dependencies.
  */
@@ -16,26 +22,14 @@ var express             = require('express'),
     path                = require('path');
 
 //var cfg                 = require('./configuration/' + env + '.json');
+//var cfg                 = require('./config/development.json');
+//log(cfg);
 
 var app                 = express();
 
-var orm = require('orm');
 
-app.use(orm.express("mysql://root@127.0.0.1/daat", {
-    define: function (db, models, next) {
-        var question_model =  db.define('questions', {
-            id              : Number,
-            title           : String,
-            text            : String,
-            category_id     : Number,
-            sub_category_id : Number,
-            rating          : Number
-        }, {
-        });
-        models.question = question_model;
-        next();
-    }
-}));
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/daat');
 
 // all environments
 app.set('port', process.env.PORT || 8000);
@@ -50,25 +44,14 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-//TODO - add localization
-//TODO - load environment config file
-//TODO - add stub data(to be selected by the global config file).
-
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
 //homepage
-//app.get('/', routes.index);
 app.get("/", function (req, res) {
-//    result = req.models.question.find({id: 4}, function(err, question) {
-//        res.json(question[0]);
-//    });
 
-    result = req.models.question.find({}, 20, ["rating", "Z"], function(err, questions) {
-        res.json(questions);
-    });
 });
 
 app.get('/users', user.list);
@@ -77,13 +60,8 @@ app.get('/questions', question.list);
 app.get('/questions/:id', question.get);
 app.get('/questions/category/:category_id', question.category);
 app.get('/questions/new/:fake_param', question.new_questions);
-
-
-app.get('/answers', answer.list);
-app.get('/answers/:id', answer.get);
-app.get('/answers/question/:question', answer.get_answers);
-app.get('/answers/new/', answer.new_answer);
-
+app.get('/questions/edit/:id', question.edit);
+app.get('/questions/update/:id', question.update);
 
 
 http.createServer(app).listen(app.get('port'), function(){
