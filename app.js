@@ -41,6 +41,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
+app.use(express.bodyParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -59,9 +60,9 @@ app.get('/users', user.list);
 app.get('/questions', question.list);
 app.get('/questions/:id', question.get);
 app.get('/questions/category/:category_id', question.category);
-app.get('/questions/new/:fake_param', question.new_questions);
+app.put('/questions/new/:fake_param', question.new_questions);
 app.get('/questions/edit/:id', question.edit);
-app.get('/questions/update/:id', question.update);
+app.post('/questions/:id/update', question.update);
 
 
 http.createServer(app).listen(app.get('port'), function(){
