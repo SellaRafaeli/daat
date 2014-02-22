@@ -24,6 +24,7 @@ var express             = require('express'),
     user                = require('./routes/user_api'),
     question            = require('./routes/question_api'),
     answer              = require('./routes/answer_api'),
+    category            = require('./routes/category_api'),
     http                = require('http'),
     path                = require('path');
 
@@ -70,6 +71,8 @@ app.get('/questions/edit/:id', question.edit);
 app.post('/questions/:id/update', question.update);
 
 app.post('/questions/:id/new_answer', answer.new);
+
+app.get('/categories', category.all);
 
 
 http.createServer(app).listen(app.get('port'), function(){

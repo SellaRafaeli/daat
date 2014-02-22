@@ -4,6 +4,7 @@ var questions = require('../lib/questions/questions.js');
 //NEW Question
 //Get Question by ID
 //Get Question By Category
+//Update a question
 
 
 exports.list = function(req, res){
@@ -30,11 +31,11 @@ exports.new_questions = function(req, res){
     });
 };
 
-exports.edit = function(req, res){
-    questions.edit(req, function(result) {
-        res.json(result);
-    });
-};
+//exports.edit = function(req, res){
+//    questions.edit(req, function(result) {
+//        res.json(result);
+//    });
+//};
 
 exports.update = function(req, res){
     questions.update(req, function(result) {
