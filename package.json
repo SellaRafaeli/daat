@@ -7,19 +7,20 @@
   },
   "contributers": [
     {
-      "name":   "Ohad Partuck",
-      "email":  "ohadprtuck@gmail.com"
+      "name": "Ohad Partuck",
+      "email": "ohadprtuck@gmail.com"
     },
     {
-      "name":   "Sella Raphaeli",
-      "email":  "sella.rafaeli@gmail.com"
+      "name": "Sella Raphaeli",
+      "email": "sella.rafaeli@gmail.com"
     }
   ],
   "dependencies": {
     "express": "3.4.8",
     "jade": "*",
     "mongoose": "*",
-    "jquery": "2.1.0"
+    "jquery": "2.1.0",
+    "i18n-abide": "0.0.17"
   },
   "devDependencies": {
     "express-debug": "~1.0.3"
