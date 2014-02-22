@@ -7,12 +7,12 @@
   },
   "contributers": [
     {
-      "name": "Ohad Partuck",
-      "email": "ohadprtuck@gmail.com"
+      "name":   "Ohad Partuck",
+      "email":  "ohadprtuck@gmail.com"
     },
     {
-      "name": "Sella Raphaeli",
-      "email": ""
+      "name":   "Sella Raphaeli",
+      "email":  "sella.rafaeli@gmail.com"
     }
   ],
   "dependencies": {
