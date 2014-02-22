@@ -4,6 +4,7 @@ var mongoose = require('mongoose')
 var threadSchema = new Schema({
     id              : Number,
     status          : String,
+    locale          : String,
     title           : String,
     text            : String,
     category_id     : Number,
