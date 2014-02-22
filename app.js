@@ -34,7 +34,6 @@ var express             = require('express'),
 
 var app                 = express();
 
-
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/daat');
 
@@ -50,13 +49,14 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
 //homepage
-app.get("/", function (req, res) {
+app.get('/', function (req, res) {
 
 });
 
