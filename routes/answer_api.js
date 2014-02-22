@@ -1,21 +1,13 @@
-var answers = require('../lib/answers/answers.js');
+var answers      = require(GLOBAL.ROOT + '/lib/answers/answers.js');
 
 //TODO support comments
 //NEW Answer
 //Get Answers by Question ID
 
-exports.list = function(req, res){
-   res.json(answers.list_top_rated(req, res));
-};
+exports.new = function(req, res){
+    answers.create_and_attach_new_answer(req, function(resp){
+        res.json(resp);
+    });
 
-exports.get = function(req, res){
-    res.send("I am a specific answer by ID");
-};
-
-exports.get_answers = function(req, res){
-    res.send("I am a list of answers by question id");
-};
-
-exports.new_answer = function(req, res){
-    res.send("I have just created a new answer (Yeah, right).");
+//    callback({'result': 'I have just created a new answer (Yeah, right).'});
 };
