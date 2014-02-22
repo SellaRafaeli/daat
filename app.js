@@ -10,7 +10,13 @@
  */
 var log = function(s){console.log(s);};
 
+GLOBAL.ROOT = __dirname;
+
+require(GLOBAL.ROOT + '/init/constants.js');
+
 var env                = (process.env.NODE_ENV || 'DEVELOPMENT').toLowerCase();
+
+console.log(GLOBAL.ROOT + 'in' + env);
 
 var express             = require('express'),
     routes              = require('./routes'),
@@ -62,6 +68,8 @@ app.get('/questions/category/:category_id', question.category);
 app.post('/questions/new/:fake_param', question.new_questions);
 app.get('/questions/edit/:id', question.edit);
 app.post('/questions/:id/update', question.update);
+
+app.post('/questions/:id/new_answer', answer.new);
 
 
 http.createServer(app).listen(app.get('port'), function(){
