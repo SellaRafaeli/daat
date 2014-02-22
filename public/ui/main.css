@@ -15,7 +15,7 @@ body {
 
 .ng-view-container {
     width: 600px;
-    margin: 70px auto auto auto;  `/*top right bottom left*/
+    margin: 70px auto auto auto;  /*top right bottom left*/
 }
 
 /* general */ 
