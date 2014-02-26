@@ -20,18 +20,17 @@ console.log(GLOBAL.ROOT + 'in' + env);
 
 var express             = require('express'),
     $                   = require('jquery'),
-    routes              = require('./routes'),
-    user                = require('./routes/user_api'),
-    question            = require('./routes/question_api'),
-    answer              = require('./routes/answer_api'),
-    category            = require('./routes/category_api'),
-    i18n                = require('i18n-abide'),
+    routes              = require('./app/controllers'),
+    user                = require('./app/controllers/user_api'),
+    question            = require('./app/controllers/question_api'),
+    answer              = require('./app/controllers/answer_api'),
+    category            = require('./app/controllers/category_api'),
+    i18n                = require('i18next'),
     http                = require('http'),
     path                = require('path');
 
-//var cfg                 = require('./configuration/' + env + '.json');
-//var cfg                 = require('./config/development.json');
-//log(cfg);
+var cfg                 = require('./configuration/' + env + '.json');
+log(cfg);
 
 var app                 = express();
 
@@ -49,12 +48,39 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(i18n.abide({
-//    supported_languages: ['en-US', 'he'],
-//    default_lang: 'he',
-//    translation_directory: 'static/i18n'
-//}));
 
+
+
+i18n.init({ detectLngQS: 'lang',
+    cookieName: 'locale',
+    preload: ['en-US', 'he'],
+    fallbackLng: 'en-US',
+    saveMissing: true,
+    debug: true,
+    sendMissingTo: 'fallback',
+    useLocalStorage: true,
+    localStorageExpirationTime: 20}, function(t){
+    var x = t("categories_1");
+});
+
+i18n.init({
+    saveMissing: true,
+    debug: true
+});
+
+//app.use(i18n.handle);
+//
+//app.configure(function() {
+//    app.use(i18n.handle);
+//});
+
+
+//to make i18n accessible in views
+//i18n.registerAppHelper(app);
+
+
+//console.log(i18n.t('categories:category_1', {}));
+//console.log(i18n.t('categories_1', {}));
 
 // development only
 if ('development' == app.get('env')) {
@@ -63,7 +89,6 @@ if ('development' == app.get('env')) {
 
 //homepage
 app.get('/', function (req, res) {
-
 });
 
 app.get('/users', user.list);

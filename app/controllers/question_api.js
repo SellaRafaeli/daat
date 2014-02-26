@@ -1,5 +1,5 @@
 //TODO - here should be stubbed/real by configuration
-var questions = require('../lib/questions/questions.js');
+var questions = require(GLOBAL.ROOT + '/lib/questions/questions.js');
 
 //NEW Question
 //Get Question by ID
