@@ -26,6 +26,7 @@ var express             = require('express'),
     answer              = require('./app/controllers/answer_api'),
     category            = require('./app/controllers/category_api'),
     i18n                = require('i18next'),
+    namespace           = require('express-namespace'),
     http                = require('http'),
     path                = require('path');
 
@@ -35,12 +36,13 @@ log(cfg);
 var app                 = express();
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/daat');
+mongoose.connect('mongodb://' + cfg.db.mongo.host + '/' + cfg.db.mongo.database );
 
 // all environments
 app.set('port', process.env.PORT || 8000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.set('cfg', cfg);
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -50,37 +52,21 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-
-i18n.init({ detectLngQS: 'lang',
-    cookieName: 'locale',
-    preload: ['en-US', 'he'],
-    fallbackLng: 'en-US',
-    saveMissing: true,
-    debug: true,
-    sendMissingTo: 'fallback',
-    useLocalStorage: true,
-    localStorageExpirationTime: 20}, function(t){
-    var x = t("categories_1");
-});
-
-i18n.init({
-    saveMissing: true,
-    debug: true
-});
-
-//app.use(i18n.handle);
 //
-//app.configure(function() {
-//    app.use(i18n.handle);
+//i18n.init({ detectLngQS: 'lang',
+//    cookieName: 'locale',
+//    preload: ['en-US', 'he'],
+//    fallbackLng: 'en-US',
+//    saveMissing: true,
+//    debug: true,
+//    sendMissingTo: 'fallback',
+//    useLocalStorage: true,
+//    localStorageExpirationTime: 20}, function(t){
+//    var x = t("categories_1");
 //});
-
-
 //to make i18n accessible in views
 //i18n.registerAppHelper(app);
 
-
-//console.log(i18n.t('categories:category_1', {}));
-//console.log(i18n.t('categories_1', {}));
 
 // development only
 if ('development' == app.get('env')) {
@@ -93,14 +79,16 @@ app.get('/', function (req, res) {
 
 app.get('/users', user.list);
 
-app.get('/questions', question.list);
-app.get('/questions/:id', question.get);
-app.get('/questions/category/:category_id', question.category);
-app.post('/questions/new/:fake_param', question.new_questions);
-//app.get('/questions/edit/:id', question.edit);
-app.post('/questions/:id/update', question.update);
+app.namespace('/questions', function(){
+    app.get('/', question.list);
+    app.get('/:id', question.get);
+    app.get('/category/:category_id', question.category);
+    app.get('/tags/:fake_param', question.tags);
+    app.post('/new/:fake_param', question.new_questions);
+    app.post('/:id/update', question.update);
+    app.post('/:id/new_answer', answer.new);
+});
 
-app.post('/questions/:id/new_answer', answer.new);
 
 app.get('/categories', category.all);
 

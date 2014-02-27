@@ -6,7 +6,6 @@ var questions = require(GLOBAL.ROOT + '/lib/questions/questions.js');
 //Get Question By Category
 //Update a question
 
-
 exports.list = function(req, res){
     questions.list_top_rated(req, function(final_result) {
         res.json(final_result);
@@ -31,14 +30,14 @@ exports.new_questions = function(req, res){
     });
 };
 
-//exports.edit = function(req, res){
-//    questions.edit(req, function(result) {
-//        res.json(result);
-//    });
-//};
-
 exports.update = function(req, res){
     questions.update(req, function(result) {
+        res.json(result);
+    });
+};
+
+exports.tags = function(req, res){
+    questions.tags(req, function(result) {
         res.json(result);
     });
 };

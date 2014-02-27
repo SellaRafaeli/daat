@@ -1,7 +1,13 @@
 {
     "port": 7000,
     "globals" : {
-
+       "skip_elastic_search": true
+    },
+    "db":{
+        "mongo" :{
+            "host": "localhost",
+            "database" : "daat_dev"
+        }
     },
     "memcached": {
        "host"       : "localhost",
