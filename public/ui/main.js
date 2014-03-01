@@ -38,12 +38,13 @@ getQ('מי אתם חושבים צריך להיות נשיא המדינה?', 'ד�
     getA("חיים",'יאיר לפיד כמובן!')])            
 ]
 
-myApp.factory('Data', function() {
+myApp.factory('Data', function($http) {
     return {
         message: 'new data from a service',
         qList: qList,
-        get: function(type,name){
+        getQuestions: function(type,name,cb){
             console.log("getting "+type+" + "+name);
+            $http.get('/questions').then(cb);
             return {qList: qList}
         }
     };

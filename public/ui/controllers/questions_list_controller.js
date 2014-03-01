@@ -1,9 +1,13 @@
 //main controller
 function qListCtrl($scope, Data, $routeParams){        
-    $routeParams.orderId
+    //$routeParams.orderId
     $scope.route_type = $routeParams.type
     $scope.route_name = $routeParams.name
-    $scope.data = Data.get($scope.route_type, $scope.route_name);
+    debugger
+    Data.getQuestions($scope.route_type, $scope.route_name, function(response){ 
+        debugger
+        $scope.data = response;
+    });
     $scope.submitAnswer = function(qid, myAnswer){
         var qid = this.data.qList[0].id;
         var answer = this.myAnswer;
