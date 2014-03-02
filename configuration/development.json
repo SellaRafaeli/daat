@@ -12,5 +12,9 @@
     "memcached": {
        "host"       : "localhost",
         "options"   : {}
+    },
+    "rabbit":{
+        "host": "localhost",
+        "post" : 5672
     }
 }
