@@ -3,11 +3,22 @@ function qListCtrl($scope, Data, $routeParams){
     //$routeParams.orderId
     $scope.route_type = $routeParams.type
     $scope.route_name = $routeParams.name
-    debugger
-    Data.getQuestions($scope.route_type, $scope.route_name, function(response){ 
-        debugger
-        $scope.data = response;
+    
+    $scope.qList = Data.qList; //the client-side stub that works
+    $scope.data = {qList: Data.qList};
+    $scope.origData = $scope.data;
+    Data.getQuestions($scope.route_type, $scope.route_name, function(response){         
+        var temp = [{title: "foo", body: "moo"}];
+
+        var data = response.data.map(function(server_answer ){
+            return {title: server_answer.title,
+                    body: server_answer.text
+            }
+        });
+        $scope.data = {qList: data};
+        //$scope.data = {qList: qList};        
     });
+
     $scope.submitAnswer = function(qid, myAnswer){
         var qid = this.data.qList[0].id;
         var answer = this.myAnswer;

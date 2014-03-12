@@ -46,6 +46,11 @@ myApp.factory('Data', function($http) {
             console.log("getting "+type+" + "+name);
             $http.get('/questions').then(cb);
             return {qList: qList}
+        },
+        submitQuestion: function(title,details,cb){
+            debugger
+            $http.post('/questions/new/foo',{title:title,text:details}).then(cb);
+            return "ok";
         }
     };
 });

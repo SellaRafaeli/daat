@@ -4,5 +4,10 @@ function newQuestionCtrl($scope, Data, $routeParams){
         var title = this.newQuestionTitle;
         var details = this.newQuestionDetails;
         alert("submitting question with "+title+" and "+details);
+        var cb = function(){
+            debugger;
+            alert("submitted question to backend");
+        }
+        Data.submitQuestion(title,details,cb);
     }
 }
