@@ -1,9 +1,5 @@
-
-
 //TODO - add localization
-//TODO - load environment config file
 //TODO - add stub data(to be selected by the global config file).
-//TODO - to fix the dependencies
 
 /**
  * Module dependencies.
