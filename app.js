@@ -65,7 +65,7 @@ app.get('/users', user.list);
 app.get('/questions', question.list);
 app.get('/questions/:title', question.get);
 app.get('/questions/category/:category_id', question.category);
-app.post('/questions/new/:fake_param', question.new_questions);
+app.post('/questions/new/', question.new_questions);
 //app.get('/questions/edit/:id', question.edit);
 app.post('/questions/:id/update', question.update);
 

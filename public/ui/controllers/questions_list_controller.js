@@ -5,12 +5,15 @@ function qListCtrl($scope, Data, $routeParams){
     $scope.route_name = $routeParams.name
     
     $scope.qList = Data.qList; //the client-side stub that works
-    $scope.data = {qList: Data.qList};
+    //$scope.data = {qList: Data.qList};
     $scope.origData = $scope.data;
+
     Data.getQuestions($scope.route_type, $scope.route_name, function(response){         
         var temp = [{title: "foo", body: "moo"}];
 
-        var data = response.data.map(function(server_answer ){
+        questions = [].concat(response.data); //make sure it's an array
+
+        var data = questions.map(function(server_answer ){
             return {title: server_answer.title,
                     body: server_answer.text
             }

@@ -44,12 +44,12 @@ myApp.factory('Data', function($http) {
         qList: qList,
         getQuestions: function(type,name,cb){
             console.log("getting "+type+" + "+name);
-            $http.get('/questions').then(cb);
+            var route = (type=='question') ? '/questions/'+name : '/questions';
+            $http.get(route).then(cb);
             return {qList: qList}
         },
         submitQuestion: function(title,details,cb){
-            debugger
-            $http.post('/questions/new/foo',{title:title,text:details}).then(cb);
+            $http.post('/questions/new/',{title:title,text:details}).then(cb);
             return "ok";
         }
     };
