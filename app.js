@@ -16,7 +16,7 @@ require(GLOBAL.ROOT + '/init/constants.js');
 
 var env                = (process.env.NODE_ENV || 'DEVELOPMENT').toLowerCase();
 
-console.log(GLOBAL.ROOT + 'in' + env);
+console.log(GLOBAL.ROOT + ' in ' + env);
 
 var express             = require('express'),
     routes              = require('./routes'),
@@ -57,13 +57,13 @@ if ('development' == app.get('env')) {
 
 //homepage
 app.get("/", function (req, res) {
-
+    
 });
 
 app.get('/users', user.list);
 
 app.get('/questions', question.list);
-app.get('/questions/:id', question.get);
+app.get('/questions/:title', question.get);
 app.get('/questions/category/:category_id', question.category);
 app.post('/questions/new/:fake_param', question.new_questions);
 //app.get('/questions/edit/:id', question.edit);
@@ -78,3 +78,4 @@ http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server on port ' + app.get('port') + ' Ready to Rock!');
 //  console.log('configurations are ' + cfg);
 });
+

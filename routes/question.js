@@ -8,9 +8,9 @@ exports.list = function(req, res){
     res.json(questions.list_top_rates(req.params));
 };
 
-exports.get = function(req, res){
-    res.json(questions.fetch_question(req.params.id));
-};
+// exports.get = function(req, res){    
+//     res.json(questions.fetch_question_by_title(req.params.title));
+// };
 
 exports.get_cat = function(req, res){
     var category = req.params.cat;
