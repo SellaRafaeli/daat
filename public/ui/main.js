@@ -43,13 +43,15 @@ myApp.factory('Data', function($http) {
         message: 'new data from a service',
         qList: qList,
         getQuestions: function(type,name,cb){
+            var name = encodeURIComponent(name); //escape '?'s
             console.log("getting "+type+" + "+name);
             var route = (type=='question') ? '/questions/'+name : '/questions';
             $http.get(route).then(cb);
             return {qList: qList}
         },
         submitQuestion: function(title,details,cb){
-            $http.post('/questions/new/',{title:title,text:details}).then(cb);
+            //title = encodeURIComponent(title);
+           $http.post('/questions/new/',{title:title,text:details}).then(cb);
             return "ok";
         },
         submitAnswer: function(questionTitle,answerText,cb){

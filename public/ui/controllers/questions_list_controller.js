@@ -8,13 +8,12 @@ function qListCtrl($scope, Data, $routeParams){
     //$scope.data = {qList: Data.qList};
     $scope.origData = $scope.data;
 
-    Data.getQuestions($scope.route_type, $scope.route_name, function(response){         
-        var temp = [{title: "foo", body: "moo"}];
-
+    Data.getQuestions($scope.route_type, $scope.route_name, function(response){
         questions = [].concat(response.data); //make sure it's an array
 
         var data = questions.map(function(server_answer ){
             return {title: server_answer.title,
+                    link: encodeURIComponent(server_answer.title),
                     body: server_answer.text,
                     answers: server_answer.answers
             }
@@ -25,6 +24,7 @@ function qListCtrl($scope, Data, $routeParams){
 
     $scope.submitAnswer = function(qid, myAnswer){
         var qid = this.data.qList[0].title;
+        qid = encodeURIComponent(qid);
         var answer = this.myAnswer;
         alert("submitting my answer to qID"+qid+": "+answer);
         Data.submitAnswer(qid, answer);

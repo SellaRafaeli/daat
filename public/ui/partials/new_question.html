@@ -5,7 +5,7 @@
             <input class='title-input' type='text' ng-model="newQuestionTitle" placeholder='השאלה שלי...'/> 
         </div>
         <div>
-            <textarea ng-show="newQuestionTitle" ng-model="newQuestionDetails" class='details-input' placeholder='הוסף פרטים לשאלה?'/></textarea>
+            <textarea ng-show="false && newQuestionTitle" ng-model="newQuestionDetails" class='details-input' placeholder='הוסף פרטים לשאלה?'/></textarea>
         </div>
         <button ng-show="newQuestionTitle" class='submit-button' ng-click="submitNewQuestion()">הוסף!</button>
     </div>
