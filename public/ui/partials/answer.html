@@ -5,8 +5,8 @@
          </a> 
          <span class='clickable' ng-click="hide=!hide" ng-init="hide=true">
             <span class='answer-upvotes-icon'>⇧ {{a.upvotes}}</span>
-            <span ng-hide=!hide> {{shortAnswer(a.body)}} </span>         
-            <span ng-hide=hide> {{a.body}} </span>         
+            <span ng-hide=!hide> {{shortAnswer(a.text)}} </span>
+            <span ng-hide=hide> {{a.text}} </span>
         </span>
     </div>
     <div class='answer-links'>

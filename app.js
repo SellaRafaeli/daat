@@ -34,6 +34,23 @@ var express             = require('express'),
 
 var app                 = express();
 
+app.use(function(req, res, next) {
+    var end = res.end;
+    res.end = function(chunk, encoding){
+        res.end = end;
+        if (chunk) {
+            x = 1 //'chunk' will be response.
+            //console.log(chunk);
+        }
+        res.end(chunk, encoding);
+    };
+
+    res.on('data', function(){ console.log(100)})
+    next();
+});
+
+
+
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/daat');
@@ -63,13 +80,13 @@ app.get("/", function (req, res) {
 app.get('/users', user.list);
 
 app.get('/questions', question.list);
-app.get('/questions/:title', question.get);
+app.get('/questions/:title', question.get );
 app.get('/questions/category/:category_id', question.category);
 app.post('/questions/new/', question.new_questions);
 //app.get('/questions/edit/:id', question.edit);
 app.post('/questions/:id/update', question.update);
 
-app.post('/questions/:id/new_answer', answer.new);
+app.post('/questions/:title/new_answer', answer.new);
 
 app.get('/categories', category.all);
 

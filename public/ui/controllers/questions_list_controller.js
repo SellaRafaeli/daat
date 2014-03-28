@@ -15,7 +15,8 @@ function qListCtrl($scope, Data, $routeParams){
 
         var data = questions.map(function(server_answer ){
             return {title: server_answer.title,
-                    body: server_answer.text
+                    body: server_answer.text,
+                    answers: server_answer.answers
             }
         });
         $scope.data = {qList: data};
@@ -33,6 +34,7 @@ function qListCtrl($scope, Data, $routeParams){
     }
 
     $scope.shortAnswer = function(answerBody){
+        answerBody = answerBody || "";
         shortLengthChars = 100;
         shortAnswer = answerBody.length < shortLengthChars ? answerBody : answerBody.substring(0,shortLengthChars)+"... (עוד)"
         return shortAnswer;
