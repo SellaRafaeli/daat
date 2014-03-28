@@ -51,6 +51,10 @@ myApp.factory('Data', function($http) {
         submitQuestion: function(title,details,cb){
             $http.post('/questions/new/',{title:title,text:details}).then(cb);
             return "ok";
+        },
+        submitAnswer: function(questionTitle,answerText,cb){
+            $http.post('/questions/'+questionTitle+'/new_answer',{answer_text:answerText});
+            return "ok";
         }
     };
 });

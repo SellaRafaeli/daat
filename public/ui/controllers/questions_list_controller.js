@@ -24,12 +24,14 @@ function qListCtrl($scope, Data, $routeParams){
     });
 
     $scope.submitAnswer = function(qid, myAnswer){
-        var qid = this.data.qList[0].id;
+        var qid = this.data.qList[0].title;
         var answer = this.myAnswer;
         alert("submitting my answer to qID"+qid+": "+answer);
+        Data.submitAnswer(qid, answer);
     }
     $scope.upvote = function(a,b,c) {
         alert("Upvoting answer "+a.body)
+        a.upvotes = a.upvotes || 0;
         a.upvotes+=1
     }
 
