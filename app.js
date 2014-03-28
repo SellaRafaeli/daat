@@ -80,13 +80,13 @@ app.get("/", function (req, res) {
 app.get('/users', user.list);
 
 app.get('/questions', question.list);
-app.get('/questions/:title', question.get );
+app.get('/questions/:id', question.get );
 app.get('/questions/category/:category_id', question.category);
 app.post('/questions/new/', question.new_questions);
 //app.get('/questions/edit/:id', question.edit);
 app.post('/questions/:id/update', question.update);
 
-app.post('/questions/:title/new_answer', answer.new);
+app.post('/questions/:id/new_answer', answer.new);
 
 app.get('/categories', category.all);
 

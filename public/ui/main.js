@@ -44,18 +44,16 @@ myApp.factory('Data', function($http) {
         qList: qList,
         getQuestions: function(type,name,cb){
             var name = encodeURIComponent(name); //escape '?'s
-            console.log("getting "+type+" + "+name);
             var route = (type=='question') ? '/questions/'+name : '/questions';
             $http.get(route).then(cb);
             return {qList: qList}
         },
         submitQuestion: function(title,details,cb){
-            //title = encodeURIComponent(title);
            $http.post('/questions/new/',{title:title,text:details}).then(cb);
             return "ok";
         },
-        submitAnswer: function(questionTitle,answerText,cb){
-            $http.post('/questions/'+questionTitle+'/new_answer',{answer_text:answerText});
+        submitAnswer: function(qid,answerText,cb){
+            $http.post('/questions/'+qid+'/new_answer',{answer_text:answerText});
             return "ok";
         }
     };
