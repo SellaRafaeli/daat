@@ -38,7 +38,7 @@ getQ('מי אתם חושבים צריך להיות נשיא המדינה?', 'ד�
     getA("חיים",'יאיר לפיד כמובן!')])            
 ]
 
-myApp.factory('Data', function($http) {
+myApp.factory('Data', function($http, AuthService) {
     return {
         message: 'new data from a service',
         qList: qList,
@@ -48,14 +48,29 @@ myApp.factory('Data', function($http) {
             $http.get(route).then(cb);
             return {qList: qList}
         },
-        submitQuestion: function(title,details,cb){
-           $http.post('/questions/new/',{title:title,text:details}).then(cb);
+        submitQuestion: function(params,cb){
+           params['userId'] = AuthService.currentUser().userId
+           $http.post('/questions/new/',params).then(cb);
             return "ok";
         },
         submitAnswer: function(qid,answerText,cb){
-            $http.post('/questions/'+qid+'/new_answer',{answer_text:answerText});
+            userId = AuthService.currentUserID();
+            $http.post('/questions/'+qid+'/new_answer',{answer_text:answerText, userId: userId});
             return "ok";
         }
+    };
+});
+
+//from http://stackoverflow.com/questions/14206492/how-do-i-store-a-current-user-context-in-angular/14206567#14206567
+myApp.factory( 'AuthService', function() {
+    var currentUser = {name: 'default username', id: 1234}
+
+    return {
+        login: function() {  alert('login core') },
+        logout: function() { alert('logout core') },
+        isLoggedIn: function() { alert('isLoggedIn') },
+        currentUser: function() { return {name:'Sella Rafaeli', userId: '123'} },
+        currentUserID: function() { return currentUser.id; }
     };
 });
 
