@@ -1,15 +1,15 @@
 //main controller
-function qListCtrl($scope, Data, $routeParams){
+function qListCtrl($scope, Data, $routeParams,AuthService){
     g1 = $scope;
     //$routeParams.orderId
     $scope.route_type = $routeParams.type
     $scope.route_name = $routeParams.name
-    
+    $scope.username = AuthService.currentUser().name;
     $scope.qList = Data.qList; //the client-side stub that works
     //$scope.data = {qList: Data.qList};
     $scope.origData = $scope.data;
-
-    Data.getQuestions($scope.route_type, $scope.route_name, function(response){
+    var getQuestionsParams = $routeParams
+    Data.getQuestions(getQuestionsParams, function(response){
         questions = [].concat(response.data); //make sure it's an array
 
         var data = questions.map(function(server_answer ){

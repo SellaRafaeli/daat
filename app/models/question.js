@@ -11,7 +11,8 @@ var threadSchema = new Schema({
     sub_category_id : Number,
     rating          : Number,
     answers         : Array,
-    tags            : Array
+    tags            : Array,
+    userId          : Number
 });
 
 module.exports = mongoose.model('Question', threadSchema);

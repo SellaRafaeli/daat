@@ -11,6 +11,10 @@ myApp.config(['$routeProvider',
       when('/hello', {
         templateUrl: base + 'hello.html',        
       }).
+      when('/questions', {
+            templateUrl: base + 'qList.html',
+            //controller: 'ShowOrdersController'
+      }).
       when('/:type/:name', {
         templateUrl: base + 'qList.html',
         //controller: 'ShowOrdersController'
