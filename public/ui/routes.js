@@ -3,21 +3,22 @@ myApp.config(['$routeProvider',
     var base = '/ui/partials/';
     $routeProvider.
       when('/about', {
-        templateUrl: base + 'about.html',        
+        templateUrl: base + 'about.html',
       }).
       when('/new_question', {
-        templateUrl: base + 'new_question.html',        
+        templateUrl: base + 'new_question.html',
       }).
       when('/hello', {
-        templateUrl: base + 'hello.html',        
+        templateUrl: base + 'hello.html',
       }).
       when('/questions', {
-            templateUrl: base + 'qList.html',
-            //controller: 'ShowOrdersController'
+        templateUrl: base + 'qList.html'
       }).
-      when('/:type/:name', {
-        templateUrl: base + 'qList.html',
-        //controller: 'ShowOrdersController'
+      when('/questions/:_id', {
+        templateUrl: base + 'qList.html'
+      }).
+      when('questions/:type/:name', {
+        templateUrl: base + 'qList.html'
       }).
       otherwise({
         templateUrl: base + '/qList.html'
