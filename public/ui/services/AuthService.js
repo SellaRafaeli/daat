@@ -9,6 +9,7 @@ myApp.factory( 'AuthService', function() {
         logout: function() { alert('logout core') },
         isLoggedIn: function() { alert('isLoggedIn') },
         currentUser: function() { return currentUser },
-        currentUserID: function() { return currentUser.id; }
+        currentUserID: function() { return currentUser.id; },
+        currentUsername: function() { return currentUser.name; }
     };
 });

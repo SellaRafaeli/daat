@@ -15,7 +15,8 @@ myApp.factory('Data', function($http, AuthService) {
         },
         submitAnswer: function(qid,answerText,cb){
             userId = AuthService.currentUserID();
-            $http.post('/questions/'+qid+'/new_answer',{answer_text:answerText, userId: userId});
+            username = AuthService.currentUserName();
+            $http.post('/questions/'+qid+'/new_answer',{answer_text:answerText, userId: userId, username: username});
             return "ok";
         }
     };
