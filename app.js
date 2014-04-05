@@ -92,7 +92,7 @@ app.get('/categories', category.all);
 
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server on port ' + app.get('port') + ' Ready to Rock!');
+  console.log('Daat server on port ' + app.get('port') + ' Ready to Rock!');
 //  console.log('configurations are ' + cfg);
 });
 
