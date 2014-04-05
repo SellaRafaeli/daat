@@ -9,7 +9,7 @@ To run:
 > node app.js; #browse to localhost:8000/ui
 
 
-Current issues. (Feel free to add or take):
+Current issues in progress: (Feel free to add or take):
 
 * Create seed data (Sella)
 * Create easy process for others to clone and participate (git clone daat; make_seed_data; node app;). (Sella)
