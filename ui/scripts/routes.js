@@ -1,6 +1,6 @@
 myApp.config(['$routeProvider',
   function($routeProvider) {
-    var base = '/ui/partials/';
+    var base = '/ui/views/';
     $routeProvider.
       when('/about', {
         templateUrl: base + 'about.html',

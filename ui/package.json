@@ -1,0 +1,32 @@
+{
+  "name": "Daat-ui",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "contributers": [
+    {
+      "name": "Ohad Partuck",
+      "email": "ohadprtuck@gmail.com"
+    },
+    {
+      "name": "Sella Raphaeli",
+      "email": "sella.rafaeli@gmail.com"
+    },
+    {
+      "name": "Eyal Arubas",
+      "email": "eyalarubas@gmail.com"
+    }
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^0.4.4",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-less": "^0.11.0",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}

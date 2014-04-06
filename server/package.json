@@ -1,9 +1,9 @@
 {
-  "name": "Daat",
+  "name": "Daat-server",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "DEBUG=* node app.js"
+    "start": "DEBUG=* node app"
   },
   "contributers": [
     {
@@ -26,6 +26,12 @@
     "debug": "^0.8.0"
   },
   "devDependencies": {
-    "express-debug": "~1.0.3"
+    "express-debug": "~1.0.3",
+    "grunt": "^0.4.4",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-less": "^0.11.0",
+    "grunt-contrib-watch": "^0.6.1"
   }
 }
