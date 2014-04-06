@@ -7,7 +7,7 @@ module.exports = {
 	frontend: {
 		port: 8080,
 		uiEndpoint: '/',
-		static: './public/ui'
+		static: './public'
 	},
 
 	daat: {

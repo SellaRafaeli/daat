@@ -1,8 +1,18 @@
+module.exports = {
 
-/*
- * GET home page.
- */
+	setup: function(app) {
 
-exports.index = function(req, res){
-  res.render('index', { title: 'Express111' });
+		// route handlers:
+		var rhUsers = require('./handlers/users')('users'),
+			rhQuestions = require('./handlers/questions')('questions'),
+			rhAnswers = require('./handlers/answers')('answers'),
+			rhCategories = require('./handlers/categories')('categories');
+
+		rhUsers.setup(app);
+		rhQuestions.setup(app);
+		rhAnswers.setup(app);
+		rhCategories.setup(app);
+
+	}
+
 };
