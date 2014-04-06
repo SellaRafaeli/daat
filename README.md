@@ -13,6 +13,8 @@ Current issues in progress: (Feel free to add or take):
 
 * Create seed data (Sella)
 * Create easy process for others to clone and participate (git clone daat; make_seed_data; node app;). (Sella)
+* Add and display comments. (Sella)
+* Upvotes answers by user. (Sella)
 
 Participants:
 Ohad Partuck
