@@ -88,6 +88,8 @@ app.post('/questions/:id/update', question.update);
 
 app.post('/questions/:id/new_answer', answer.new);
 
+//app.post('/questions/:id/answers/:id/newComment', question.addComment);
+
 app.get('/categories', category.all);
 
 

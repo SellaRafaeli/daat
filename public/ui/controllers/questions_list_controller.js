@@ -1,6 +1,7 @@
 //main controller
 function qListCtrl($scope, Data, $routeParams,AuthService){
     g1 = $scope;
+    //g1.data.qList;
     //$routeParams.orderId
     $scope.route_type = $routeParams.type
     $scope.route_name = $routeParams.name
@@ -22,6 +23,8 @@ function qListCtrl($scope, Data, $routeParams,AuthService){
             }
         });
         $scope.data = {qList: data};
+        console.log("qList is ");
+        console.log(g1.data.qList);
         //$scope.data = {qList: qList};        
     });
 
@@ -32,6 +35,14 @@ function qListCtrl($scope, Data, $routeParams,AuthService){
         alert("submitting my answer to qID"+qid+": "+answer);
         Data.submitAnswer(qid, answer);
     }
+
+    $scope.submitNewComment = function(params){
+        params = {comment: this.newComment, answerId: params.aId, questionId: params.qId};
+
+        debugger
+        Data.submitComment(params,function(){ alert("submitted question to backend"); });
+    }
+
     $scope.upvote = function(a,b,c) {
         alert("Upvoting answer "+a.body)
         a.upvotes = a.upvotes || 0;

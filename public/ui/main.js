@@ -27,13 +27,13 @@ lps.push('De finibus bonorum et malorum (On the ends of good and evil) is a phil
 lps.push('The terms foobar (/ˈfuːbɑr/), fubar, or foo, bar, baz and qux (alternatively, quux) are sometimes used as placeholder names (also referred to as metasyntactic variables) in computer programming or computer-related documentation.[1] They have been used to name entities such as variables, functions, and commands whose purpose is unimportant and serve only to demonstrate a concept. The words themselves have no meaning in this usage. Foobar is sometimes used alone; foo, bar, and baz are sometimes used, when multiple entities are needed. The usage in computer programming examples and pseudocode varies; in certain circles, it is used extensively, but many prefer descriptive names, while others prefer to use single letters. Eric S. Raymond has called it an "important hackerism" alongside kludge and cruft.[2]');
 
 
-qList = [
-getQ('מה הייתה הקלטת הלוהטת?','ואיך היא השפיעה על הליכוד?',[getA("משה כהן",lps[0]), getA("יוסי מזרחי",lps[1])]),
-getQ('מה האוניברסיטה הטובה ביותר?', 'הטכניון? האוניברסיטה העברית?', 
-    [getA("יוסי",'אני לא יודע לאן ללכת ללמוד'),
-    getA("משה",'ברור שהאוניברסיטה העברית'),
-    getA("חיים",'הטכניון')]),
-getQ('מי אתם חושבים צריך להיות נשיא המדינה?', 'דליה איציק? שכטמן?', 
-    [getA("משה",'אני חושב שזה צריך להיות פואד'),
-    getA("חיים",'יאיר לפיד כמובן!')])            
-]
+//qList = [
+//getQ('מה הייתה הקלטת הלוהטת?','ואיך היא השפיעה על הליכוד?',[getA("משה כהן",lps[0]), getA("יוסי מזרחי",lps[1])]),
+//getQ('מה האוניברסיטה הטובה ביותר?', 'הטכניון? האוניברסיטה העברית?',
+//    [getA("יוסי",'אני לא יודע לאן ללכת ללמוד'),
+//    getA("משה",'ברור שהאוניברסיטה העברית'),
+//    getA("חיים",'הטכניון')]),
+//getQ('מי אתם חושבים צריך להיות נשיא המדינה?', 'דליה איציק? שכטמן?',
+//    [getA("משה",'אני חושב שזה צריך להיות פואד'),
+//    getA("חיים",'יאיר לפיד כמובן!')])
+//]
