@@ -1,4 +1,5 @@
-var answers      = require(GLOBAL.ROOT + '/lib/answers/answers.js');
+var resolve = require('path').resolve,
+    answers = require(resolve('./lib/answers/answers.js'));
 
 //TODO support comments
 //NEW Answer
