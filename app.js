@@ -76,25 +76,48 @@ if ('development' == app.get('env')) {
 app.get("/", function (req, res) {
     
 });
-
 app.get('/users', user.list);
 
+//questions
 app.get('/questions', question.list);
 app.get('/questions/:id', question.get );
 app.get('/questions/category/:category_id', question.category);
-app.post('/questions/new/', question.new_questions);
-//app.get('/questions/edit/:id', question.edit);
-app.post('/questions/:id/update', question.update);
 
+app.post('/questions/new/', question.new_questions);
+app.post('/questions/:id/update', question.update);
 app.post('/questions/:id/new_answer', answer.new);
 
-//app.post('/questions/:id/answers/:id/newComment', question.addComment);
-
+//categories
 app.get('/categories', category.all);
 
 
-http.createServer(app).listen(app.get('port'), function(){
+server = http.createServer(app)
+server.listen(app.get('port'), function(){
   console.log('Daat server on port ' + app.get('port') + ' Ready to Rock!');
-//  console.log('configurations are ' + cfg);
 });
 
+
+//sockets
+app.get('/socketSend/:id',function(req,res){
+    io.clients[req.params.id].emit('msg','booga');
+});
+
+var io = require('socket.io').listen(server);
+io.clients = {};
+io.handleSocketMsg = function(data){
+    log("got: "+data.toString());
+}
+io.sockets.on('connection', function (socket) {
+    socket.emit('msg','got your connection');
+    socket.on('register',function(data){
+        var id = data.id; //obviously insecure. Should pass authentication.
+        io.clients[id] = io.clients[id] || socket; //register him if not registered
+        log('registered '+id);
+    })
+    socket.on('msg', function(data){
+        io.handleSocketMsg(data);
+        socket.emit('msg','ACK');
+    });
+});
+
+//socket.emit('msg', { hello: 'world' });

@@ -20,7 +20,8 @@
     "jade": "*",
     "mongoose": "*",
     "jquery": "2.1.0",
-    "i18n-abide": "0.0.17"
+    "i18n-abide": "0.0.17",
+    "socket.io": "*"
   },
   "devDependencies": {
     "express-debug": "~1.0.3"
