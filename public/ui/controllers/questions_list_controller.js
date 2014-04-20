@@ -38,9 +38,7 @@ function qListCtrl($scope, Data, $routeParams,AuthService){
 
     $scope.submitNewComment = function(params){
         params = {comment: this.newComment, answerId: params.aId, questionId: params.qId};
-
-        debugger
-        Data.submitComment(params,function(){ alert("submitted question to backend"); });
+        Data.submitComment(params,function(){ alert("submitted comment to backend"); });
     }
 
     $scope.upvote = function(a,b,c) {

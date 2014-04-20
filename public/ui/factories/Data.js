@@ -16,6 +16,7 @@ myApp.factory('Data', function($http, AuthService) {
         submitComment: function(params,cb){
             params['userId'] = AuthService.currentUser().id;
             debugger
+            $http.post('/questions/new/',params).then(cb);
             //$http.post('/questions/new/',params).then(cb);
             return "ok";
         },
