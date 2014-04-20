@@ -14,7 +14,7 @@ myApp.factory('Data', function($http, AuthService) {
         },
         submitComment: function(params,cb){
             params['userId'] = AuthService.currentUser().id;
-            var route = '/questions/'+params.questionID+'/answer/'+params.answerId+'/newComment';
+            var route = '/questions/'+params.questionId+'/answer/'+params.answerId+'/newComment';
             $http.post(route,params).then(cb);
             //$http.post('/questions/new/',params).then(cb);
             return "ok";
