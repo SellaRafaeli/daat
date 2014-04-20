@@ -14,7 +14,7 @@ myApp.config(['$routeProvider',
       when('/questions', {
         templateUrl: base + 'qList.html'
       }).
-      when('/questions/:_id', {
+      when('/questions/:id', {
         templateUrl: base + 'qList.html'
       }).
       when('questions/:type/:name', {

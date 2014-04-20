@@ -1,44 +1,39 @@
-//TODO - here should be stubbed/real by configuration
-var questions = require('../lib/questions/questions.js');
-
-//NEW Question
-//Get Question by ID
-//Get Question By Category
-//Update a question
-
-
 exports.list = function(req, res){
-    questions.list_top_rated(req, function(final_result) {
-        res.json(final_result);
-    });
+    db.questions.find({}, cbj(res) );
 };
 
 exports.get = function(req, res){
-    questions.fetch_question(req, function(final_result) {
-        res.json(final_result);
-    });
+    var criteria = {'id': req.params.id}
+    db.questions.findOne(criteria, cbj(res) );
 };
 
 exports.category = function(req, res){
-    questions.fetch_question_by_category(req, function(final_result) {
-        res.json(final_result);
-    });
 };
 
-exports.new_questions = function(req, res){
-    questions.new_question(req, function(result) {
-        res.json(result);
-    });
-};
+exports.new_question = function(req, res){
+    var newQuestion = {
+        id                  : (new Date()).getTime().toString(36),
+        title               : req.body['title'],
+        text                : req.body['text'],
+        category_id         : req.body['category_id'],
+        sub_category_id     : req.body['sub_category_id'],
+        tags                : req.body['tags'],
+        userId              : req.body['userId'],
+        answers             : {}
 
-//exports.edit = function(req, res){
-//    questions.edit(req, function(result) {
-//        res.json(result);
-//    });
-//};
+    }
+
+    db.questions.save(newQuestion, cbj(res) );
+};
 
 exports.update = function(req, res){
-    questions.update(req, function(result) {
-        res.json(result);
-    });
 };
+
+/* helpers */
+
+//call-back json
+var cbj = function(responseObj){
+    return function(err, result) {
+        responseObj.json(result);
+    }
+}
