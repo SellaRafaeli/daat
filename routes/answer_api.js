@@ -15,13 +15,15 @@ exports.addToQuestion = function(req, res){
 };
 
 exports.newComment = function(req, res){
-    qID = req.params['id']
-    aID = req.params['answerId']
+    var qID = req.params['id'];
+    var aId = req.params['answerId'];
+    var newComment = makeNewComment(req);
     var findCrit = {id: qID};
     var setCrit = {};
-    db.questions.update(findCrit,{"$set": setCrit}
-    answers.create_and_attach_new_comment(req, function(resp){
-        res.json(resp);
+        setCrit["answers."+aId+".comments."+newComment.id] = newComment;
+
+    db.questions.update(findCrit,{"$set": setCrit}, function(err,results) {
+        res.json({"msg": "okComment"});
     });
 };
 
@@ -55,8 +57,7 @@ function makeNewAnswer(req){
 
 function makeNewComment(req){
     return {
-        text            : req.body['answer_text'],
-        comments        : {},
+        text            : req.body['comment'],
         id              : (new Date()).getTime().toString(36)
     }
 }
