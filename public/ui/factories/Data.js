@@ -3,8 +3,7 @@ myApp.factory('Data', function($http, AuthService) {
         message: 'new data from a service',
         //qList: qList,
         getQuestions: function(params,cb){
-            //var route = (type=='question') ? '/questions/'+name : '/questions';
-            var route = '/questions';
+            var route = params['id'] ? '/questions/'+params['id'] : '/questions';
             $http.get(route,{params: params}).then(cb);
             return "ok";
         },
@@ -15,8 +14,8 @@ myApp.factory('Data', function($http, AuthService) {
         },
         submitComment: function(params,cb){
             params['userId'] = AuthService.currentUser().id;
-            debugger
-            $http.post('/questions/new/',params).then(cb);
+            var route = '/questions/'+params.questionID+'/answer/'+params.answerId+'/newComment';
+            $http.post(route,params).then(cb);
             //$http.post('/questions/new/',params).then(cb);
             return "ok";
         },

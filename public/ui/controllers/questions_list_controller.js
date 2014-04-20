@@ -15,9 +15,9 @@ function qListCtrl($scope, Data, $routeParams,AuthService){
 
         var data = questions.map(function(server_answer ){
             return {
-                    id:   server_answer._id,
+                    id:   server_answer.id,
                     title: server_answer.title,
-                    link: server_answer._id,
+                    link: server_answer.id,
                     body: server_answer.text,
                     answers: server_answer.answers
             }

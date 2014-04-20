@@ -1,25 +1,21 @@
-
-
-//TODO - add localization
-//TODO - load environment config file
-//TODO - add stub data(to be selected by the global config file).
-//TODO - to fix the dependencies
-
-/**
- * Module dependencies.
- */
-var log = function(s){console.log(s);};
-
+//globals. Settable with GLOBAL.foo from other files.
+log = function(s){console.log(s);};
+db  = require("mongojs").connect('daat', ['questions','users']); //http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
+env = (process.env.NODE_ENV || 'DEVELOPMENT').toLowerCase();
 GLOBAL.ROOT = __dirname;
+db.questions.find({a:10}, function(res){
+    console.log(res)}
+);
 
 require(GLOBAL.ROOT + '/init/constants.js');
 
-var env                = (process.env.NODE_ENV || 'DEVELOPMENT').toLowerCase();
-
 console.log(GLOBAL.ROOT + ' in ' + env);
 
+
+//var mongoose = require('mongoose');
+//mongoose.connect('mongodb://localhost/daat');
+
 var express             = require('express'),
-    routes              = require('./routes'),
     $                   = require('jquery'),
     user                = require('./routes/user_api'),
     question            = require('./routes/question_api'),
@@ -49,16 +45,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-
-
-
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/daat');
-
-var databaseUrl = "mydb"; // "username:password@example.com/mydb"
-var collections = ["users", "reports"]
-var db = require("mongojs").connect(databaseUrl, collections);
-
 // all environments
 app.set('port', process.env.PORT || 8000);
 app.set('views', path.join(__dirname, 'views'));
@@ -72,24 +58,24 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
+if ('development' == app.get('env')) { app.use(express.errorHandler()); }
+
+/* routes */
 
 //homepage
-app.get("/", function (req, res) {
-    
-});
+app.get("/", function (req, res) { res.redirect('/ui'); });
+
+//users
 app.get('/users', user.list);
 
 //questions
 app.get('/questions', question.list);
 app.get('/questions/:id', question.get );
+app.post('/questions/new/', question.new_question);
 app.get('/questions/category/:category_id', question.category);
 
-app.post('/questions/new/', question.new_questions);
 app.post('/questions/:id/update', question.update);
-app.post('/questions/:id/new_answer', answer.new);
+app.post('/questions/:id/new_answer', answer.addToQuestion);
 app.post('/questions/:id/answer/:answerId/newComment', answer.newComment);
 
 //categories
@@ -124,5 +110,3 @@ io.sockets.on('connection', function (socket) {
         socket.emit('msg','ACK');
     });
 });
-
-//socket.emit('msg', { hello: 'world' });
