@@ -15,4 +15,5 @@ var threadSchema = new Schema({
     userId          : Number
 });
 
-module.exports = mongoose.model('Question', threadSchema);
+//module.exports = mongoose.model('Question', threadSchema);
+module.exports = mongoose.model('Question');

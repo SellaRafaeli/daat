@@ -55,6 +55,10 @@ app.use(function(req, res, next) {
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/daat');
 
+var databaseUrl = "mydb"; // "username:password@example.com/mydb"
+var collections = ["users", "reports"]
+var db = require("mongojs").connect(databaseUrl, collections);
+
 // all environments
 app.set('port', process.env.PORT || 8000);
 app.set('views', path.join(__dirname, 'views'));
@@ -86,6 +90,7 @@ app.get('/questions/category/:category_id', question.category);
 app.post('/questions/new/', question.new_questions);
 app.post('/questions/:id/update', question.update);
 app.post('/questions/:id/new_answer', answer.new);
+app.post('/questions/:id/answer/:answerId/newComment', answer.newComment);
 
 //categories
 app.get('/categories', category.all);
