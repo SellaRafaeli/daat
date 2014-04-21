@@ -91,7 +91,7 @@ app.post('/questions/:id/new_answer', answer.new);
 app.get('/categories', category.all);
 
 
-server = http.createServer(app)
+server = http.createServer(app);
 server.listen(app.get('port'), function(){
   console.log('Daat server on port ' + app.get('port') + ' Ready to Rock!');
 });
