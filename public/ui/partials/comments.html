@@ -1,14 +1,12 @@
 <div>
     <ul class='comments-list'>
         <li ng-repeat="c in a.comments" class='comment'>
-            comment here
             <a class='comment-user' ng-href='#/user/{{c.user}}'> {{c.user}} </a>
             <div class='comment-body'>
-                {{c.body}}
+                {{c.text}}
             </div>
         </li>
     </ul>
-        <div>{{a}}</div>
     <div>
         <textarea ng-model="newComment" placeholder="enter your comment"></textarea>
     </div>

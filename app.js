@@ -75,8 +75,9 @@ app.post('/questions/new/', question.new_question);
 app.get('/questions/category/:category_id', question.category);
 
 app.post('/questions/:id/update', question.update);
-app.post('/questions/:id/new_answer', answer.addToQuestion);
-app.post('/questions/:id/answer/:answerId/newComment', answer.newComment);
+app.post('/questions/:id/new_answer', answer.addAnswerToQuestion);
+app.post('/questions/:id/answer/:answerId/upvote', answer.upvoteAnswer);
+app.post('/questions/:id/answer/:answerId/newComment', answer.addCommentToAnswerToQuestion);
 
 //categories
 app.get('/categories', category.all);

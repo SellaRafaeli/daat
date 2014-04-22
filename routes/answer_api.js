@@ -1,7 +1,7 @@
 //NEW Answer
 //Get Answers by Question ID
 
-exports.addToQuestion = function(req, res){
+exports.addAnswerToQuestion = function(req, res){
     var qID = req.params['id'];
     var newAnswer = makeNewAnswer(req);
 
@@ -14,7 +14,7 @@ exports.addToQuestion = function(req, res){
     });
 };
 
-exports.newComment = function(req, res){
+exports.addCommentToAnswerToQuestion = function(req, res){
     var qID = req.params['id'];
     var aId = req.params['answerId'];
     var newComment = makeNewComment(req);
@@ -27,23 +27,33 @@ exports.newComment = function(req, res){
     });
 };
 
-exports.create_and_attach_new_answer = function(req, callback) {
-    questions.fetch_question(req, function(q) {
-        newAnswer = makeNewAnswer(req);
-        q.answers = q.answers || {};
-        q.answers.push(newAnswer);
-        q.save();
-        callback(q);
-    });
-};
 
-exports.create_and_attach_new_comment = function(req, callback) {
-    questions.fetch_question(req, function(q) {
-        q.answers[req.params['answerId']] = "new comment"
-        q.save();
-        callback(q);
-    });
-};
+exports.upvoteAnswer = function(req, res) {
+    var qID = req.params['id'];
+    var aId = req.params['answerId'];
+    var findCrit = {id: qID};
+    var setCrit = {};
+        setCrit["answers."+aId+".comments."+newComment.id+".upvotes"] = 1;
+
+    db.questions.update({id: req.params['id']},{ "$inc": { upvotes: 1}})
+}
+//exports.create_and_attach_new_answer = function(req, callback) {
+//    questions.fetch_question(req, function(q) {
+//        newAnswer = makeNewAnswer(req);
+//        q.answers = q.answers || {};
+//        q.answers.push(newAnswer);
+//        q.save();
+//        callback(q);
+//    });
+//};
+//
+//exports.create_and_attach_new_comment = function(req, callback) {
+//    questions.fetch_question(req, function(q) {
+//        q.answers[req.params['answerId']] = "new comment"
+//        q.save();
+//        callback(q);
+//    });
+//};
 
 /* helpers */
 
