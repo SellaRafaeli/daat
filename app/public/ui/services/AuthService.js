@@ -4,15 +4,26 @@
 
     authService = that;
     that.currentUser = {};
-
-    that.getAuthToken = function() { return localStorage.authToken};
     
-    that.setAuthToken = function(token){ localStorage.authToken = token;};        
-    
-    that.setCurrentUser = function(data) { 
-            this.setAuthToken(data.authToken); 
+    that.setCurrentUser = function(data) {             
+            that.currentUser.authToken = data.authToken;
             that.currentUser.email = data.email; 
             that.currentUser.fullName = data.fullName; 
+            that.save();
         };    
+
+    that.load =  function(){
+        //that.currentUser.token       = localStorage.authToken;
+        //that.currentUser.fullName = localStorage.fullName;
+        that.currentUser = JSON.parse(localStorage.currentUser || "{}");
+    };
+
+    that.save = function(){
+        //localStorage.authToken = that.currentUser.token;
+        //localStorage.fullName = that.currentUser.fullName;        
+        localStorage.currentUser = JSON.stringify(that.currentUser);
+    };
+
+    that.load();
     return that;
 });

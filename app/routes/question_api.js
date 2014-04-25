@@ -19,6 +19,7 @@ exports.new_question = function(req, res){
         sub_category_id     : req.body['sub_category_id'],
         tags                : req.body['tags'],
         userId              : req.user._id,
+        username       : req.user.fullName,
         answers             : {}
 
     }

@@ -8,19 +8,19 @@ myApp.factory('Data', function($http, AuthService) {
             return "ok";
         },
         submitQuestion: function(params,cb){
-            params['authToken'] = AuthService.getAuthToken();
+            params['authToken'] = AuthService.currentUser.authToken;
             $http.post('/questions/new/',params).then(cb);
             return "ok";
         },
         submitComment: function(params,cb){
-            params['authToken'] = AuthService.getAuthToken();
+            params['authToken'] = AuthService.currentUser.authToken;
             var route = '/questions/'+params.questionId+'/answer/'+params.answerId+'/newComment';
             $http.post(route,params).then(cb);
             //$http.post('/questions/new/',params).then(cb);
             return "ok";
         },
         submitAnswer: function(qid,answerText,cb){
-            params['authToken'] = AuthService.getAuthToken();
+            params['authToken'] = AuthService.currentUser.token;
             username = AuthService.currentUsername();
             $http.post('/questions/'+qid+'/new_answer',{answer_text:answerText, userId: userId, username: username});
             return "ok";
