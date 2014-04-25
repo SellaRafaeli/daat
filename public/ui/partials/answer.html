@@ -11,8 +11,8 @@
     </div>
     <div class='answer-links'>
         <a class='clickable nice-link' ng-click="upvote(a)">לייק! </a> 
-        <span class='bullet'> • </span>
-        <a class='clickable nice-link' ng-click="showComments=!showComments" ng-init='showComments=true'>תגובות ({{a.comments.length}})</a>
+        <span class='bullet' ng-show=showComments> • </span>
+        <a class='clickable nice-link' ng-click="showComments=!showComments" ng-init='showComments=false' ng-show=showComments>תגובות ({{a.comments.length}})</a>
     <div>
 
     <comments ng-show=showComments>
