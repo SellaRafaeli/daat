@@ -60,6 +60,7 @@ exports.upvoteAnswer = function(req, res) {
 function makeNewAnswer(req){
     return {
         text            : req.body['answer_text'],
+        username : req.user.fullName,
         comments        : {},
         id              : (new Date()).getTime().toString(36)
     }

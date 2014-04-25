@@ -1,5 +1,5 @@
 //main controller
-function qListCtrl($scope, Data, $routeParams,AuthService){
+function qListCtrl($scope, Data, $route, $routeParams,AuthService){
     g1 = $scope;
     //g1.data.qList;
     //$routeParams.orderId
@@ -33,7 +33,7 @@ function qListCtrl($scope, Data, $routeParams,AuthService){
         qid = encodeURIComponent(qid);
         var answer = this.myAnswer;
         alert("submitting my answer to qID"+qid+": "+answer);
-        Data.submitAnswer(qid, answer);
+        Data.submitAnswer(qid, answer, function(res){ $route.reload();});
     }
 
     $scope.submitNewComment = function(params){

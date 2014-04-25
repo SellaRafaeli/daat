@@ -8,6 +8,9 @@ myApp.config(['$routeProvider',
       when('/login', {
         templateUrl: base + 'login.html',
       }).
+      when('/logout', {
+        templateUrl: base + 'login.html',
+      }).
       when('/about', {
         templateUrl: base + 'about.html',
       }).

@@ -20,9 +20,9 @@ myApp.factory('Data', function($http, AuthService) {
             return "ok";
         },
         submitAnswer: function(qid,answerText,cb){
-            params['authToken'] = AuthService.currentUser.token;
-            username = AuthService.currentUsername();
-            $http.post('/questions/'+qid+'/new_answer',{answer_text:answerText, userId: userId, username: username});
+            params = {answer_text :answerText}
+            params['authToken'] = AuthService.currentUser.authToken;            
+            $http.post('/questions/'+qid+'/new_answer',params).then(cb);
             return "ok";
         },
         signup: function(params, cb){ $http.post('/signup',params).then(cb); }

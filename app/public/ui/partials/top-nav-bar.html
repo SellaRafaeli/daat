@@ -1,11 +1,12 @@
 <div class='contents'>
-            <div onclick='document.location = "/ui"' class='image'></div>
-            <input class='search' type='text' placeholder='חפש' />
-            <a class='link' ng-href="#about">{{about}}</a>
+            <div onclick='document.location = "/ui/#/questions"' class='image'></div>
+            <input ng-show=false class='search' type='text' placeholder='חפש' />
+            <a class='link' ng-show=false ng-href="#about">{{about}}</a>
             <!--<a class='link' href="#hello">שלום</a>-->
+            <a class='link' href="#signup">{{currentUser}}</a>
             <a class='link' href="#new_question">{{addQuestion}}</a>
             <a class='link' href="#questions">{{main}}</a>
-            <a class='link' href="#signup">{{currentUser}}</a>
+            
 
             <!--<a class='link' href="#category/politics">נושא: סרטים</a>-->
             <!--<a class='link' href="#user/moshe">יוזר: משה</a>            -->
