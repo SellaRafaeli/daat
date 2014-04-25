@@ -79,6 +79,7 @@ app.get('/categories', category.all);
 
 //login
 app.post('/signup',users.signup);
+app.post('/login',users.login);
 
 server = http.createServer(app);
 server.listen(app.get('port'), function(){
@@ -107,5 +108,3 @@ io.sockets.on('connection', function (socket) {
         socket.emit('msg','ACK');
     });
 });
-
-//foo
