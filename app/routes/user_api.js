@@ -7,6 +7,7 @@ exports.list = function(req, res){
 exports.signup = function(req,res) { // signup requires no password - just email. 
     var email = req.body.email;
     var password = req.body.password; 
+    var fullName = req.body.fullName;
     var authToken = makeAuthToken();
 
     db.users.findOne({email: email}, function(err, user){
@@ -15,7 +16,7 @@ exports.signup = function(req,res) { // signup requires no password - just email
             res.json({msg: "User already exists."}); 
         }        
         else {
-            db.users.save({email: email, password: password, authToken: authToken}, function(err, user) {
+            db.users.save({email: email, password: password, fullName: fullName, authToken: authToken}, function(err, user) {
                 res.json(user);
             });
         }//end else
@@ -32,6 +33,22 @@ exports.login = function(req, res) {
     }); //end findOne    
 }
   
+exports.ensureUserMiddleware = function(req, res, next) {
+    
+    var authToken = req.query.authToken || req.body.authToken;    
+    db.users.findOne({authToken: authToken}, function(err, user){
+        if (user){
+            log(user);
+            req.user = user;            
+            next();
+        } else {
+            res.json({msg: "Missing valid authToken for user."});                    
+        }        
+    }); 
+}
+
+/* Helpers */ 
+
 function makeAuthToken(){
     return Math.random().toString(36).substring(7); 
 }

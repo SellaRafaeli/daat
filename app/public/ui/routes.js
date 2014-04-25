@@ -2,7 +2,10 @@ myApp.config(['$routeProvider',
   function($routeProvider) {
     var base = '/ui/partials/';
     $routeProvider.
-     when('/login', {
+     when('/signup', {
+        templateUrl: base + 'login.html',
+      }).
+      when('/login', {
         templateUrl: base + 'login.html',
       }).
       when('/about', {

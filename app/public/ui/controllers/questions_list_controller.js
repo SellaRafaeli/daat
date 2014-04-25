@@ -5,7 +5,7 @@ function qListCtrl($scope, Data, $routeParams,AuthService){
     //$routeParams.orderId
     $scope.route_type = $routeParams.type
     $scope.route_name = $routeParams.name
-    $scope.username = AuthService.currentUser().name;
+    //$scope.username = AuthService.currentUser().name;
     $scope.qList = Data.qList; //the client-side stub that works
     //$scope.data = {qList: Data.qList};
     $scope.origData = $scope.data;

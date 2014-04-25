@@ -8,23 +8,23 @@ myApp.factory('Data', function($http, AuthService) {
             return "ok";
         },
         submitQuestion: function(params,cb){
-            params['userId'] = AuthService.currentUser().id;
+            params['authToken'] = AuthService.getAuthToken();
             $http.post('/questions/new/',params).then(cb);
             return "ok";
         },
         submitComment: function(params,cb){
-            params['userId'] = AuthService.currentUser().id;
+            params['authToken'] = AuthService.getAuthToken();
             var route = '/questions/'+params.questionId+'/answer/'+params.answerId+'/newComment';
             $http.post(route,params).then(cb);
             //$http.post('/questions/new/',params).then(cb);
             return "ok";
         },
         submitAnswer: function(qid,answerText,cb){
-            userId = AuthService.currentUserID();
+            params['authToken'] = AuthService.getAuthToken();
             username = AuthService.currentUsername();
             $http.post('/questions/'+qid+'/new_answer',{answer_text:answerText, userId: userId, username: username});
             return "ok";
         },
-        tryLogin: function(params, cb){ $http.post('/signup',params).then(cb); }
+        signup: function(params, cb){ $http.post('/signup',params).then(cb); }
     };
 });

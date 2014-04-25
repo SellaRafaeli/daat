@@ -1,7 +1,8 @@
 //globals. Settable with GLOBAL.foo from other files.
-log = function(s){console.log(s);};
-db  = require("mongojs").connect('daat', ['questions','users']); //http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
-env = (process.env.NODE_ENV || 'DEVELOPMENT').toLowerCase();
+log   = function(s){console.log(s);};
+db    = require("mongojs").connect('daat', ['questions','users']); //http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
+env  = (process.env.NODE_ENV || 'DEVELOPMENT').toLowerCase();
+
 GLOBAL.ROOT = __dirname;
 
 require(GLOBAL.ROOT + '/init/constants.js');
@@ -47,13 +48,18 @@ app.use(function(req, res, next) {
 app.set('port', process.env.PORT || 8000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+//app.all("*", function(req,res,next) { users.ensureUserMiddleware} );
+//app.use(function(req, res, next) { log("request from user :"+(req.user || "unknown")); next(); }); //to be used with "ensureUserMiddleware" to log the user
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // development only
 if ('development' == app.get('env')) { app.use(express.errorHandler()); }
@@ -62,17 +68,18 @@ if ('development' == app.get('env')) { app.use(express.errorHandler()); }
 
 //homepage
 app.get("/", function (req, res) { res.redirect('/ui'); });
+app.get("/ping", function (req, res) { res.send("pong"); });
 
 //questions
 app.get('/questions', question.list);
 app.get('/questions/:id', question.get );
-app.post('/questions/new/', question.new_question);
+app.post('/questions/new/', users.ensureUserMiddleware, question.new_question);
 app.get('/questions/category/:category_id', question.category);
 
-app.post('/questions/:id/update', question.update);
-app.post('/questions/:id/new_answer', answer.addAnswerToQuestion);
-app.post('/questions/:id/answer/:answerId/upvote', answer.upvoteAnswer);
-app.post('/questions/:id/answer/:answerId/newComment', answer.addCommentToAnswerToQuestion);
+app.post('/questions/:id/update', users.ensureUserMiddleware, question.update);
+app.post('/questions/:id/new_answer', users.ensureUserMiddleware, answer.addAnswerToQuestion);
+app.post('/questions/:id/answer/:answerId/upvote', users.ensureUserMiddleware, answer.upvoteAnswer);
+app.post('/questions/:id/answer/:answerId/newComment', users.ensureUserMiddleware, answer.addCommentToAnswerToQuestion);
 
 //categories
 app.get('/categories', category.all);
@@ -87,24 +94,26 @@ server.listen(app.get('port'), function(){
 });
 
 //sockets
-app.get('/socketSend/:id',function(req,res){
-    io.clients[req.params.id].emit('msg','booga');
-});
-
-var io = require('socket.io').listen(server);
-io.clients = {};
-io.handleSocketMsg = function(data){
-    log("got: "+data.toString());
-}
-io.sockets.on('connection', function (socket) {
-    socket.emit('msg','got your connection');
-    socket.on('register',function(data){
-        var id = data.id; //obviously insecure. Should pass authentication.
-        io.clients[id] = io.clients[id] || socket; //register him if not registered
-        log('registered '+id);
-    })
-    socket.on('msg', function(data){
-        io.handleSocketMsg(data);
-        socket.emit('msg','ACK');
+if (useSockets = false){
+    app.get('/socketSend/:id',function(req,res){
+        io.clients[req.params.id].emit('msg','booga');
     });
-});
+
+    var io = require('socket.io').listen(server);
+    io.clients = {};
+    io.handleSocketMsg = function(data){
+        log("got: "+data.toString());
+    }
+    io.sockets.on('connection', function (socket) {
+        socket.emit('msg','got your connection');
+        socket.on('register',function(data){
+            var id = data.id; //obviously insecure. Should pass authentication.
+            io.clients[id] = io.clients[id] || socket; //register him if not registered
+            log('registered '+id);
+        })
+        socket.on('msg', function(data){
+            io.handleSocketMsg(data);
+            socket.emit('msg','ACK');
+        });
+    });
+}

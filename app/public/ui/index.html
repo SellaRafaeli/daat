@@ -9,7 +9,7 @@
 
     <!-- see http://lesselements.com/tests -->
     <link rel="stylesheet/less" type="text/css" href="lib/less/elements.less">  
-
+    <script type="text/javascript"> less = { logLevel: 0 }; </script>
     <script type="text/javascript" src="lib/less/less-1.6.2.min.js"></script>
     <script type="text/javascript" src="lib/angularjs/1.2.3/angular.min.js"></script>
     <script type="text/javascript" src="lib/angularjs/1.2.3/angular-route.min.js"></script>    
@@ -18,8 +18,10 @@
 
     <script type="text/javascript" src="services/AuthService.js"></script>
     <script type="text/javascript" src="factories/Data.js"></script>
-
+    
     <script type="text/javascript" src="routes.js"></script>
+
+    <script type="text/javascript" src="controllers/appController.js"></script>
     <script type="text/javascript" src="controllers/questions_list_controller.js"></script>
     <script type="text/javascript" src="controllers/new_question_controller.js"></script>
     <script type="text/javascript" src="controllers/LoginController.js"></script>
@@ -30,7 +32,7 @@
 </head>
 
 <body> 
-    <div ng-app="myApp" class="app">       
+    <div ng-app="myApp" ng-controller ="appController" class="app">       
         <top-nav-bar>
         </top-nav-bar>        
         <div class="ng-view-container">
@@ -40,6 +42,8 @@
     </div>           
  </body>
 
+<!-- 
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
     <script type="text/javascript" src="services/sockets.js"></script>
-</html>
+ -->
+ </html>

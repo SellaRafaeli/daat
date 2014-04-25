@@ -1,22 +1,16 @@
 //main controller
 function LoginController($scope, Data, AuthService){
 
-    $scope.email = "default@cob.com";
+    $scope.email = Math.random().toString(36).substring(3)+'@domain.com'; 
     $scope.fullName = "Default McName";
     
-    $scope.login = function(){
+    $scope.signup = function(){
         if (!this.email) { alert("Bad input - no email."); return; }
 
-        Data.tryLogin({email: this.email, fullName: this.fullName},this.handleLogin);
+        Data.signup({email: this.email, fullName: this.fullName},this.handleSignup);
     }
 
-    $scope.handleLogin = function(loginRes) {
-        if (token = loginRes.data.authToken) {
-            AuthService.setAuthToken(token);
-            alert ("good to go!");
-        }
-        else {
-            alert ("can't login!");
-        }
+    $scope.handleSignup = function(signupRes) {
+        (data = signupRes.data) ? AuthService.setCurrentUser(data) : alert ("can't login! : "+signupRes);            
     }
 }
