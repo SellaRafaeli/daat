@@ -3,14 +3,12 @@ log = function(s){console.log(s);};
 db  = require("mongojs").connect('daat', ['questions','users']); //http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
 env = (process.env.NODE_ENV || 'DEVELOPMENT').toLowerCase();
 GLOBAL.ROOT = __dirname;
-db.questions.find({a:10}, function(res){
-    console.log(res)}
-);
 
 require(GLOBAL.ROOT + '/init/constants.js');
 
-console.log(GLOBAL.ROOT + ' in ' + env);
-
+log('\n\n\n'+Date()+': restarting server.')
+log(GLOBAL.ROOT + ' in ' + env);
+log('\n');
 
 //var mongoose = require('mongoose');
 //mongoose.connect('mongodb://localhost/daat');
@@ -82,6 +80,8 @@ app.post('/questions/:id/answer/:answerId/newComment', answer.addCommentToAnswer
 //categories
 app.get('/categories', category.all);
 
+//login
+app.post('/login',users.login)
 
 server = http.createServer(app);
 server.listen(app.get('port'), function(){

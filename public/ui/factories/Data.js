@@ -24,6 +24,7 @@ myApp.factory('Data', function($http, AuthService) {
             username = AuthService.currentUsername();
             $http.post('/questions/'+qid+'/new_answer',{answer_text:answerText, userId: userId, username: username});
             return "ok";
-        }
+        },
+        tryLogin: function(params, cb){ $http.post('/login',params).then(cb); }
     };
 });
