@@ -1,0 +1,20 @@
+<div>
+    <div>
+        <a class="answer-user" ng-href='#/user/{{a.user}}'> 
+            {{a.user}} ◁ 
+         </a> 
+         <span class='clickable' ng-click="hide=!hide" ng-init="hide=true">
+            <span class='answer-upvotes-icon'>⇧ {{a.upvotes}}</span>
+            <span ng-hide=!hide> {{shortAnswer(a.text)}} </span>
+            <span ng-hide=hide> {{a.text}} </span>
+        </span>
+    </div>
+    <div class='answer-links'>
+        <a class='clickable nice-link' ng-click="upvote(a)">לייק! </a> 
+        <span class='bullet' ng-show=showComments> • </span>
+        <a class='clickable nice-link' ng-click="showComments=!showComments" ng-init='showComments=false' ng-show=showComments>תגובות ({{a.comments.length}})</a>
+    <div>
+
+    <comments ng-show=showComments>
+    </comments>    
+</div>

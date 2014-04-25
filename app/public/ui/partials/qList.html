@@ -1,0 +1,15 @@
+<div id="qListCtrl" ng-controller="qListCtrl">                                                  
+    <ul class="qList">
+        <input ng-show=false type="search" ng-model="filter" placeholder="חיפוש בשאלות ותשובות...">
+        <div>Hello {{username}}</div>
+        <li ng-repeat="q in data.qList | filter:filter ">                      
+            <question-and-answers></question-and-answers>
+        </li>
+
+        <div ng-show=data.qList.length==1>
+            <textarea class='new-answer-details-input' ng-model="myAnswer" placeholder="הוסף את התשובה שלך..."></textarea>
+            <div>{{q.myAnswer}}</div>                        
+            <button class='submit-button' ng-show="myAnswer" ng-click="submitAnswer()">שלח!</button>
+        </div>
+    </ul>                
+</div>
