@@ -12,7 +12,7 @@ exports.category = function(req, res){
 
 exports.new_question = function(req, res){
     var newQuestion = {
-        id                  : (new Date()).getTime().toString(36),
+        id                  : getQuestionId(),
         title               : req.body['title'],
         text                : req.body['text'],
         category_id         : req.body['category_id'],
@@ -35,4 +35,8 @@ var cbj = function(responseObj){
     return function(err, result) {
         responseObj.json(result);
     }
+}
+
+function getQuestionID(){
+    return (new Date()).getTime().toString(36);
 }
