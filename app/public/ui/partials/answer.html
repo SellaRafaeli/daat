@@ -4,13 +4,13 @@
             {{a.username}} ◁ 
          </a> 
          <span class='clickable' ng-click="hide=!hide" ng-init="hide=true">
-            <span class='answer-upvotes-icon'>⇧ {{a.upvotes}}</span>
+            <span class='answer-upvotes-icon'>⇧ {{a.upvotes}} | </span>
             <span ng-hide=!hide> {{shortAnswer(a.text)}} </span>
             <span ng-hide=hide> {{a.text}} </span>
         </span>
     </div>
     <div class='answer-links'>
-        <a class='clickable nice-link' ng-click="upvote(a)">לייק! </a> 
+        <a class='clickable nice-link' ng-click="upvoteAnswer(q,a)">לייק! </a>
         <span class='bullet' ng-show=showComments> • </span>
         <a class='clickable nice-link' ng-click="showComments=!showComments" ng-init='showComments=false' ng-show=showComments>תגובות ({{a.comments.length}})</a>
     <div>

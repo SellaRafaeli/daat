@@ -19,16 +19,14 @@ exports.new_question = function(req, res){
         sub_category_id     : req.body['sub_category_id'],
         tags                : req.body['tags'],
         userId              : req.user._id,
-        username       : req.user.fullName,
-        answers             : {}
-
+        username            : req.user.fullName,
+        answers             : {},
+        upvoters            : {}
     }
 
     db.questions.save(newQuestion, cbj(res) );
 };
 
-exports.update = function(req, res){
-};
 
 /* helpers */
 

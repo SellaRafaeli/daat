@@ -76,9 +76,9 @@ app.get('/questions/:id', question.get );
 app.post('/questions/new/', users.ensureUserMiddleware, question.new_question);
 app.get('/questions/category/:category_id', question.category);
 
-app.post('/questions/:id/update', users.ensureUserMiddleware, question.update);
+//answers
 app.post('/questions/:id/new_answer', users.ensureUserMiddleware, answer.addAnswerToQuestion);
-app.post('/questions/:id/answer/:answerId/upvote', users.ensureUserMiddleware, answer.upvoteAnswer);
+app.post('/questions/:id/answer/:answerId/upvote', users.ensureUserMiddleware, answer.upvote);
 app.post('/questions/:id/answer/:answerId/newComment', users.ensureUserMiddleware, answer.addCommentToAnswerToQuestion);
 
 //categories

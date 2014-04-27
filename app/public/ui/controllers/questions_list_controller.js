@@ -13,13 +13,15 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
     Data.getQuestions(getQuestionsParams, function(response){
         questions = [].concat(response.data); //make sure it's an array
 
-        var data = questions.map(function(server_answer ){
+        var data = questions.map(function(server_question ){
+            var q = server_question;
+
             return {
-                    id:   server_answer.id,
-                    title: server_answer.title,
-                    link: server_answer.id,
-                    body: server_answer.text,
-                    answers: server_answer.answers
+                    id:   q.id,
+                    title: q.title,
+                    link: q.id,
+                    body: q.text,
+                    answers: _.map(q.answers,function(a){ a.upvotes = (Object.keys(a.voters || {}).length); return a })
             }
         });
         $scope.data = {qList: data};
@@ -41,10 +43,13 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
         Data.submitComment(params,function(){ alert("submitted comment to backend"); });
     }
 
-    $scope.upvote = function(a,b,c) {
-        alert("Upvoting answer "+a.body)
-        a.upvotes = a.upvotes || 0;
-        a.upvotes+=1
+    $scope.upvoteAnswer = function(question, answer) {
+
+        var cb = function() {
+            a.upvotes = a.upvotes || 0;
+            a.upvotes+=1
+        };
+        Data.upvoteAnswer(question, answer);
     }
 
     $scope.shortAnswer = function(answerBody){

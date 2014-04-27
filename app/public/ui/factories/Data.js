@@ -1,9 +1,13 @@
 myApp.factory('Data', function($http, AuthService) {
+
+    questionRoute = function(qId) { return '/questions/'+qId; };
+
     return {
         message: 'new data from a service',
-        //qList: qList,
+
+        //routes
         getQuestions: function(params,cb){
-            var route = params['id'] ? '/questions/'+params['id'] : '/questions';
+            var route = params['id'] ? questionRoute(params['id']) : '/questions';
             $http.get(route,{params: params}).then(cb);
             return "ok";
         },
@@ -23,6 +27,12 @@ myApp.factory('Data', function($http, AuthService) {
             params = {answer_text :answerText}
             params['authToken'] = AuthService.currentUser.authToken;            
             $http.post('/questions/'+qid+'/new_answer',params).then(cb);
+            return "ok";
+        },
+        upvoteAnswer: function(question,answer,cb){
+            params = {};
+            params['authToken'] = AuthService.currentUser.authToken;
+            $http.post('/questions/'+question.id+'/answer/'+answer.id+'/upvote',params).then(cb);
             return "ok";
         },
         signup: function(params, cb){ $http.post('/signup',params).then(cb); }

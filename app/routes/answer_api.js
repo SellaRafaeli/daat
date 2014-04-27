@@ -9,10 +9,23 @@ exports.addAnswerToQuestion = function(req, res){
     var setCrit = {};
         setCrit["answers."+newAnswer.id] = newAnswer;
 
-    db.questions.update(findCrit, {"$set": setCrit}, function(err,results) {
-        res.json({msg: "ok"});
+    db.questions.update(findCrit, {"$set": setCrit}, function(err) {
+        res.json({msg: "added answer"});
     });
 };
+
+exports.upvote = function(req, res){
+    var qid = req.params.id;
+    var aid = req.params.answerId;
+    var userId = req.user._id;
+    var setCrit = {};
+    setCrit["answers."+aid +".voters."+userId] = {};
+    debugger
+    db.questions.update({id:qid},{"$set": setCrit}, function(err) {
+        res.json({msg: "added upvote"});
+    });
+};
+
 
 exports.addCommentToAnswerToQuestion = function(req, res){
     var qID = req.params['id'];
@@ -28,15 +41,15 @@ exports.addCommentToAnswerToQuestion = function(req, res){
 };
 
 
-exports.upvoteAnswer = function(req, res) {
-    var qID = req.params['id'];
-    var aId = req.params['answerId'];
-    var findCrit = {id: qID};
-    var setCrit = {};
-        setCrit["answers."+aId+".comments."+newComment.id+".upvotes"] = 1;
-
-    db.questions.update({id: req.params['id']},{ "$inc": { upvotes: 1}})
-}
+//exports.upvoteComment = function(req, res) {
+//    var qID = req.params['id'];
+//    var aId = req.params['answerId'];
+//    var findCrit = {id: qID};
+//    var setCrit = {};
+//        setCrit["answers."+aId+".comments."+newComment.id+".upvotes"] = 1;
+//
+//    db.questions.update({id: req.params['id']},{ "$inc": { upvotes: 1}})
+//}
 //exports.create_and_attach_new_answer = function(req, callback) {
 //    questions.fetch_question(req, function(q) {
 //        newAnswer = makeNewAnswer(req);
