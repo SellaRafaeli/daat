@@ -2,10 +2,11 @@
 //Get Answers by Question ID
 
 exports.addAnswerToQuestion = function(req, res){
-    var qID = req.params['id'];
+    var qID = parseInt(req.params['id']);
     var newAnswer = makeNewAnswer(req);
 
     var findCrit = {id: qID};
+    //var findCrit = "this.id == "+qID;
     var setCrit = {};
         setCrit["answers."+newAnswer.id] = newAnswer;
 
@@ -15,13 +16,14 @@ exports.addAnswerToQuestion = function(req, res){
 };
 
 exports.upvote = function(req, res){
-    var qid = req.params.id;
+    var qid = parseInt(req.params.id);
     var aid = req.params.answerId;
+    var findCrit = {id:qid};
+    //var findCrit = "this.id == "+qid;
     var userId = req.user._id;
     var setCrit = {};
     setCrit["answers."+aid +".voters."+userId] = {};
-    debugger
-    db.questions.update({id:qid},{"$set": setCrit}, function(err) {
+    db.questions.update(findCrit,{"$set": setCrit}, function(err) {
         res.json({msg: "added upvote"});
     });
 };
@@ -31,7 +33,8 @@ exports.addCommentToAnswerToQuestion = function(req, res){
     var qID = req.params['id'];
     var aId = req.params['answerId'];
     var newComment = makeNewComment(req);
-    var findCrit = {id: qID};
+    //var findCrit = {id: qID};
+    findCrit = "this.id =="+qID;
     var setCrit = {};
         setCrit["answers."+aId+".comments."+newComment.id] = newComment;
 

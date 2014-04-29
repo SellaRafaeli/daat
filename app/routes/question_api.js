@@ -3,7 +3,7 @@ exports.list = function(req, res){
 };
 
 exports.get = function(req, res){
-    var criteria = {'id': req.params.id}
+    var criteria = {'id': parseInt(req.params.id)};
     db.questions.findOne(criteria, cbj(res) );
 };
 
@@ -37,6 +37,11 @@ var cbj = function(responseObj){
     }
 }
 
-function getQuestionID(){
-    return (new Date()).getTime().toString(36);
+function setHighQuestionId(){
+    highestQuestionId = db.questions.find().sort({id:-1}).limit(1);
+    isNaN(highestQuestionId) ? highestQuestionId = 0 : "";
 }
+
+function getQuestionId(){ var id = ++highestQuestionId; return id.toString(); }
+
+setHighQuestionId();

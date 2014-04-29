@@ -68,7 +68,9 @@ if ('development' == app.get('env')) { app.use(express.errorHandler()); }
 
 //homepage
 app.get("/", function (req, res) { res.redirect('/ui'); });
-app.get("/ping", function (req, res) { res.send("pong"); });
+app.get("/ping", function (req, res) {
+    res.send("pong");
+});
 
 //questions
 app.get('/questions', question.list);
