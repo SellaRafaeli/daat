@@ -2,6 +2,7 @@ function appController($scope, Data, $routeParams,AuthService){
     appCtrl = appController; //global scope for debugging
 
     //text
+    $scope.brand = "דעת"
     $scope.about = "אודות";
     $scope.addQuestion = "הוסף שאלה";
     $scope.main = "ראשי";

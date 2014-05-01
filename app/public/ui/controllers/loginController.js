@@ -12,7 +12,13 @@ function LoginController($scope, Data, AuthService, $route){
     }
 
     $scope.handleSignup = function(signupRes) {
-        (data = signupRes.data) ? AuthService.setCurrentUser(data) : alert ("can't login! : "+signupRes);            
+        if (data = signupRes.data) {
+            AuthService.setCurrentUser(data);
+            location.hash = '#/questions/';
+        } else {
+            alert ("can't login! : "+signupRes)
+        }
+
     }
 
     $scope.logout = function(){
