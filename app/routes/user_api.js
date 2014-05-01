@@ -38,7 +38,6 @@ exports.ensureUserMiddleware = function(req, res, next) {
     var authToken = req.query.authToken || req.body.authToken;    
     db.users.findOne({authToken: authToken}, function(err, user){
         if (user){
-            log(user);
             req.user = user;            
             next();
         } else {

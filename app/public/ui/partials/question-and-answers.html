@@ -11,7 +11,7 @@
     </li>                                                                                          
 </ul>
 
-<div ng-show=data.qList.length==1>
+<div ng-show=allowAnswer()>
     <textarea class='new-answer-details-input' ng-model="myAnswer" placeholder="הוסף את התשובה שלך..." autofocus/></textarea>
     <div>{{q.myAnswer}}</div>
     <button class='submit-button' ng-show="myAnswer" ng-click="submitAnswer()">שלח!</button>

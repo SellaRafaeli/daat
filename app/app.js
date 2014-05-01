@@ -80,7 +80,7 @@ app.get('/questions/category/:category_id', question.category);
 
 //answers
 app.post('/questions/:id/new_answer', users.ensureUserMiddleware, answer.addAnswerToQuestion);
-app.post('/questions/:id/answer/:answerId/upvote', users.ensureUserMiddleware, answer.upvote);
+app.post('/questions/:id/answer/:answerId/toggleUpvote', users.ensureUserMiddleware, answer.toggleUpvote);
 app.post('/questions/:id/answer/:answerId/newComment', users.ensureUserMiddleware, answer.addCommentToAnswerToQuestion);
 
 //categories

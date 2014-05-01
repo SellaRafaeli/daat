@@ -6,7 +6,8 @@ function appController($scope, Data, $routeParams,AuthService){
     $scope.about = "אודות";
     $scope.addQuestion = "הוסף שאלה";
     $scope.main = "ראשי";
-    $scope.signup = "כניסה";
+    $scope.login = "להיכנס";
+    $scope.logout = "לצאת";
 
     $scope.$watch(function () { return AuthService.currentUser; },                       
         function(newVal, oldVal) {

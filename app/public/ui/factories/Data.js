@@ -29,10 +29,10 @@ myApp.factory('Data', function($http, AuthService) {
             $http.post('/questions/'+qid+'/new_answer',params).then(cb);
             return "ok";
         },
-        upvoteAnswer: function(question,answer,cb){
+        toggleUpvoteAnswer: function(question,answer,cb){
             params = {};
             params['authToken'] = AuthService.currentUser.authToken;
-            $http.post('/questions/'+question.id+'/answer/'+answer.id+'/upvote',params).then(cb);
+            $http.post('/questions/'+question.id+'/answer/'+answer.id+'/toggleUpvote',params).then(cb);
             return "ok";
         },
         signup: function(params, cb){ $http.post('/signup',params).then(cb); }

@@ -25,6 +25,8 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
                     body: q.text,
                     answers: _.map(q.answers,function(a){
                         a.getUpvotes = function(){ return (Object.keys(a.upvoters || {}).length);};
+                        a.buttonText = a.upvoters
+                        a.isUpvotedByCurrentUser = function() { return a.upvoters[AuthService.currentUser.fullName]};
                         return a
                     })
             }
@@ -39,7 +41,6 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
         var qid = this.data.qList[0].id;
         qid = encodeURIComponent(qid);
         var answer = this.myAnswer;
-        alert("submitting my answer to qID"+qid+": "+answer);
         Data.submitAnswer(qid, answer, function(res){ $route.reload();});
     }
 
@@ -48,9 +49,13 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
         Data.submitComment(params,function(){ alert("submitted comment to backend"); });
     }
 
-    $scope.upvoteAnswer = function(question, answer) {
-        var cb = function(result) { (answer.upvoters = answer.upvoters || {})[AuthService.currentUser.fullName] = {}; };
-        Data.upvoteAnswer(question, answer, cb);
+    $scope.toggleUpvoteAnswer = function(question, answer) {
+        var cb = function(result) {
+            answer.upvoters = answer.upvoters || {};
+            var key = AuthService.currentUser.fullName;
+            answer.upvoters[key] ? delete answer.upvoters[key] : answer.upvoters[key] = {};
+        }
+        Data.toggleUpvoteAnswer(question, answer, cb);
     }
 
     $scope.shortAnswer = function(answerBody){
@@ -58,5 +63,13 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
         shortLengthChars = 100;
         shortAnswer = answerBody.length < shortLengthChars ? answerBody : answerBody.substring(0,shortLengthChars)+"... (עוד)"
         return shortAnswer;
+    }
+
+    $scope.allowAnswer = function(){
+        return (AuthService.currentUser.fullName && this.data.qList.length==1)
+    }
+
+    $scope.answerUpvoted = function(answer){
+        return answer.upvoters[AuthService.currentUser.fullName]==undefined ? 'לייק!' : 'בטל לייק';
     }
 }

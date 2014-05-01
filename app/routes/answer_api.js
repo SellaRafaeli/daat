@@ -4,12 +4,13 @@ exports.addAnswerToQuestion = function(req, res){
     addAnswerToQuestion(qID, newAnswer, res);
 };
 
-exports.upvote = function(req, res){
+exports.toggleUpvote = function(req, res){
     var qid = parseInt(req.params.id);
     var aid = req.params.answerId;
     //var voterId = req.user._id;
     var voterUserObj = req.user;
-    upvoteAnswer(qid, aid, voterUserObj, res);
+
+    toggleUpvoteAnswer(qid, aid, voterUserObj, res);
 };
 
 
@@ -57,15 +58,23 @@ exports.addCommentToAnswerToQuestion = function(req, res){
 
 /* helpers */
 
-function upvoteAnswer(qid,aid,voterUserObj,res){
+
+function toggleUpvoteAnswer(qid,aid,voterUserObj,res){
     var findCrit = {id:qid};
-    //var findCrit = "this.id == "+qid;
-    //var userId = req.user._id;
     var voterId = voterUserObj._id;
     var setCrit = {};
     setCrit["answers."+aid +".upvoters."+voterId] = {name: voterUserObj.fullName};
-    db.questions.update(findCrit,{"$set": setCrit}, function(err, result) {
-        res.json({msg: "added upvote"});
+
+    db.questions.findOne(findCrit, function(err, question){
+       if (question['answers'][aid]['upvoters'][voterId]) {
+           db.questions.update(findCrit,{"$unset": setCrit}, function(err, result) {
+               res.json({msg: "removed  upvote"});
+           });
+       } else {
+           db.questions.update(findCrit,{"$set": setCrit}, function(err, result) {
+               res.json({msg: "added upvote"});
+           });
+       }
     });
 }
 
