@@ -16,7 +16,7 @@ exports.signup = function(req,res) { // signup requires no password - just email
             res.json({msg: "User already exists."}); 
         }        
         else {
-            db.users.save({email: email, password: password, fullName: fullName, authToken: authToken}, function(err, user) {
+            db.users.save({_id: nextUserId(), email: email, password: password, fullName: fullName, authToken: authToken}, function(err, user) {
                 res.json(user);
             });
         }//end else
@@ -51,3 +51,12 @@ exports.ensureUserMiddleware = function(req, res, next) {
 function makeAuthToken(){
     return Math.random().toString(36).substring(7); 
 }
+
+function setHighUserId(){
+    highestQuestionId = db.questions.find().sort({id:-1}).limit(1);
+    isNaN(highestQuestionId) ? highestQuestionId = 0 : "";
+}
+
+function nextUserId(){ var id = ++highestQuestionId; return id.toString(); }
+
+setHighUserId();
