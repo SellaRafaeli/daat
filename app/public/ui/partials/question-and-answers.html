@@ -1,3 +1,4 @@
+<!--<div>{{foo}}</div>-->
 <div>
     <div class="question">
         <a ng-href="#/questions/{{q.link}}" class='question-title'> {{q.title}} </a>
@@ -14,4 +15,8 @@
     <textarea class='new-answer-details-input' ng-model="myAnswer" placeholder="הוסף את התשובה שלך..." autofocus/></textarea>
     <div>{{q.myAnswer}}</div>
     <button class='submit-button' ng-show="myAnswer" ng-click="submitAnswer()">שלח!</button>
+</div>
+
+<div>
+    {{q.myAnswer}}
 </div>

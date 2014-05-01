@@ -1,14 +1,16 @@
-exports.list = function(req, res){
-    db.questions.find({}, cbj(res) );
-};
-
 exports.get = function(req, res){
     var criteria = {'id': parseInt(req.params.id)};
     db.questions.findOne(criteria, cbj(res) );
 };
 
+
+exports.list = function(req, res){
+    db.questions.find({}, cbj(res) );
+};
+
 exports.category = function(req, res){
 };
+
 
 exports.new_question = function(req, res){
     var newQuestion = {
@@ -42,6 +44,6 @@ function setHighQuestionId(){
     isNaN(highestQuestionId) ? highestQuestionId = 0 : "";
 }
 
-function getQuestionId(){ var id = ++highestQuestionId; return id.toString(); }
+function getQuestionId(){ var id = ++highestQuestionId; return id; }
 
 setHighQuestionId();

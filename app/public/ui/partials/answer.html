@@ -4,7 +4,7 @@
             {{a.username}} ◁ 
          </a>
          <span class='clickable' ng-click="hide=!hide" ng-init="hide=true">
-            <span class='answer-upvotes-icon'>⇧ {{a.upvotes}} </span>
+            <span class='answer-upvotes-icon'>⇧ {{a.getUpvotes()}} </span>
             <span ng-hide=!hide> {{shortAnswer(a.text)}} </span>
             <span ng-hide=hide> {{a.text}} </span>
         </span>

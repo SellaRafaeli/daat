@@ -3,6 +3,8 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
     g1 = $scope;
     //g1.data.qList;
     //$routeParams.orderId
+    $scope.foo = [10,20,30];
+
     $scope.route_type = $routeParams.type
     $scope.route_name = $routeParams.name
     //$scope.username = AuthService.currentUser().name;
@@ -21,7 +23,10 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
                     title: q.title,
                     link: q.id,
                     body: q.text,
-                    answers: _.map(q.answers,function(a){ a.upvotes = (Object.keys(a.voters || {}).length); return a })
+                    answers: _.map(q.answers,function(a){
+                        a.getUpvotes = function(){ return (Object.keys(a.upvoters || {}).length);};
+                        return a
+                    })
             }
         });
         $scope.data = {qList: data};
@@ -44,12 +49,8 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
     }
 
     $scope.upvoteAnswer = function(question, answer) {
-
-        var cb = function() {
-            a.upvotes = a.upvotes || 0;
-            a.upvotes+=1
-        };
-        Data.upvoteAnswer(question, answer);
+        var cb = function(result) { (answer.upvoters = answer.upvoters || {})[AuthService.currentUser.fullName] = {}; };
+        Data.upvoteAnswer(question, answer, cb);
     }
 
     $scope.shortAnswer = function(answerBody){
