@@ -75,6 +75,7 @@ app.get("/ping", function (req, res) {
 //questions
 app.get('/questions', question.list);
 app.get('/questions/:id', question.get );
+app.get('/questions/users/:userId', question.user_data );
 app.post('/questions/new/', users.ensureUserMiddleware, question.new_question);
 app.get('/questions/category/:category_id', question.category);
 

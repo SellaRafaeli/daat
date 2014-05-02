@@ -3,7 +3,11 @@ exports.get = function(req, res){
     db.questions.findOne(criteria, cbj(res) );
 };
 
-
+exports.user_data = function(req, res){
+    var userId = req.params.userId;
+    getUserContent(userId, cbj(res))
+}
+//find all
 exports.list = function(req, res){
     db.questions.find({}, cbj(res) );
 };
@@ -31,6 +35,11 @@ exports.new_question = function(req, res){
 
 
 /* helpers */
+function getUserContent(userId, cb) {
+    db.questions.find({"answers.owner.id": userId}, cb);
+}
+
+
 
 //call-back json
 var cbj = function(responseObj){
