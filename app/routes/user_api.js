@@ -17,7 +17,8 @@ exports.signup = function(req,res) { // signup requires no password - just email
         }        
         else {
             db.users.save({_id: nextUserId(), email: email, password: password, fullName: fullName, authToken: authToken}, function(err, user) {
-                res.json(user);
+                var ans = err || user;
+                res.json(ans);
             });
         }//end else
     }); //end findOne
