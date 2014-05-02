@@ -8,7 +8,8 @@
     that.setCurrentUser = function(data) {             
             that.currentUser.authToken = data.authToken;
             that.currentUser.email = data.email; 
-            that.currentUser.fullName = data.fullName; 
+            that.currentUser.fullName = data.fullName;
+            that.currentUser.id = data._id;
             that.save();
         };    
 

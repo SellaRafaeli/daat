@@ -1,7 +1,7 @@
 //main controller
 function qListCtrl($scope, Data, $route, $routeParams,AuthService){
+    //cheaters
     g1 = $scope;
-
     qs = function(){return $scope.data.qList};
     //g1.data.qList;
     //$routeParams.orderId
@@ -86,9 +86,23 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
     }
 
     $scope.allowAnswer = function(){
-        return (AuthService.currentUser.fullName && this.data.qList.length==1)
+        var singleQuestion = $scope.singleQuestion();
+        if (!singleQuestion) { return false; }
+        var loggedInId = AuthService.currentUser.id;
+        var alreadyAnswered = _.find(singleQuestion.answers, function(a){return a.owner.id == loggedInId});
+        return loggedInId && !alreadyAnswered;
     }
 
+    //returns the single question on page.
+    $scope.singleQuestion = function() {
+        var list = $scope.qList();
+        return list && list.length == 1 && list[0];
+    }
+
+    //returns the list of questions on page.
+    $scope.qList = function() {
+        return $scope.data && this.data.qList;
+    }
     $scope.answerUpvoted = function(answer){
         return _.findWhere(answer.upvoters, {fullName: AuthService.currentUser.fullName}) ? 'בטל לייק' : 'לייק!';
     }
