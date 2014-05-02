@@ -2,7 +2,7 @@
 function LoginController($scope, Data, AuthService, $route){
     loginCtrl = this; //global for debugging
     $scope.email = Math.random().toString(36).substring(3)+'@domain.com'; 
-    $scope.fullName = "Default McName";
+    $scope.fullName = getRandomName();
     
 
     $scope.signup = function(){
@@ -26,4 +26,11 @@ function LoginController($scope, Data, AuthService, $route){
     }
 
     $route.current.originalPath.indexOf('logout')>0 ? $scope.logout() : "";
+}
+/* Helpers */
+
+function getRandomName(){
+    var firstNames = ["יוסי", "משה", "דנה", "רחל", "לאה", "בן", "חיים", "אבי", "ראובן", "אלי" ];
+    var lastNames = ["כהן", "לוי", "אהרונסון", "שמיר", "רבין", "פולישוק", "רובינסון", "אסייג", "נחמני"];
+    return randFrom(firstNames)+" "+randFrom(lastNames);
 }

@@ -1,6 +1,8 @@
 //main controller
 function qListCtrl($scope, Data, $route, $routeParams,AuthService){
     g1 = $scope;
+
+    qs = function(){return $scope.data.qList};
     //g1.data.qList;
     //$routeParams.orderId
     $scope.foo = [10,20,30];
@@ -15,22 +17,37 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
     Data.getQuestions(getQuestionsParams, function(response){
         questions = [].concat(response.data); //make sure it's an array
 
+        //filter stuff out from each question
+        function filterOut(question){
+            if ($routeParams['userId']) {
+                question.answers = _.filter(question.answers, function(a) {
+                    return (a.owner.id == $routeParams['userId']);
+                });
+            }
+
+            return question;
+        }
+
         var data = questions.map(function(server_question ){
             var q = server_question;
 
-            return {
+            var question = {
                     id:   q.id,
                     title: q.title,
                     link: q.id,
                     body: q.text,
                     answers: _.map(q.answers,function(a){
                         a.getUpvotes = function(){ return a.upvoters.length; };
-                        a.buttonText = a.upvoters
+                        a.buttonText = a.upvoters;
                         a.isUpvotedByCurrentUser = function() { return a.upvoters[AuthService.currentUser.fullName]};
                         return a
                     })
-            }
+            };
+
+            question = filterOut(question);
+            return question;
         });
+
         $scope.data = {qList: data};
         console.log("qList is ");
         console.log(g1.data.qList);
