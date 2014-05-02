@@ -73,6 +73,6 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
     }
 
     $scope.answerUpvoted = function(answer){
-        return answer.upvoters[AuthService.currentUser.fullName]==undefined ? 'לייק!' : 'בטל לייק';
+        return _.findWhere(answer.upvoters, {fullName: AuthService.currentUser.fullName}) ? 'בטל לייק' : 'לייק!';
     }
 }
