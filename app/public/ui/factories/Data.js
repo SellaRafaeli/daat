@@ -29,8 +29,8 @@ myApp.factory('Data', function($http, AuthService) {
             $http.post('/questions/'+qid+'/new_answer',params).then(cb);
             return "ok";
         },
-        toggleUpvoteAnswer: function(question,answer,cb){
-            params = {};
+        toggleUpvoteAnswer: function(question,answer, alreadyUpvoted, cb){
+            params = {alreadyUpvoted: alreadyUpvoted};
             params['authToken'] = AuthService.currentUser.authToken;
             $http.post('/questions/'+question.id+'/answer/'+answer.id+'/toggleUpvote',params).then(cb);
             return "ok";

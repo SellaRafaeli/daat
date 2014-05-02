@@ -7,12 +7,12 @@ exports.addAnswerToQuestion = function(req, res){
 exports.toggleUpvote = function(req, res){
     var qid = parseInt(req.params.id);
     var aid = req.params.answerId;
+    var alreadyUpvoted = req.body.alreadyUpvoted;
     //var voterId = req.user._id;
     var voterUserObj = req.user;
 
-    toggleUpvoteAnswer(qid, aid, voterUserObj, res);
+    toggleUpvoteAnswer(qid, aid, voterUserObj, alreadyUpvoted, res);
 };
-
 
 exports.addCommentToAnswerToQuestion = function(req, res){
 //    var qID = req.params['id'];
@@ -59,26 +59,16 @@ exports.addCommentToAnswerToQuestion = function(req, res){
 /* helpers */
 
 
-function toggleUpvoteAnswer(qid,aid,voterUserObj,res){
-    var findCrit = {id:qid};
-    var voterId = voterUserObj._id;
-    var setCrit = {};
-    setCrit["answers."+aid +".upvoters."+voterId] = {name: voterUserObj.fullName};
-
-    db.questions.findOne(findCrit, function(err, question){
-       if (question['answers'][aid]['upvoters'][voterId]) {
-           db.questions.update(findCrit,{"$unset": setCrit}, function(err, result) {
-               res.json({msg: "removed  upvote"});
-           });
-       } else {
-           db.questions.update(findCrit,{"$set": setCrit}, function(err, result) {
-               res.json({msg: "added upvote"});
-           });
-       }
-    });
+function toggleUpvoteAnswer(qid,aid,voterUserObj, alreadyUpvoted, res){
+    var userID = voterUserObj._id;
+    if (alreadyUpvoted) {
+        db.questions.update({id : qid, "answers.id":aid} , {$pull: {"answers.$.upvoters": {_id: userID}}}, function(){res.json({msg: "ok"})});
+    } else {
+        db.questions.update({id : qid, "answers.id":aid} , {$addToSet: {"answers.$.upvoters": voterUserObj}}, function(){res.json({msg: "ok"})});
+    }
 }
 
-function addAnswerToQuestion(questionID,newAnswer, res) {
+function addAnswerToQuestionOld(questionID,newAnswer, res) {
     var findCrit = {id: questionID};
     //var findCrit = "this.id == "+qID;
     var setCrit = {};
@@ -89,22 +79,29 @@ function addAnswerToQuestion(questionID,newAnswer, res) {
     });
 }
 
+function addAnswerToQuestion(questionID,newAnswer, res) {
+    db.questions.update({id: questionID}, {"$push": {answers: newAnswer}}, function(err, result) {
+        res.json({msg: "added answer"});
+    });
+}
+
+
 function makeNewAnswer(req){
     return {
         text            : req.body['answer_text'],
         owner :         {fullName: req.user.fullName, id: req.user._id},
         comments        : {},
         id              : nextAnswerId(),
-        upvoters        : {}
+        upvoters        : []
     }
 };
 
-function makeNewComment(req){
-    return {
-        text            : req.body['comment'],
-        id              : (new Date()).getTime().toString(36)
-    }
-}
+//function makeNewComment(req){
+//    return {
+//        text            : req.body['comment'],
+//        id              : (new Date()).getTime().toString(36)
+//    }
+//}
 
 function setHighAnswerId(){
     highestQuestionId = db.questions.find().sort({id:-1}).limit(1);

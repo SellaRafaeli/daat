@@ -22,8 +22,8 @@ exports.new_question = function(req, res){
         tags                : req.body['tags'],
         userId              : req.user._id,
         username            : req.user.fullName,
-        answers             : {},
-        upvoters            : {}
+        answers             : [],
+        upvoters            : []
     }
 
     db.questions.save(newQuestion, cbj(res) );

@@ -24,7 +24,7 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
                     link: q.id,
                     body: q.text,
                     answers: _.map(q.answers,function(a){
-                        a.getUpvotes = function(){ return (Object.keys(a.upvoters || {}).length);};
+                        a.getUpvotes = function(){ return a.upvoters.length; };
                         a.buttonText = a.upvoters
                         a.isUpvotedByCurrentUser = function() { return a.upvoters[AuthService.currentUser.fullName]};
                         return a
@@ -50,12 +50,15 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
     }
 
     $scope.toggleUpvoteAnswer = function(question, answer) {
+        var key = AuthService.currentUser.fullName;
+        var alreadyUpvoted = !!_.findWhere(answer.upvoters, {fullName: key});
         var cb = function(result) {
-            answer.upvoters = answer.upvoters || {};
-            var key = AuthService.currentUser.fullName;
-            answer.upvoters[key] ? delete answer.upvoters[key] : answer.upvoters[key] = {};
+            answer.upvoters = answer.upvoters || [];
+            //nicefy this, and make it into a general add/remove-from-array method.
+            alreadyUpvoted ? answer.upvoters = _.without(answer.upvoters, _.findWhere(answer.upvoters, {fullName: key})) : answer.upvoters.push({fullName: key});
         }
-        Data.toggleUpvoteAnswer(question, answer, cb);
+
+        Data.toggleUpvoteAnswer(question, answer, alreadyUpvoted, cb);
     }
 
     $scope.shortAnswer = function(answerBody){
