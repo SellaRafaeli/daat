@@ -38,6 +38,7 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
                     body: q.text,
                     answers: _.map(q.answers,function(a){
                         a.getUpvotes = function(){ return a.upvoters.length; };
+                        a.upvotersNames = function() { return _.map(a.upvoters,function(v){ return v.fullName}).join(", "); };
                         a.buttonText = a.upvoters;
                         a.isUpvotedByCurrentUser = function() { return a.upvoters[AuthService.currentUser.fullName]};
                         return a
