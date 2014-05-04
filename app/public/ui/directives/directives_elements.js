@@ -27,3 +27,10 @@ myApp.directive('comments', function(){
         templateUrl: 'partials/comments.html'
     }
 });
+
+myApp.directive('categories', function(){
+    return {
+        restrict: 'E',
+        templateUrl: 'partials/categories.html'
+    }
+});

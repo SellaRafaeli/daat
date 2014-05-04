@@ -27,12 +27,19 @@ exports.new_question = function(req, res){
         userId              : req.user._id,
         username            : req.user.fullName,
         answers             : [],
-        upvoters            : []
+        upvoters            : [],
+        categories          : []
     }
 
     db.questions.save(newQuestion, cbj(res) );
 };
 
+exports.addCategory = function(req, res) {
+    var id = parseInt(req.params.id);
+    db.questions.update({id: id}, {"$push": {categories: req.body.categoryName}}, function(err, result) {
+        res.json({msg: "added category"});
+    });
+}
 
 /* helpers */
 function getUserContent(userId, cb) {

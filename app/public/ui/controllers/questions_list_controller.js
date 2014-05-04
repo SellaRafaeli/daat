@@ -42,7 +42,8 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
                         a.buttonText = a.upvoters;
                         a.isUpvotedByCurrentUser = function() { return a.upvoters[AuthService.currentUser.fullName]};
                         return a
-                    })
+                    }),
+                    categories: _.uniq(q.categories)
             };
 
             question = filterOut(question);
@@ -104,7 +105,15 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
     $scope.qList = function() {
         return $scope.data && this.data.qList;
     }
+
     $scope.answerUpvoted = function(answer){
         return _.findWhere(answer.upvoters, {fullName: AuthService.currentUser.fullName}) ? 'בטל לייק' : 'לייק!';
     }
+
+    $scope.addCategoryToQuestion = function(q){
+        var cat = prompt("לאיזו קטגוריה להוסיף?");
+        log("adding to "+cat);
+        Data.addCategoryToQuestion(q,cat)
+    }
+
 }

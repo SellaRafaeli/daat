@@ -36,6 +36,11 @@ myApp.factory('Data', function($http, AuthService) {
             $http.post('/questions/'+question.id+'/answer/'+answer.id+'/toggleUpvote',params).then(cb);
             return "ok";
         },
+        addCategoryToQuestion: function(question,categoryName,cb){
+            params = {categoryName: categoryName};
+            params['authToken'] = AuthService.currentUser.authToken;
+            $http.post('/questions/'+question.id+'/addCategory', params).then(cb);
+        },
         signup: function(params, cb){ $http.post('/signup',params).then(cb); }
     };
 });
