@@ -41,6 +41,13 @@ exports.addCategory = function(req, res) {
     });
 }
 
+exports.removeCategory = function(req, res) {
+    var id = parseInt(req.params.id);
+    db.questions.update({id: id}, {"$pull": {categories: req.body.categoryName}}, function(err, result) {
+        res.json({msg: "removed category"});
+    });
+}
+
 /* helpers */
 function getUserContent(userId, cb) {
     db.questions.find({"answers.owner.id": userId}, cb);
@@ -60,6 +67,6 @@ function setHighQuestionId(){
     isNaN(highestQuestionId) ? highestQuestionId = 0 : "";
 }
 
-function getQuestionId(){ var id = ++highestQuestionId; return id; }
+function getQuestionId() { var id = ++highestQuestionId; return id; }
 
 setHighQuestionId();

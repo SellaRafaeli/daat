@@ -7,6 +7,10 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
     //$routeParams.orderId
     $scope.foo = [10,20,30];
 
+    $scope.addCategoryText = "(הוסף)";
+    $scope.doneEditCats = "(סיימתי)";
+    $scope.editCats = "(ערוך)";
+
     $scope.route_type = $routeParams.type
     $scope.route_name = $routeParams.name
     //$scope.username = AuthService.currentUser().name;
@@ -112,8 +116,12 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
 
     $scope.addCategoryToQuestion = function(q){
         var cat = prompt("לאיזו קטגוריה להוסיף?");
-        log("adding to "+cat);
-        Data.addCategoryToQuestion(q,cat)
+        if (cat) { Data.addCategoryToQuestion(q,cat,function(res){ $route.reload();}) }
     }
+
+    $scope.removeCategoryFromQuestion = function(q,c){
+        Data.removeCategoryFromQuestion(q,c,function(res){ $route.reload();});
+    }
+
 
 }
