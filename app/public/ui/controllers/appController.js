@@ -1,5 +1,5 @@
 function appController($scope, Data, $routeParams,AuthService){
-    appCtrl = appController; //global scope for debugging
+    appCtrl = $scope; //global scope for debugging
 
     //text
     $scope.brand = "דעת"
@@ -12,5 +12,6 @@ function appController($scope, Data, $routeParams,AuthService){
     $scope.$watch(function () { return AuthService.currentUser; },                       
         function(newVal, oldVal) {
         $scope.currentUser = newVal.fullName;
-    }, true);
+        newVal.fullName ? $scope.login="להחליף יוזר" : $scope.login="להיכנס";
+        }, true);
 };
