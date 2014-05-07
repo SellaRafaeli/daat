@@ -77,10 +77,12 @@ app.get("/ping", function (req, res) {
 app.get('/questions', question.list);
 app.get('/questions/:id', question.get );
 app.get('/questions/users/:userId', question.user_data );
+app.get('/questions/category/:categoryId', question.getByCategory);
+
 app.post('/questions/new/', users.ensureUserMiddleware, question.new_question);
 app.post('/questions/:id/addCategory', users.ensureUserMiddleware, question.addCategory);
 app.post('/questions/:id/removeCategory', users.ensureUserMiddleware, question.removeCategory);
-app.get('/questions/category/:category_id', question.category);
+
 
 //answers
 app.post('/questions/:id/new_answer', users.ensureUserMiddleware, answer.addAnswerToQuestion);

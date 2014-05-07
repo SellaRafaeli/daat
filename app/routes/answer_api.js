@@ -103,11 +103,12 @@ function makeNewAnswer(req){
 //    }
 //}
 
-function setHighAnswerId(){
-    highestQuestionId = db.questions.find().sort({id:-1}).limit(1);
-    isNaN(highestQuestionId) ? highestQuestionId = 0 : "";
-}
+//function setHighAnswerId(){
+//    highestAnswerId = db.questions.find().sort({id:-1}).limit(1);
+//    isNaN(highestAnswerId) ? highestAnswerId = 0 : "";
+//}
 
+//currently using the running index of highestQuestion for answers as well, because why the hell not.
 function nextAnswerId(){ var id = ++highestQuestionId; return id.toString(); }
 
-setHighAnswerId();
+//setHighAnswerId();

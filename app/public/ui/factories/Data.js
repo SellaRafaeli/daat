@@ -9,6 +9,7 @@ myApp.factory('Data', function($http, AuthService) {
         getQuestions: function(params,cb){
             var route = params['id'] ? questionRoute(params['id']) : '/questions';
             params['userId'] ? route = '/questions/users/'+params['userId'] : "";
+            params['categoryId'] ? route = '/questions/category/'+params['categoryId'] : "";
             $http.get(route,{params: params}).then(cb);
             return "ok";
         },

@@ -1,9 +1,9 @@
-<div class="clickable">
-    <a href="/categories/{{c}}" class='category' ng-repeat="c in q.categories ">
+<div ng-show='isq()' class="clickable">
+    <a href="#/questions/category/{{c}}" class='category' ng-repeat="c in q.categories ">
         {{c}} <span ng-show='allowEditCategories' ng-click="removeCategoryFromQuestion(q,c)">✖</span>
     </a>
     <span ng-show='allowEditCategories' ng-click="addCategoryToQuestion(q)"> {{addCategoryText}} </span>
     <!--<span ng-show="q.categories"> | </span>-->
     <!--<span ng-show='allowEditCategories' ng-click='allowEditCategories=!allowEditCategories'> {{doneEditCats}} </span>-->
-    <!--<span ng-show='!allowEditCategories' ng-click='allowEditCategories=!allowEditCategories'> {{editCats}} </span>-->
+    <span ng-show='!allowEditCategories' ng-click='allowEditCategories=!allowEditCategories'> {{editCats}} </span>
 </div>

@@ -14,9 +14,6 @@ myApp.config(['$routeProvider',
       when('/about', {
         templateUrl: base + 'about.html',
       }).
-      when('/users/:userId', {
-        templateUrl: base + 'qList.html'
-      }).
       when('/new_question', {
         templateUrl: base + 'new_question.html',
       }).
@@ -24,6 +21,12 @@ myApp.config(['$routeProvider',
         templateUrl: base + 'hello.html',
       }).
       when('/questions', {
+        templateUrl: base + 'qList.html'
+      }).
+      when('/users/:userId', {
+        templateUrl: base + 'qList.html'
+      }).
+      when('/questions/category/:categoryId', {
         templateUrl: base + 'qList.html'
       }).
       when('/questions/:id', {

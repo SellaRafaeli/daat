@@ -105,6 +105,9 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
         return list && list.length == 1 && list[0];
     }
 
+    $scope.isSingleQuestion = function(){ var list = $scope.qList(); return list && list.length == 1; }
+    $scope.isq = $scope.isSingleQuestion;
+
     //returns the list of questions on page.
     $scope.qList = function() {
         return $scope.data && this.data.qList;

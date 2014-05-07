@@ -12,7 +12,9 @@ exports.list = function(req, res){
     db.questions.find({}, cbj(res) );
 };
 
-exports.category = function(req, res){
+exports.getByCategory = function(req, res){
+    var catName = req.params.categoryId;
+    db.questions.find({"categories": {"$in": [catName]}}, cbj(res));
 };
 
 
@@ -63,8 +65,11 @@ var cbj = function(responseObj){
 }
 
 function setHighQuestionId(){
-    highestQuestionId = db.questions.find().sort({id:-1}).limit(1);
-    isNaN(highestQuestionId) ? highestQuestionId = 0 : "";
+    db.questions.find({},{"sort": "id"}, function(err, results){
+        highestQuestionId = results.pop().id;
+        isNaN(highestQuestionId) ? highestQuestionId = 0 : "";
+    })
+
 }
 
 function getQuestionId() { var id = ++highestQuestionId; return id; }
