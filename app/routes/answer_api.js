@@ -103,12 +103,17 @@ function makeNewAnswer(req){
 //    }
 //}
 
-//function setHighAnswerId(){
-//    highestAnswerId = db.questions.find().sort({id:-1}).limit(1);
-//    isNaN(highestAnswerId) ? highestAnswerId = 0 : "";
-//}
-
-//currently using the running index of highestQuestion for answers as well, because why the hell not.
-function nextAnswerId(){ var id = ++highestQuestionId; return id.toString(); }
-
-//setHighAnswerId();
+(nextAnswerId = function (){
+    if (typeof highestAnswerId != 'undefined') {
+        ++highestAnswerId
+        console.log("set answerId at "+highestAnswerId);
+        return highestAnswerId;
+    } else {
+        db.questions.distinct('answers', function(err,res) {
+            var ids = _.map(res,function(item){ return item.id});
+            var max = Math.max.apply(Math, ids);
+            highestAnswerId = parseInt(max);
+            console.log("set highestAnswerId at "+highestAnswerId);
+        });
+    }
+})()

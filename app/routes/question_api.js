@@ -72,6 +72,10 @@ function setHighQuestionId(){
 
 }
 
-function getQuestionId() { var id = ++highestQuestionId; return id; }
+function getQuestionId() {
+    var id = ++highestQuestionId;
+    console.log("next question id is "+id);
+    return id;
+}
 
 setHighQuestionId();

@@ -17,12 +17,13 @@ log('\n');
 
 var express             = require('express'),
     $                   = require('jquery'),
-    users                = require('./routes/user_api'),
+    users               = require('./routes/user_api'),
     question            = require('./routes/question_api'),
     answer              = require('./routes/answer_api'),
     category            = require('./routes/category_api'),
     http                = require('http'),
     path                = require('path');
+    _                   = require('lodash');
 
 //var cfg                 = require('./configuration/' + env + '.json');
 //var cfg                 = require('./config/development.json');
