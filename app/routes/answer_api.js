@@ -89,7 +89,9 @@ function addAnswerToQuestion(questionID,newAnswer, res) {
 function makeNewAnswer(req){
     return {
         text            : req.body['answer_text'],
-        owner :         {fullName: req.user.fullName, id: req.user._id},
+        owner :         {fullName: req.user.fullName,
+                         id: req.user._id,
+                         bio: req.body.bio},
         comments        : {},
         id              : nextAnswerId(),
         upvoters        : []

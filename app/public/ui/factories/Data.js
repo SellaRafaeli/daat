@@ -25,10 +25,9 @@ myApp.factory('Data', function($http, AuthService) {
             //$http.post('/questions/new/',params).then(cb);
             return "ok";
         },
-        submitAnswer: function(qid,answerText,cb){
-            params = {answer_text :answerText}
+        submitAnswer: function(params,cb){
             params['authToken'] = AuthService.currentUser.authToken;            
-            $http.post('/questions/'+qid+'/new_answer',params).then(cb);
+            $http.post('/questions/'+params['qid']+'/new_answer',params).then(cb);
             return "ok";
         },
         toggleUpvoteAnswer: function(question,answer, alreadyUpvoted, cb){

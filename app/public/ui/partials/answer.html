@@ -1,8 +1,10 @@
 <div>
     <div>
-         <a class="answer-user" ng-href='#/users/{{a.owner.id}}'>
-            {{a.owner.fullName}} ◁
-         </a>
+         <div>
+             <a class="answer-user" ng-href='#/users/{{a.owner.id}}'>
+                 {{a.owner.fullName}}, {{a.owner.bio}}
+             </a>
+         </div>
          <span class='clickable' ng-click="hide=!hide" ng-init="hide=true">
             <span popover="{{a.upvotersNames()}}" popover-trigger="mouseenter" ng-click="toggleUpvoteAnswer(q,a)" class='answer-upvotes-icon'>⇧ {{a.getUpvotes()}} </span>
             <span ng-hide=!hide> {{shortAnswer(a.text)}} </span>

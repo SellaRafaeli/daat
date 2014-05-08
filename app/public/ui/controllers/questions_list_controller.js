@@ -60,11 +60,13 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
         //$scope.data = {qList: qList};        
     });
 
-    $scope.submitAnswer = function(qid, myAnswer){
+    $scope.submitAnswer = function(){
         var qid = this.data.qList[0].id;
         qid = encodeURIComponent(qid);
         var answer = this.myAnswer;
-        Data.submitAnswer(qid, answer, function(res){ $route.reload();});
+        var bio = this.myBio;
+        var params = {qid: qid, answer_text: this.myAnswer, bio: this.myBio};
+        Data.submitAnswer(params, function(res){ $route.reload();});
     }
 
     $scope.submitNewComment = function(params){
@@ -126,5 +128,6 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
         Data.removeCategoryFromQuestion(q,c,function(res){ $route.reload();});
     }
 
+    $scope.username = function(){ return AuthService.currentUser.fullName };
 
 }

@@ -6,15 +6,13 @@ Daat is currently open-source. You can contact sella.rafaeli@gmail.com if you wa
 To run:
 > git clone git@github.com:SellaRafaeli/daat.git;
 > npm install
-> node app.js; #browse to localhost:8000/ui
+> node app/app.js; #browse to localhost:8000/ui
 
+Current issues in progress:
 
-Current issues in progress: (Feel free to add or take):
-
-* Create seed data (Sella)
-* Create easy process for others to clone and participate (git clone daat; make_seed_data; node app;). (Sella)
+* Create seed data + process to get it along with clone (Sella)
 * Add and display comments. (Sella)
-* Upvotes answers by user. (Sella)
+* Biographies per topic
 
 Participants:
 Ohad Partuck
