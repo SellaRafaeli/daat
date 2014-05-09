@@ -6,9 +6,9 @@
      </div>                     
 </div>
 
-<div ng-show="allowAnswer(data.qList)">
+<div ng-show="allowAnswer()">
     <div>
-        <span>{{username()}}</span><span ng-show="myAnswer">, <input class="new-answer-new-bio" ng-model="myBio" type="text" placeholder="מה הניסיון שלך בנושא הזה?"/></span>
+        <span>{{username()}}</span><span ng-show="myAnswer || user.bio">, <input class="new-answer-new-bio" ng-model="user.bio" type="text" placeholder="מה הניסיון שלך בנושא הזה?"/></span>
     </div>
 
     <textarea class='new-answer-details-input' ng-model="myAnswer" placeholder="הוסף את התשובה שלך..." autofocus/></textarea>

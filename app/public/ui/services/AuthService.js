@@ -10,6 +10,7 @@
             that.currentUser.email = data.email; 
             that.currentUser.fullName = data.fullName;
             that.currentUser.id = data._id;
+            that.currentUser.bio = data.bios && data.bios.pop();
             that.save();
         };    
 
@@ -25,6 +26,10 @@
         localStorage.currentUser = JSON.stringify(that.currentUser);
     };
 
+    that.set = function(key,val) {
+        that.currentUser[key] = val;
+        that.save();
+    }
     that.load();
     return that;
 });

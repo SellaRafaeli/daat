@@ -46,6 +46,7 @@ myApp.factory('Data', function($http, AuthService) {
             params['authToken'] = AuthService.currentUser.authToken;
             $http.post('/questions/'+question.id+'/removeCategory', params).then(cb);
         },
-        signup: function(params, cb){ $http.post('/signup',params).then(cb); }
+        signup: function(params, cb){ $http.post('/signup',params).then(cb); },
+        login: function(params, cb){ $http.post('/login',params).then(cb); }
     };
 });

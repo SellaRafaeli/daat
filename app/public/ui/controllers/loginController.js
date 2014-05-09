@@ -16,6 +16,12 @@ function LoginController($scope, Data, AuthService, $route){
         Data.signup({email: this.email, fullName: this.fullName, password: this.password},this.handleSignup);
     }
 
+    $scope.login = function(){
+        if (!this.email) { alert("Bad input - no email."); return; }
+
+        Data.login({email: this.email, password: this.password},this.handleSignup);
+    }
+
     $scope.handleSignup = function(signupRes) {
         if (data = signupRes.data) {
             AuthService.setCurrentUser(data);

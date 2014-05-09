@@ -7,7 +7,7 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
     //$routeParams.orderId
     $scope.foo = [10,20,30];
 
-    $scope.addCategoryText = "הוסף";
+    $scope.addCategoryText = "הוסף קטגוריה";
     $scope.doneEditCats = "סיימתי";
     $scope.editCats = "ערוך";
 
@@ -17,6 +17,7 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
     $scope.qList = Data.qList; //the client-side stub that works
     //$scope.data = {qList: Data.qList};
     $scope.origData = $scope.data;
+
     var getQuestionsParams = $routeParams
     Data.getQuestions(getQuestionsParams, function(response){
         questions = [].concat(response.data); //make sure it's an array
@@ -64,9 +65,10 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
         var qid = this.data.qList[0].id;
         qid = encodeURIComponent(qid);
         var answer = this.myAnswer;
-        var bio = this.myBio;
-        var params = {qid: qid, answer_text: this.myAnswer, bio: this.myBio};
+        var bio = this.user.bio;
+        var params = {qid: qid, answer_text: this.myAnswer, bio: bio};
         Data.submitAnswer(params, function(res){ $route.reload();});
+        AuthService.set("bio",bio);
     }
 
     $scope.submitNewComment = function(params){
@@ -129,5 +131,7 @@ function qListCtrl($scope, Data, $route, $routeParams,AuthService){
     }
 
     $scope.username = function(){ return AuthService.currentUser.fullName };
+
+    $scope.user = AuthService.currentUser;
 
 }
