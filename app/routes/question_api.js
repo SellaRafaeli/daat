@@ -66,7 +66,7 @@ var cbj = function(responseObj){
 
 function setHighQuestionId(){
     db.questions.find({},{"sort": "id"}, function(err, results){
-        highestQuestionId = results.pop().id;
+        highestQuestionId = (results && results.length) ? results.pop().id : 1;
         isNaN(highestQuestionId) ? highestQuestionId = 0 : "";
     })
 
