@@ -10,8 +10,10 @@ To run:
 
 Current issues in progress:
 
-* Create seed data + process to get it along with clone (Sella)
-* Add and display comments. (Sella)
+* when displaying question/list of questions, if user is not signed in, redirect to signin route.
+* when adding question, prompt for categories.
+* Create seed data + process to get it along with clone
+* Add and display comments.
 * add FB-login, change login flow to signin/up/fb
 * add a good text editor for writing answers, including support for pictures and links
 

@@ -1,11 +1,13 @@
 //main controller
-function qListCtrl($scope, Data, $route, $routeParams,AuthService){
+function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location){
     //cheaters
     g1 = $scope;
     qs = function(){return $scope.data.qList};
     //g1.data.qList;
     //$routeParams.orderId
     $scope.foo = [10,20,30];
+
+    !AuthService.currentUser.fullName ? $location.path('/login') : '';
 
     $scope.addCategoryText = "הוסף קטגוריה";
     $scope.doneEditCats = "סיימתי";
