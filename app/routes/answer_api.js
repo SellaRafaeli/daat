@@ -120,6 +120,7 @@ function makeNewAnswer(req){
             var ids = _.map(res,function(item){ return item.id});
             var max = Math.max.apply(Math, ids);
             highestAnswerId = parseInt(max);
+            NaN(highestAnswerId) ? highestAnswerId=1 : "";
             console.log("set highestAnswerId at "+highestAnswerId);
         });
     }
