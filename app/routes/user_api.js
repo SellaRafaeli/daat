@@ -59,11 +59,24 @@ function makeAuthToken(){
     return Math.random().toString(36).substring(7); 
 }
 
-function setHighUserId(){
-    highestQuestionId = db.questions.find().sort({id:-1}).limit(1);
-    isNaN(highestQuestionId) ? highestQuestionId = 0 : "";
-}
+//function setHighUserId(){
+//    highestQuestionId = db.questions.find().sort({id:-1}).limit(1);
+//    isNaN(highestQuestionId) ? highestQuestionId = 0 : "";
+//}
 
-function nextUserId(){ var id = ++highestQuestionId; return id.toString(); }
+//function nextUserId(){ var id = ++highestQuestionId; return id.toString(); }
 
-setHighUserId();
+(nextUserId = function (){
+    if (typeof highestUserId != 'undefined') {
+        ++highestUserId;
+        console.log("set UserId at "+highestUserId);
+        return highestUserId;
+    } else {
+        db.users.find({},{"sort": "_id"}, function(err, results){
+            highestUserId = parseInt(results.pop()._id)+1;
+            isNaN(highestUserId) ? highestUserId = 0 : "";
+            log("found highest UserId at"+highestUserId);
+        })
+    }
+})()
+
