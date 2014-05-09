@@ -1,12 +1,14 @@
 exports.addAnswerToQuestion = function(req, res){
     var qID = parseInt(req.params['id']);
     var newAnswer = makeNewAnswer(req);
+
     addAnswerToQuestion(qID, newAnswer, res);
+    addBioToUser(newAnswer.owner.id, newAnswer.owner.bio);
 };
 
 exports.toggleUpvote = function(req, res){
     var qid = parseInt(req.params.id);
-    var aid = req.params.answerId;
+    var aid = parseInt(req.params.answerId);
     var alreadyUpvoted = req.body.alreadyUpvoted;
     //var voterId = req.user._id;
     var voterUserObj = req.user;
@@ -68,16 +70,16 @@ function toggleUpvoteAnswer(qid,aid,voterUserObj, alreadyUpvoted, res){
     }
 }
 
-function addAnswerToQuestionOld(questionID,newAnswer, res) {
-    var findCrit = {id: questionID};
-    //var findCrit = "this.id == "+qID;
-    var setCrit = {};
-    setCrit["answers."+newAnswer.id] = newAnswer;
-
-    db.questions.update(findCrit, {"$set": setCrit}, function(err, result) {
-        res.json({msg: "added answer"});
-    });
-}
+//function addAnswerToQuestionOld(questionID,newAnswer, res) {
+//    var findCrit = {id: questionID};
+//    //var findCrit = "this.id == "+qID;
+//    var setCrit = {};
+//    setCrit["answers."+newAnswer.id] = newAnswer;
+//
+//    db.questions.update(findCrit, {"$set": setCrit}, function(err, result) {
+//        res.json({msg: "added answer"});
+//    });
+//}
 
 function addAnswerToQuestion(questionID,newAnswer, res) {
     db.questions.update({id: questionID}, {"$push": {answers: newAnswer}}, function(err, result) {
@@ -85,6 +87,9 @@ function addAnswerToQuestion(questionID,newAnswer, res) {
     });
 }
 
+function addBioToUser(userId, bio) {
+    db.users.update({_id:userId},{"$push": {bios: bio}});
+}
 
 function makeNewAnswer(req){
     return {

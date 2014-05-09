@@ -6,13 +6,25 @@ Daat is currently open-source. You can contact sella.rafaeli@gmail.com if you wa
 To run:
 > git clone git@github.com:SellaRafaeli/daat.git;
 > npm install
-> node app/app.js; #browse to localhost:8000/ui
+> node app/app.js; #browse to localhost:8000/
 
 Current issues in progress:
 
 * Create seed data + process to get it along with clone (Sella)
 * Add and display comments. (Sella)
-* Biographies per topic
+* User Biographies
+* add FB-login, change login flow to signin/up/fb
+
+Technical tickets:
+* Move external scripts to be part of project (lodash, jquery, bootstrap)
+* change authentication scheme to use HTTP-only-cookie instead of POST param
+* divide questions_list_controller into inheriting sub-controllers for question, answer, categories
+* CSS
+    * make everything prettier (and divide into subclasses)
+    * compile LESS file on server, not client.
+
+
+
 
 Participants:
 Ohad Partuck

@@ -16,7 +16,13 @@ exports.signup = function(req,res) { // signup requires no password - just email
             res.json({msg: "User already exists."}); 
         }        
         else {
-            db.users.save({_id: nextUserId(), email: email, password: password, fullName: fullName, authToken: authToken}, function(err, user) {
+            db.users.save({_id: nextUserId(),
+                            email: email,
+                            password: password,
+                            fullName: fullName,
+                            authToken: authToken,
+                            bios: []
+                            }, function(err, user) {
                 var ans = err || user;
                 res.json(ans);
             });

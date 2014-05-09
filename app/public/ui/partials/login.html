@@ -10,9 +10,12 @@
 
 <div ng-controller="LoginController">
   <form novalidate class="simple-form">
-    אימייל: <input type="text" ng-model="email" /><br />
-    שם מלא: <input type="text" ng-model="fullName" /> <br />    
-    <button ng-click="signup()">Signup</button>    
+      {{textFullName}} <input type="text" ng-model="fullName" /> <br />
+      {{textEmail}} <input type="text" ng-model="email" /> <br />
+      {{textPassword}} <input type="text" ng-model="password"/> <br />
+      <button ng-click="signup()">Signup</button>
   </form>
 </div>
- 
+
+
+

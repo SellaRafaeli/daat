@@ -1,9 +1,10 @@
-<div ng-show='isq()' class="clickable">
-    <a href="#/questions/category/{{c}}" class='category' ng-repeat="c in q.categories ">
-        {{c}} <span ng-show='allowEditCategories' ng-click="removeCategoryFromQuestion(q,c)">✖</span>
-    </a>
-    <span ng-show='allowEditCategories' ng-click="addCategoryToQuestion(q)"> {{addCategoryText}} </span>
-    <!--<span ng-show="q.categories"> | </span>-->
-    <!--<span ng-show='allowEditCategories' ng-click='allowEditCategories=!allowEditCategories'> {{doneEditCats}} </span>-->
-    <span ng-show='!allowEditCategories' ng-click='allowEditCategories=!allowEditCategories'> {{editCats}} </span>
+<div ng-show='isq()'>
+    <span class='category' ng-repeat="c in q.categories ">
+        <a href="#/questions/category/{{c}}">{{c}}</a><a href="" ng-show='allowEditCategories' ng-click="removeCategoryFromQuestion(q,c)"> ✖</a>
+    </span>
+
+    <a href="" ng-show='allowEditCategories' ng-click="addCategoryToQuestion(q)">{{addCategoryText}}</a>
+
+    <a href="" class="faded" ng-show='allowEditCategories' ng-click='allowEditCategories=!allowEditCategories'>{{doneEditCats}}</a>
+    <a href="" class="faded" ng-show='!allowEditCategories' ng-click='allowEditCategories=!allowEditCategories'>{{editCats}}</a>
 </div>
