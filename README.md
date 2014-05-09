@@ -12,8 +12,8 @@ Current issues in progress:
 
 * Create seed data + process to get it along with clone (Sella)
 * Add and display comments. (Sella)
-* User Biographies
 * add FB-login, change login flow to signin/up/fb
+* add a good text editor for writing answers, including support for pictures and links
 
 Technical tickets:
 * Move external scripts to be part of project (lodash, jquery, bootstrap)

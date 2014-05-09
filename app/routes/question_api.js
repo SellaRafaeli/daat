@@ -4,7 +4,7 @@ exports.get = function(req, res){
 };
 
 exports.user_data = function(req, res){
-    var userId = req.params.userId;
+    var userId = parseInt(req.params.userId);
     getUserContent(userId, cbj(res))
 }
 //find all
