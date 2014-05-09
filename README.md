@@ -10,7 +10,6 @@ To run:
 
 Current issues in progress:
 
-* when displaying question/list of questions, if user is not signed in, redirect to signin route.
 * when adding question, prompt for categories.
 * Create seed data + process to get it along with clone
 * Add and display comments.

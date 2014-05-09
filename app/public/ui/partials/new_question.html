@@ -2,10 +2,14 @@
 הכניסו שאלה חדשה! 
     <div class="new-question-input-area">
         <div>
-            <input class='title-input' type='text' ng-model="newQuestionTitle" placeholder='השאלה שלי...' autofocus/> 
+            <input class='title-input' type='text' ng-model="newQuestionTitle" placeholder='השאלה שלי...' autofocus/>
         </div>
-        <div>
-            <textarea ng-show="false && newQuestionTitle" ng-model="newQuestionDetails" class='details-input' placeholder='הוסף פרטים לשאלה?' autofocus></textarea>
+        <div ng-show="newQuestionTitle">
+            <label for="new-question-categories"><span>{{categoriesLabelHead}}</span><span class="faded">{{categoriesLabelTail}}</span> </label>
+            <input class='categories-input' id="new-question-categories" type='text' ng-model="newQuestionCategories" />
+        </div>
+        <div ng-show="false && newQuestionTitle">
+            <textarea ng-model="newQuestionDetails" class='details-input' placeholder='הוסף פרטים לשאלה?' autofocus></textarea>
         </div>
         <button ng-show="newQuestionTitle" class='submit-button' ng-click="submitNewQuestion()">הוסף!</button>
     </div>

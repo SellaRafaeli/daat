@@ -14,7 +14,7 @@
             that.save();
         };    
 
-    that.load =  function(){
+    that.load = function(){
         //that.currentUser.token       = localStorage.authToken;
         //that.currentUser.fullName = localStorage.fullName;
         that.currentUser = JSON.parse(localStorage.currentUser || "{}");

@@ -23,14 +23,11 @@ exports.new_question = function(req, res){
         id                  : getQuestionId(),
         title               : req.body['title'],
         text                : req.body['text'],
-        category_id         : req.body['category_id'],
-        sub_category_id     : req.body['sub_category_id'],
-        tags                : req.body['tags'],
         userId              : req.user._id,
         username            : req.user.fullName,
         answers             : [],
         upvoters            : [],
-        categories          : []
+        categories          : req.body.categories || []
     }
 
     db.questions.save(newQuestion, cbj(res) );
@@ -68,6 +65,7 @@ function setHighQuestionId(){
     db.questions.find({},{"sort": "id"}, function(err, results){
         highestQuestionId = (results && results.length) ? results.pop().id : 1;
         isNaN(highestQuestionId) ? highestQuestionId = 0 : "";
+        console.log("set high question id at "+highestQuestionId);
     })
 
 }
