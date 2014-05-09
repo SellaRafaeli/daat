@@ -12,6 +12,6 @@ function appController($scope, Data, $routeParams,AuthService){
     $scope.$watch(function () { return AuthService.currentUser; },                       
         function(newVal, oldVal) {
         $scope.currentUser = newVal.fullName;
-        newVal.fullName ? $scope.login="להחליף יוזר" : $scope.login="להיכנס";
+        newVal.fullName ? $scope.login="להחליף משתמש" : $scope.login="להיכנס";
         }, true);
 };
