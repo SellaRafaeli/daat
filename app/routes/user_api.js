@@ -73,7 +73,7 @@ function makeAuthToken(){
         return highestUserId;
     } else {
         db.users.find({},{"sort": "_id"}, function(err, results){
-            highestUserId = results.length ? parseInt(results.pop()._id)+1 : 1;
+            highestUserId = (results && results.length) ? parseInt(results.pop()._id)+1 : 1;
             isNaN(highestUserId) ? highestUserId = 0 : "";
             log("found highest UserId at"+highestUserId);
         })
