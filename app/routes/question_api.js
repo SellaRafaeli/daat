@@ -21,6 +21,11 @@ exports.getByCategory = function(req, res){
     db.questions.find({"categories": {"$in": [catName]}}, cbj(res));
 };
 
+exports.getByMultipleCategories = function(req,res){
+    var catNames = req.params.catIDs;
+    db.questions.find({"categories": {"$in": [catName]}}, cbj(res));
+}
+
 
 exports.new_question = function(req, res){
     var newQuestion = {

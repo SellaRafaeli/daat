@@ -1,7 +1,9 @@
 //main controller
-function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location){
+function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $http){
     //cheaters
     g1 = $scope;
+
+    http = $http;
     qs = function(){return $scope.data.qList};
     //g1.data.qList;
     //$routeParams.orderId
@@ -58,9 +60,15 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location){
         });
 
         $scope.data = {qList: data};
-        console.log("qList is ");
-        console.log(g1.data.qList);
-        //$scope.data = {qList: qList};        
+
+        $scope.relatedQuestions = ["a","b","c"];
+    });
+
+    $scope.$watch("data.qList", function(newValue, oldValue) {
+         return;
+        $http.get('questions/many_categories',{cats: newValue[0].categories}).then(function(response){
+            debugger
+        });
     });
 
     $scope.submitAnswer = function(){

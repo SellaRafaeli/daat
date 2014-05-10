@@ -34,3 +34,10 @@ myApp.directive('categories', function(){
         templateUrl: 'partials/categories.html'
     }
 });
+
+myApp.directive('relatedQuestions', function(){
+    return {
+        restrict: 'E',
+        templateUrl: 'partials/related-questions.html'
+    }
+});

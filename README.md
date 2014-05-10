@@ -10,7 +10,6 @@ To run:
 
 Current issues in progress:
 
-* when adding question, prompt for categories.
 * Create seed data + process to get it along with clone
 * Add and display comments.
 * add FB-login, change login flow to signin/up/fb
