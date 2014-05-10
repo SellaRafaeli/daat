@@ -3,7 +3,9 @@ exports.addAnswerToQuestion = function(req, res){
     var newAnswer = makeNewAnswer(req);
 
     addAnswerToQuestion(qID, newAnswer, res);
+    //response has been returned
     addBioToUser(newAnswer.owner.id, newAnswer.owner.bio);
+    updateQuestionModifyTime(qID);
 };
 
 exports.toggleUpvote = function(req, res){
@@ -91,6 +93,10 @@ function addBioToUser(userId, bio) {
     db.users.update({_id:userId},{"$push": {bios: bio}});
 }
 
+function updateQuestionModifyTime(qid){
+    db.questions.update({id:qid},{"$set": {"dateModified": new Date()}},function(){});
+}
+
 function makeNewAnswer(req){
     return {
         text            : req.body['answer_text'],
@@ -99,9 +105,10 @@ function makeNewAnswer(req){
                          bio: req.body.bio},
         comments        : {},
         id              : nextAnswerId(),
-        upvoters        : []
-    }
-};
+        upvoters        : [],
+        dateAdded       : new Date()
+}
+    };
 
 //function makeNewComment(req){
 //    return {

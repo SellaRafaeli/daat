@@ -9,7 +9,11 @@ exports.user_data = function(req, res){
 }
 //find all
 exports.list = function(req, res){
-    db.questions.find({}, cbj(res) );
+    //db.questions.find({}, cbj(res) );
+    var opts = {"sort": [["dateModified", "descending"]],
+                "limit": 20
+                }
+    db.questions.find({},opts,cbj(res));
 };
 
 exports.getByCategory = function(req, res){
@@ -27,7 +31,8 @@ exports.new_question = function(req, res){
         username            : req.user.fullName,
         answers             : [],
         upvoters            : [],
-        categories          : req.body.categories || []
+        categories          : req.body.categories || [],
+        dateModified        : new Date()
     }
 
     db.questions.save(newQuestion, cbj(res) );
