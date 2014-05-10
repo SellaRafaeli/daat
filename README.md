@@ -19,6 +19,7 @@ Technical tickets:
 * Move external scripts to be part of project (lodash, jquery, bootstrap)
 * change authentication scheme to use HTTP-only-cookie instead of POST param
 * divide questions_list_controller into inheriting sub-controllers for question, answer, categories
+* make package.json not refer "*" but specific versions for any dependency.
 * CSS
     * make everything prettier (and divide into subclasses)
     * compile LESS file on server, not client.

@@ -1,10 +1,12 @@
-<div ng-show="isq()">
-    <h1>
-    Related Questions
-    <h1>
+<div ng-show="isq() && relatedQuestions">
+    <h3>
+    שאלות דומות
+    </h3>
     <ul class="relatedQuestionsList">
         <li ng-repeat="rq in relatedQuestions">
-            {{rq}}
+            <div class="related-question">
+                <a href="#/questions/{{rq.id}}">{{rq.title}}</a>
+            </div>
         </li>
     </ul>
 </div>

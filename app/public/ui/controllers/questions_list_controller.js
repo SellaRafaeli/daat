@@ -61,13 +61,14 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
 
         $scope.data = {qList: data};
 
-        $scope.relatedQuestions = ["a","b","c"];
     });
 
     $scope.$watch("data.qList", function(newValue, oldValue) {
-         return;
-        $http.get('questions/many_categories',{cats: newValue[0].categories}).then(function(response){
-            debugger
+        var categories = newValue && newValue[0].categories;
+        $http.get('/questions/relatedQuestions',{params: {categories: categories}}).then(function(response){
+            var qs = response.data;
+            if (!$.isArray(qs)) { return; }
+            $scope.relatedQuestions = qs;
         });
     });
 

@@ -3,6 +3,8 @@ log   = function(s){console.log(s);};
 db    = require("mongojs").connect('daat', ['questions','users']); //http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
 //db    = require("mongojs").connect('mongodb://heroku_app24786346:5u0fans99jq5v4fu3ct0stpre8@dbh23.mongolab.com:27237/heroku_app24786346', ['questions','users']);
 env  = (process.env.NODE_ENV || 'DEVELOPMENT').toLowerCase();
+_                   = require('lodash');
+array               = require('ensure-array');
 
 GLOBAL.ROOT = __dirname;
 
@@ -23,7 +25,7 @@ var express             = require('express'),
     category            = require('./routes/category_api'),
     http                = require('http'),
     path                = require('path');
-    _                   = require('lodash');
+
 
 //var cfg                 = require('./configuration/' + env + '.json');
 //var cfg                 = require('./config/development.json');
@@ -79,7 +81,7 @@ app.get('/questions', question.list);
 
 app.get('/questions/users/:userId', question.user_data );
 app.get('/questions/category/:categoryId', question.getByCategory);
-app.get('/questions/multipleCategories', question.getByMultipleCategories);
+app.get('/questions/relatedQuestions', question.getRelatedQuestions);
 app.get('/questions/:id', question.get );
 
 app.post('/questions/new/', users.ensureUserMiddleware, question.new_question);
