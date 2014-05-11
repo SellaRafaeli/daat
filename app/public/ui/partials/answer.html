@@ -1,12 +1,13 @@
 <div>
     <div>
          <div>
-             <a class="answer-user" ng-href='#/users/{{a.owner.id}}'> {{a.owner.fullName}}</a><span class="answer-user" ng-show="a.owner.bio">, {{a.owner.bio}}<span>
+             <a class="answer-user" ng-href='#/users/{{a.owner.id}}'> {{a.owner.fullName}}</a><span class="answer-user" ng-show="a.owner.bio">, {{a.owner.bio}}</span>
          </div>
          <span class='clickable' ng-click="hide=!hide" ng-init="hide=true">
             <span popover="{{a.upvotersNames()}}" popover-trigger="mouseenter" ng-click="toggleUpvoteAnswer(q,a)" class='answer-upvotes-icon'>⇧ {{a.getUpvotes()}} </span>
-            <span ng-hide=!hide> {{shortAnswer(a.text)}} </span>
-            <span ng-hide=hide> {{a.text}} </span>
+            <!--<span ng-hide=!hide> {{shortAnswer(a.text)}} </span>-->
+            <!--<span ng-hide=hide> {{a.text}} </span>-->
+             <span class="imgHolder" ng-hide=false ng-bind-html="a.text"> </span>
         </span>
     </div>
     <div class='answer-links'>
