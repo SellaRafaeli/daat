@@ -11,7 +11,7 @@
         <span>{{username()}}</span><span ng-show="myAnswer || user.bio">, <input class="new-answer-new-bio" ng-model="user.bio" type="text" placeholder="מה הניסיון שלך בנושא הזה?"/></span>
     </div>
 
-    <text-angular placeholder="your answer here..." ng-model="myAnswer" autofocus></text-angular>
+    <text-angular ta-toolbar="newAnswerToolbars" ng-model="myAnswer" autofocus></text-angular>
 
     <!--<textarea class='new-answer-details-input' ng-model="myAnswer" placeholder="הוסף את התשובה שלך..." autofocus/></textarea>-->
 

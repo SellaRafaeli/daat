@@ -31,8 +31,11 @@ body {
 /* GENERIC */
 
 input[type=text]:focus, textarea:focus {
-  box-shadow: 0 0 10px rgba(81, 203, 238, 1);
+  //box-shadow: 0 0 10px rgba(81, 203, 238, 1);
+  //border-radius: 4px;
 }
+
+input { border-radius: 4px;}
 
 .clickable {
     cursor: pointer;
@@ -216,17 +219,24 @@ related-questions {
 
 /** text-angular */
 
-.ta-editor {
-  min-height: 100px;
-  resize: vertical;
-  height: auto;
-  overflow: auto;
-  font-family: inherit;
-  font-size: 100%;
-  margin:20px 0;
+text-angular {
 
-  img {
-    width: 100%;
+  .ta-toolbar {
+    margin-top: 5px;
+    margin-left: 77px;
+  }
+  .ta-editor {
+    min-height: 100px;
+    resize: vertical;
+    height: auto;
+    overflow: auto;
+    font-family: inherit;
+    font-size: 100%;
+    margin:5px 0;
+
+    img {
+      width: 95%;
+    }
   }
 }
 

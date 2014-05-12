@@ -8,14 +8,20 @@ To run:
 > npm install
 > node app/app.js; #browse to localhost:8000/
 
-Current issues in progress:
+Tickets:
 
+
+* textAngular: show only menus we want
+* localization: make localized versions
+* create master password
 * Create seed data + process to get it along with clone
 * Add and display comments.
 * add FB-login, change login flow to signin/up/fb
 * add a good text editor for writing answers, including support for pictures and links
 
 Technical tickets:
+* fix CSS for textAngular (for example 'quote' shows LTR)
+* stop XSS attacks: remove script tags, (copy images?)
 * Move external scripts to be part of project (lodash, jquery, bootstrap)
 * change authentication scheme to use HTTP-only-cookie instead of POST param
 * divide questions_list_controller into inheriting sub-controllers for question, answer, categories

@@ -72,6 +72,8 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
         });
     });
 
+    $scope.newAnswerToolbars = [['h1','h2','h3','p'],['bold','italics','underline'],['ul','ol','quote'],['insertImage','insertLink']];
+
     $scope.submitAnswer = function(){
         var qid = this.data.qList[0].id;
         qid = encodeURIComponent(qid);
