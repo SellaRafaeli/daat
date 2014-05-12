@@ -1,4 +1,4 @@
-function appController($scope, Data, $routeParams,AuthService){
+function appController($scope, Data, $routeParams, AuthService){
     appCtrl = $scope; //global scope for debugging
 
     //text
@@ -8,6 +8,11 @@ function appController($scope, Data, $routeParams,AuthService){
     $scope.main = "ראשי";
     $scope.login = "להיכנס";
     $scope.logout = "לצאת";
+
+    //the following is practice for one day switching between languages. Should be via some module?
+    $scope.texts = {foo: 'some-foo'};
+    $scope.heb = {foo: 'heb-foo'}
+    $scope.setHeb = function(lang) { $scope.texts = $scope.heb; $scope.$apply(); };
 
     $scope.$watch(function () { return AuthService.currentUser; },                       
         function(newVal, oldVal) {

@@ -10,14 +10,11 @@ To run:
 
 Tickets:
 
-
-* textAngular: show only menus we want
+* enable edit of answers
 * localization: make localized versions
-* create master password
 * Create seed data + process to get it along with clone
 * Add and display comments.
 * add FB-login, change login flow to signin/up/fb
-* add a good text editor for writing answers, including support for pictures and links
 
 Technical tickets:
 * fix CSS for textAngular (for example 'quote' shows LTR)
