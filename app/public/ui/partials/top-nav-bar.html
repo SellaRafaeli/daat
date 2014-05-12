@@ -17,13 +17,13 @@
             <ul class="nav navbar-nav navbar-right">
                 <a class="navbar-brand navbar-right" href="#">{{brand}}</a>
                 <li ng-show=false class="active"><a href="#">Active Link (Hidden)</a></li>
-                <li><a href="#questions">{{main}}</a></li>
-                <li><a href="#new_question">{{addQuestion}}</a></li>
+                <li><a href="#questions">{{texts.main}}</a></li>
+                <li><a href="#new_question">{{texts.addQuestion}}</a></li>
                 <li class="dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown">{{currentUser || login}}<b class="caret"></b></a>
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">{{currentUser || texts.login}}<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#login">{{login}}</a></li>
-                        <li><a href="#logout">{{logout}}</a></li>
+                        <li><a href="#login">{{texts.login}}</a></li>
+                        <li><a href="#logout">{{texts.logout}}</a></li>
                         <!--<li class="divider"></li>-->
                         <!--<li><a href="#">Separated link</a></li>                        -->
                     </ul>

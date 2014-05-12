@@ -8,7 +8,7 @@
 
 <div ng-show="allowAnswer()">
     <div>
-        <span>{{username()}}</span><span ng-show="myAnswer || user.bio">, <input class="new-answer-new-bio" ng-model="user.bio" type="text" placeholder="מה הניסיון שלך בנושא הזה?"/></span>
+        <span>{{username()}}</span><span ng-show="myAnswer || user.bio">, <input class="new-answer-new-bio" ng-model="user.bio" type="text" placeholder={{texts.yourExperiencePlaceholder}}></span>
     </div>
 
     <text-angular ta-toolbar="newAnswerToolbars" ng-model="myAnswer" autofocus></text-angular>
@@ -16,7 +16,7 @@
     <!--<textarea class='new-answer-details-input' ng-model="myAnswer" placeholder="הוסף את התשובה שלך..." autofocus/></textarea>-->
 
     <div>{{q.myAnswer}}</div>
-    <button class='submit-button' ng-show="myAnswer" ng-click="submitAnswer()">שלח!</button>
+    <button class='submit-button' ng-show="myAnswer" ng-click="submitAnswer()">{{texts.sendMyAnswer}}</button>
 </div>
 
 <ul class='answer-list'>

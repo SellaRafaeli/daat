@@ -10,13 +10,13 @@ To run:
 
 Tickets:
 
-* enable edit of answers
-* localization: make localized versions
+* enable edit of existing answers
 * Create seed data + process to get it along with clone
 * Add and display comments.
 * add FB-login, change login flow to signin/up/fb
 
 Technical tickets:
+* localization: make localization more robust (extract to module from appController)
 * fix CSS for textAngular (for example 'quote' shows LTR)
 * stop XSS attacks: remove script tags, (copy images?)
 * Move external scripts to be part of project (lodash, jquery, bootstrap)

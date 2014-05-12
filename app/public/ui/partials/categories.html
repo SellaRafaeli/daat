@@ -3,8 +3,8 @@
         <a href="#/questions/category/{{c}}">{{c}}</a><a href="" ng-show='allowEditCategories' ng-click="removeCategoryFromQuestion(q,c)"> ✖</a>
     </span>
 
-    <a href="" ng-show='allowEditCategories' ng-click="addCategoryToQuestion(q)">{{addCategoryText}}</a>
+    <a href="" ng-show='allowEditCategories' ng-click="addCategoryToQuestion(q)">{{texts.addCategoryText}}</a>
 
-    <a href="" class="faded" ng-show='allowEditCategories' ng-click='allowEditCategories=!allowEditCategories'>{{doneEditCats}}</a>
-    <a href="" class="faded" ng-show='!allowEditCategories' ng-click='allowEditCategories=!allowEditCategories'>{{editCats}}</a>
+    <a href="" class="faded" ng-show='allowEditCategories' ng-click='allowEditCategories=!allowEditCategories'>{{texts.doneEditCats}}</a>
+    <a href="" class="faded" ng-show='!allowEditCategories' ng-click='allowEditCategories=!allowEditCategories'>{{texts.editCats}}</a>
 </div>

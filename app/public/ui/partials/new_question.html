@@ -1,16 +1,16 @@
 <div id="newQuestionCtrl" ng-controller="newQuestionCtrl">                                                  
-הכניסו שאלה חדשה! 
+{{texts.enterNewQuestion}}
     <div class="new-question-input-area">
         <div>
-            <input class='title-input' type='text' ng-model="newQuestionTitle" placeholder='השאלה שלי...' autofocus/>
+            <input class='title-input' type='text' ng-model="newQuestionTitle" placeholder="{{texts.myQuestionPlaceholder}}" autofocus/>
         </div>
         <div ng-show="newQuestionTitle">
-            <label for="new-question-categories"><span>{{categoriesLabelHead}}</span><span class="faded">{{categoriesLabelTail}}</span> </label>
+            <label for="new-question-categories"><span>{{texts.categoriesLabelHead}}</span><span class="faded">{{texts.categoriesLabelTail}}</span> </label>
             <input class='categories-input' id="new-question-categories" type='text' ng-model="newQuestionCategories" />
         </div>
         <div ng-show="false && newQuestionTitle">
             <textarea ng-model="newQuestionDetails" class='details-input' placeholder='הוסף פרטים לשאלה?' autofocus></textarea>
         </div>
-        <button ng-show="newQuestionTitle" class='submit-button' ng-click="submitNewQuestion()">הוסף!</button>
+        <button ng-show="newQuestionTitle" class='submit-button' ng-click="submitNewQuestion()">{{texts.add}}</button>
     </div>
 </div>

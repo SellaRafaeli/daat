@@ -5,11 +5,6 @@ function LoginController($scope, Data, AuthService, $route){
     $scope.fullName = getRandomName();
     $scope.password = "123";
 
-    $scope.textEmail = "אימייל";
-    $scope.textFullName = "שם מלא";
-    $scope.textPassword = "סיסמא (לא חובה)";
-
-
     $scope.signup = function(){
         if (!this.email) { alert("Bad input - no email."); return; }
 

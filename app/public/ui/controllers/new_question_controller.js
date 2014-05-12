@@ -3,10 +3,6 @@ function newQuestionCtrl($scope, Data, $route, $routeParams, AuthService, $locat
 
     !AuthService.currentUser.fullName ? $location.path('/login') : '';
 
-    $scope.foo = 'newQuestionCtrl - bar';
-    $scope.categoriesLabelHead = 'קטגוריות - ';
-    $scope.categoriesLabelTail = 'לפחות 3, מופרדות בפסיקים';
-
     $scope.submitNewQuestion = function(){
         var title = this.newQuestionTitle;
         var details = this.newQuestionDetails;

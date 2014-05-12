@@ -11,10 +11,6 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
 
     !AuthService.currentUser.fullName ? $location.path('/login') : '';
 
-    $scope.addCategoryText = "הוסף קטגוריה";
-    $scope.doneEditCats = "סיימתי";
-    $scope.editCats = "ערוך";
-
     $scope.route_type = $routeParams.type
     $scope.route_name = $routeParams.name
     //$scope.username = AuthService.currentUser().name;

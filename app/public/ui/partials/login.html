@@ -10,9 +10,9 @@
 
 <div ng-controller="LoginController">
   <form novalidate class="simple-form">
-      {{textFullName}} <input type="text" ng-model="fullName" /> <br />
-      {{textEmail}} <input type="text" ng-model="email" /> <br />
-      {{textPassword}} <input type="text" ng-model="password"/> <br />
+      {{texts.textFullName}} <input type="text" ng-model="fullName" /> <br />
+      {{texts.textEmail}} <input type="text" ng-model="email" /> <br />
+      {{texts.textPassword}} <input type="text" ng-model="password"/> <br />
       <button ng-click="signup()">Signup</button>
       <button ng-disabled="!password" ng-click="login()">Login</button>
   </form>
