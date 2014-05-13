@@ -1,7 +1,7 @@
 //globals. Settable with GLOBAL.foo from other files.
 log   = function(s){console.log(s);};
-db    = require("mongojs").connect('daat', ['questions','users']); //http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
-//db    = require("mongojs").connect('mongodb://heroku_app24786346:5u0fans99jq5v4fu3ct0stpre8@dbh23.mongolab.com:27237/heroku_app24786346', ['questions','users']);
+//db    = require("mongojs").connect('daat', ['questions','users']); //http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
+db    = require("mongojs").connect('mongodb://heroku_app24786346:5u0fans99jq5v4fu3ct0stpre8@dbh23.mongolab.com:27237/heroku_app24786346', ['questions','users']);
 env  = (process.env.NODE_ENV || 'DEVELOPMENT').toLowerCase();
 _                   = require('lodash');
 array               = require('ensure-array');
