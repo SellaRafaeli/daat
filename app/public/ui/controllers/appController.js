@@ -3,7 +3,7 @@ function appController($scope, Data, $routeParams, AuthService){
     $scope.alert = function(s){ alert(s)};
     $scope.log = function(s) { console.log(s) }
 
-    $scope.texts = {foo: 'some-foo',
+    $scope.eng = {foo: 'some-foo',
                     addQuestion: 'Add Question',
                     about: 'About',
                     main: 'Main',
@@ -54,8 +54,10 @@ function appController($scope, Data, $routeParams, AuthService){
 }
 
     $scope.texts = $scope.heb;
+    //$scope.texts = $scope.eng;
 
     $scope.setHeb = function(lang) { $scope.texts = $scope.heb; $scope.$apply(); };
+    $scope.setEng = function() { $scope.texts = $scope.eng; $scope.$apply(); };
 
 
     $scope.$watch(function () { return AuthService.currentUser; },                       
