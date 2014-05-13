@@ -1,6 +1,7 @@
 function appController($scope, Data, $routeParams, AuthService){
     appCtrl = $scope; //global scope for debugging
-
+    $scope.alert = function(s){ alert(s)};
+    $scope.log = function(s) { console.log(s) }
 
     $scope.texts = {foo: 'some-foo',
                     addQuestion: 'Add Question',
@@ -22,7 +23,8 @@ function appController($scope, Data, $routeParams, AuthService){
     editCats: 'Edit',
     textEmail: "Email",
     textFullName: "Full name",
-    textPassword: "Password (optional)"
+    textPassword: "Password (optional)",
+    separatedByCommas: "separated by commas"
 };
 
     $scope.heb = {foo: 'heb-foo',
@@ -45,7 +47,8 @@ function appController($scope, Data, $routeParams, AuthService){
         editCats: "ערוך",
         textEmail: "אימייל",
         textFullName: "שם מלא",
-        textPassword: "סיסמא (לא חובה)"
+        textPassword: "סיסמא (לא חובה)",
+        separatedByCommas: "להפריד עם פסיקים"
 }
 
     $scope.texts = $scope.heb;

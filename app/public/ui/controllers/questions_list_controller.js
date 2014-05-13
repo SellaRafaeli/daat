@@ -1,5 +1,5 @@
 //main controller
-function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $http){
+function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $http, $filter){
     //cheaters
     g1 = $scope;
 
@@ -48,23 +48,28 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
                         a.isUpvotedByCurrentUser = function() { return a.upvoters[AuthService.currentUser.fullName]};
                         return a
                     }),
-                    categories: _.uniq(q.categories)
+                    categories: _.uniq(q.categories).sort()
             };
 
             question = filterOut(question);
             return question;
         });
 
-        $scope.data = {qList: data};
+        $scope.data = {qList: data,
+                       currentCategories: data[0].categories
+        };
 
     });
 
-    $scope.$watch("data.qList", function(newValue, oldValue) {
-        var categories = newValue && newValue[0].categories;
+    $scope.$watch("data.currentCategories", function(newValue, oldValue) {
+        var categories = $filter('split')(newValue);
+        if (!(categories && categories.length)) { return; }
+
         $http.get('/questions/relatedQuestions',{params: {categories: categories}}).then(function(response){
             var qs = response.data;
             if (!$.isArray(qs)) { return; }
             $scope.relatedQuestions = qs;
+
         });
     });
 
@@ -130,14 +135,17 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
         return _.findWhere(answer.upvoters, {fullName: AuthService.currentUser.fullName}) ? 'בטל לייק' : 'לייק!';
     }
 
-    $scope.addCategoryToQuestion = function(q){
-        var cat = prompt("איזו קטגוריה להוסיף?");
-        if (cat) { Data.addCategoryToQuestion(q,cat,function(res){ $route.reload();}) }
+    $scope.setCategories = function(q){
+        Data.setQuestionCategories(q,$scope.data.currentCategories);
     }
-
-    $scope.removeCategoryFromQuestion = function(q,c){
-        Data.removeCategoryFromQuestion(q,c,function(res){ $route.reload();});
-    }
+//    $scope.addCategoryToQuestion = function(q){
+//        var cat = prompt("איזו קטגוריה להוסיף?");
+//        if (cat) { Data.addCategoryToQuestion(q,cat,function(res){ $route.reload();}) }
+//    }
+//
+//    $scope.removeCategoryFromQuestion = function(q,c){
+//        Data.removeCategoryFromQuestion(q,c,function(res){ $route.reload();});
+//    }
 
     $scope.username = function(){ return AuthService.currentUser.fullName };
 

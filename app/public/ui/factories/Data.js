@@ -36,16 +36,23 @@ myApp.factory('Data', function($http, AuthService) {
             $http.post('/questions/'+question.id+'/answer/'+answer.id+'/toggleUpvote',params).then(cb);
             return "ok";
         },
-        addCategoryToQuestion: function(question,categoryName,cb){
-            params = {categoryName: categoryName};
+
+        setQuestionCategories: function(q,cats){
+            params = {};
             params['authToken'] = AuthService.currentUser.authToken;
-            $http.post('/questions/'+question.id+'/addCategory', params).then(cb);
+            params['categories'] = cats;
+            $http.post('/questions/'+q.id+'/setCategories', params).then(function(){log(arguments)});
         },
-        removeCategoryFromQuestion: function(question,categoryName,cb){
-            params = {categoryName: categoryName};
-            params['authToken'] = AuthService.currentUser.authToken;
-            $http.post('/questions/'+question.id+'/removeCategory', params).then(cb);
-        },
+//        addCategoryToQuestion: function(question,categoryName,cb){
+//            params = {categoryName: categoryName};
+//            params['authToken'] = AuthService.currentUser.authToken;
+//            $http.post('/questions/'+question.id+'/addCategory', params).then(cb);
+//        },
+//        removeCategoryFromQuestion: function(question,categoryName,cb){
+//            params = {categoryName: categoryName};
+//            params['authToken'] = AuthService.currentUser.authToken;
+//            $http.post('/questions/'+question.id+'/removeCategory', params).then(cb);
+//        },
         signup: function(params, cb){ $http.post('/signup',params).then(cb); },
         login: function(params, cb){ $http.post('/login',params).then(cb); }
     };

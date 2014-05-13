@@ -42,19 +42,27 @@ exports.new_question = function(req, res){
     db.questions.save(newQuestion, cbj(res) );
 };
 
-exports.addCategory = function(req, res) {
+exports.setCategories = function(req,res){
     var id = parseInt(req.params.id);
-    db.questions.update({id: id}, {"$push": {categories: req.body.categoryName}}, function(err, result) {
-        res.json({msg: "added category"});
+    var cats = array(req.body.categories);
+    db.questions.update({id: id}, {"$set": {categories: cats}}, function(err, result) {
+        res.json({msg: "set categories!"});
     });
 }
 
-exports.removeCategory = function(req, res) {
-    var id = parseInt(req.params.id);
-    db.questions.update({id: id}, {"$pull": {categories: req.body.categoryName}}, function(err, result) {
-        res.json({msg: "removed category"});
-    });
-}
+//exports.addCategory = function(req, res) {
+//    var id = parseInt(req.params.id);
+//    db.questions.update({id: id}, {"$push": {categories: req.body.categoryName}}, function(err, result) {
+//        res.json({msg: "added category"});
+//    });
+//}
+//
+//exports.removeCategory = function(req, res) {
+//    var id = parseInt(req.params.id);
+//    db.questions.update({id: id}, {"$pull": {categories: req.body.categoryName}}, function(err, result) {
+//        res.json({msg: "removed category"});
+//    });
+//}
 
 /* helpers */
 function getUserContent(userId, cb) {

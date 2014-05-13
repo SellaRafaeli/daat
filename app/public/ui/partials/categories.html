@@ -1,10 +1,25 @@
 <div ng-show='isq()'>
-    <span class='category' ng-repeat="c in q.categories ">
-        <a href="#/questions/category/{{c}}">{{c}}</a><a href="" ng-show='allowEditCategories' ng-click="removeCategoryFromQuestion(q,c)"> ✖</a>
-    </span>
 
-    <a href="" ng-show='allowEditCategories' ng-click="addCategoryToQuestion(q)">{{texts.addCategoryText}}</a>
 
-    <a href="" class="faded" ng-show='allowEditCategories' ng-click='allowEditCategories=!allowEditCategories'>{{texts.doneEditCats}}</a>
-    <a href="" class="faded" ng-show='!allowEditCategories' ng-click='allowEditCategories=!allowEditCategories'>{{texts.editCats}}</a>
+    <div ng-show="editingCategories" >
+        <input ng-blur="editingCategories = false; setCategories(q)" type="text" ng-model="data.currentCategories">
+        {{separatedByCommas}}
+        <a href="" class="faded" ng-click='editingCategories = false'>{{texts.doneEditCats}}</a>
+    </div>
+
+    <div>
+        <span class='category' ng-repeat="c in data.currentCategories | split">
+            <a href="#/questions/category/{{c}}">{{c}}</a>
+        </span>
+        <a href="" class="faded" ng-show='!editingCategories' ng-click='editingCategories=true'>{{texts.editCats}}</a>
+    </div>
+
+    <!--<span class='category' ng-repeat="c in q.categories ">-->
+        <!--<a href="#/questions/category/{{c}}">{{c}}</a><a href="" ng-show='allowEditCategories' ng-click="removeCategoryFromQuestion(q,c)"> ✖</a>-->
+    <!--</span>-->
+
+    <!--<a href="" ng-show='allowEditCategories' ng-click="addCategoryToQuestion(q)">{{texts.addCategoryText}}</a>-->
+
+    <!--<a href="" class="faded" ng-show='allowEditCategories' ng-click='allowEditCategories=!allowEditCategories'>{{texts.doneEditCats}}</a>-->
+
 </div>
