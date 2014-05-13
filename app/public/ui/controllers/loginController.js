@@ -4,7 +4,7 @@ function LoginController($scope, Data, AuthService, $route){
     $scope.email = Math.random().toString(36).substring(3)+'@domain.com'; 
     $scope.fullName = getRandomName();
     $scope.password = "123";
-    $scope.userImgLnk = function(){return ($scope.customImgLnk || 'http://lorempixel.com/400/200/people/');}
+    $scope.userImgLnk = "http://lorempixel.com/400/200/people/"+randRange(1,10);
 
     $scope.signup = function(){
         if (!this.email) { alert("Bad input - no email."); return; }
@@ -12,7 +12,7 @@ function LoginController($scope, Data, AuthService, $route){
         Data.signup({email: this.email,
                      fullName: this.fullName,
                      password: this.password,
-                     imgLnk: this.userImgLnk()
+                     imgLnk: this.userImgLnk,
                     },this.handleSignup);
     }
 

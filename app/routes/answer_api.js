@@ -102,7 +102,9 @@ function makeNewAnswer(req){
         text            : req.body['answer_text'],
         owner :         {fullName: req.user.fullName,
                          id: req.user._id,
-                         bio: req.body.bio},
+                         bio: req.body.bio,
+                         imgLnk: req.user.imgLnk
+        },
         comments        : {},
         id              : nextAnswerId(),
         upvoters        : [],
