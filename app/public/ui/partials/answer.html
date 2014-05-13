@@ -2,7 +2,7 @@
     <div>
         <div class='answer-upvotes-icon'>
             <span popover="{{a.upvotersNames()}}" popover-trigger="mouseenter" ng-click="toggleUpvoteAnswer(q,a)">⇧ {{a.getUpvotes()}} </span>
-            <a ng-href='#/users/{{a.owner.id}}'><img ng-if="a.owner.imgLnk" class='answer-user-pic' src={{a.owner.imgLnk}}/></a>
+            <a ng-href='#/users/{{a.owner.id}}'><img ng-if="a.owner.imgLnk" class='answer-user-pic' src={{a.owner.imgLnk}} /></a>
             <!--<img class='answer-user-pic' src="{{a.owner.imgLnk}}"/>-->
         </div>
          <div>
