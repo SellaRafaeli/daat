@@ -9,7 +9,7 @@ exports.signup = function(req,res) { // signup requires no password - just email
     var password = req.body.password; 
     var fullName = req.body.fullName;
     var authToken = makeAuthToken();
-
+    var imgLnk = req.body.imgLnk;
     db.users.findOne({email: email}, function(err, user){
         if (user) { 
             //res.statusCode = 401;  //return this when client handles 400 msgs
@@ -21,7 +21,8 @@ exports.signup = function(req,res) { // signup requires no password - just email
                             password: password,
                             fullName: fullName,
                             authToken: authToken,
-                            bios: []
+                            bios: [],
+                            imgLnk: imgLnk
                             }, function(err, user) {
                 var ans = err || user;
                 res.json(ans);

@@ -1,14 +1,19 @@
 //main controller
 function LoginController($scope, Data, AuthService, $route){
-    loginCtrl = this; //global for debugging
+    loginCtrl = $scope; //global for debugging
     $scope.email = Math.random().toString(36).substring(3)+'@domain.com'; 
     $scope.fullName = getRandomName();
     $scope.password = "123";
+    $scope.userImgLnk = function(){return ($scope.customImgLnk || 'http://lorempixel.com/400/200/people/');}
 
     $scope.signup = function(){
         if (!this.email) { alert("Bad input - no email."); return; }
 
-        Data.signup({email: this.email, fullName: this.fullName, password: this.password},this.handleSignup);
+        Data.signup({email: this.email,
+                     fullName: this.fullName,
+                     password: this.password,
+                     imgLnk: this.userImgLnk()
+                    },this.handleSignup);
     }
 
     $scope.login = function(){

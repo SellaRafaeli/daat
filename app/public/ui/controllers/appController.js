@@ -24,7 +24,8 @@ function appController($scope, Data, $routeParams, AuthService){
     textEmail: "Email",
     textFullName: "Full name",
     textPassword: "Password (optional)",
-    separatedByCommas: "separated by commas"
+    separatedByCommas: "separated by commas",
+    loginImage: "Link to your image (optional)"
 };
 
     $scope.heb = {foo: 'heb-foo',
@@ -48,7 +49,8 @@ function appController($scope, Data, $routeParams, AuthService){
         textEmail: "אימייל",
         textFullName: "שם מלא",
         textPassword: "סיסמא (לא חובה)",
-        separatedByCommas: "להפריד עם פסיקים"
+        separatedByCommas: "להפריד עם פסיקים",
+        loginImage: "לינק תמונה (לא חובה)"
 }
 
     $scope.texts = $scope.heb;

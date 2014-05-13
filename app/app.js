@@ -86,8 +86,8 @@ app.get('/questions/:id', question.get );
 
 app.post('/questions/new/', users.ensureUserMiddleware, question.new_question);
 app.post('/questions/:id/setCategories', users.ensureUserMiddleware, question.setCategories);
-app.post('/questions/:id/addCategory', users.ensureUserMiddleware, question.addCategory);
-app.post('/questions/:id/removeCategory', users.ensureUserMiddleware, question.removeCategory);
+//app.post('/questions/:id/addCategory', users.ensureUserMiddleware, question.addCategory);
+//app.post('/questions/:id/removeCategory', users.ensureUserMiddleware, question.removeCategory);
 
 
 //answers
