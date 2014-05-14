@@ -17,9 +17,7 @@ Tickets:
 * check bug in category at "House Of Cards"?
 * add option to set background
 * click on user image: display that image?
-* show time answer was added
 * feed - don't load all questions at once, make it endless scroll
-* update UI before actions succeed?
 
 Technical tickets:
 * setup configuration s.t. when deploying to prod it will use Heroku's DB
