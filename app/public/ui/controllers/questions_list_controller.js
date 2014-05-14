@@ -41,6 +41,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
                     title: q.title,
                     link: q.id,
                     body: q.text,
+                    dateModified: q.dateModified,
                     answers: _.map(q.answers,function(a){
                         a.getUpvotes = function(){ return a.upvoters.length; };
                         a.upvotersNames = function() { return _.map(a.upvoters,function(v){ return v.fullName}).join(", "); };
@@ -50,11 +51,12 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
                     }),
                     categories: _.uniq(q.categories).sort()
             };
-
+            sortArrayByKeyDesc(question.answers, 'dateAdded');
             question = filterOut(question);
             return question;
         });
 
+        sortArrayByKeyDesc(data,'dateModified');
         $scope.data = {qList: data,
                        currentCategories: data[0].categories
         };
