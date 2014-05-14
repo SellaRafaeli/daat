@@ -141,6 +141,13 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
     $scope.setCategories = function(q){
         Data.setQuestionCategories(q,$scope.data.currentCategories);
     }
+
+    $scope.updateAnswerText = function(q,a) {
+        if (a.text != a.updatedText) {
+            a.text = a.updatedText;
+            Data.updateAnswerText(q.id, a.id, a.updatedText);
+        }
+    }
 //    $scope.addCategoryToQuestion = function(q){
 //        var cat = prompt("איזו קטגוריה להוסיף?");
 //        if (cat) { Data.addCategoryToQuestion(q,cat,function(res){ $route.reload();}) }

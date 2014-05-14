@@ -90,6 +90,7 @@ app.post('/questions/:id/setCategories', users.ensureUserMiddleware, question.se
 
 //answers
 app.post('/questions/:id/new_answer', users.ensureUserMiddleware, answer.addAnswerToQuestion);
+app.post('/questions/:id/answer/:answerId/updateText', users.ensureUserMiddleware, answer.updateText);
 app.post('/questions/:id/answer/:answerId/toggleUpvote', users.ensureUserMiddleware, answer.toggleUpvote);
 app.post('/questions/:id/answer/:answerId/newComment', users.ensureUserMiddleware, answer.addCommentToAnswerToQuestion);
 

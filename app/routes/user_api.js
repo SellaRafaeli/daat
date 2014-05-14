@@ -52,6 +52,7 @@ exports.ensureUserMiddleware = function(req, res, next) {
             req.user = user;            
             next();
         } else {
+            res.statusCode = 401;
             res.json({msg: "Missing valid authToken for user."});                    
         }        
     }); 

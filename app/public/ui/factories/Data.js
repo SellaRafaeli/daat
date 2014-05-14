@@ -49,6 +49,13 @@ myApp.factory('Data', function($http, AuthService) {
             params['categories'] = cats;
             $http.post('/questions/'+q.id+'/setCategories', params).then(function(){log(arguments)});
         },
+
+        updateAnswerText: function(qId, aId, newText) {
+            params = {};
+            params['authToken'] = AuthService.currentUser.authToken;
+            params['newText'] = newText;
+            $http.post('/questions/'+qId+'/answer/'+aId+'/updateText', params).catch(genericErrHandler);
+        },
 //        addCategoryToQuestion: function(question,categoryName,cb){
 //            params = {categoryName: categoryName};
 //            params['authToken'] = AuthService.currentUser.authToken;

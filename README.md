@@ -18,6 +18,8 @@ Tickets:
 * add option to set background
 * click on user image: display that image?
 * feed - don't load all questions at once, make it endless scroll
+* put loading gif in qList controller while loading: http://codepen.io/alextebbs/pen/tHhrz
+* if user not signed in (msg "missing valid authtoken for user") then return 401.
 
 Technical tickets:
 * setup configuration s.t. when deploying to prod it will use Heroku's DB

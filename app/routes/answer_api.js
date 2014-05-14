@@ -18,6 +18,14 @@ exports.toggleUpvote = function(req, res){
     toggleUpvoteAnswer(qid, aid, voterUserObj, alreadyUpvoted, res);
 };
 
+exports.updateText = function(req,res){
+    log("in update text");
+    var qid = parseInt(req.params.id);
+    var aid = parseInt(req.params.answerId);
+    var newText = req.body.newText;
+    db.questions.update({id : qid, "answers.id":aid} , {$set: {"answers.$.text": newText}}, function(){res.json({msg: "updated text"})});
+}
+
 exports.addCommentToAnswerToQuestion = function(req, res){
 //    var qID = req.params['id'];
 //    var aId = req.params['answerId'];
