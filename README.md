@@ -13,9 +13,13 @@ Tickets:
 * enable edit of existing answers
 * Create seed data + process to get it along with clone
 * Add and display comments.
-* add FB-login, change login flow to signin/up/fb
+* add FB-login
+* check bug in category at "House Of Cards"?
+* add option to set background
 
 Technical tickets:
+* setup configuration s.t. when deploying to prod it will use Heroku's DB
+* don't render images if there's nothing to render (to avoid JS errors)
 * localization: make localization more robust (extract to module from appController)
 * fix CSS for textAngular (for example 'quote' shows LTR)
 * stop XSS attacks: remove script tags, (copy images?)
