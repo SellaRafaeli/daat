@@ -41,7 +41,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
                     title: q.title,
                     link: q.id,
                     body: q.text,
-                    dateModified: q.dateModified || moment('1970'),
+                    dateModified: q.dateModified || moment('1970').format(),
                     answers: _.map(q.answers,function(a){
                         a.getUpvotes = function(){ return a.upvoters.length; };
                         a.upvotersNames = function() { return _.map(a.upvoters,function(v){ return v.fullName}).join(", "); };
