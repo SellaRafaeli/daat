@@ -14,7 +14,7 @@
       {{texts.textEmail}} <input type="text" ng-model="email" /> <br />
       {{texts.textPassword}} <input type="text" ng-model="password"/> <br />
       {{texts.loginImage}} <input type="text" ng-model="userImgLnk"/> <br />
-      <img class='login-img' src="{{userImgLnk}}"/>
+      <img class='login-img' ng-src="{{userImgLnk}}"/>
       <button ng-click="signup()">Signup</button>
       <button ng-disabled="!password" ng-click="login()">Login</button>
   </form>

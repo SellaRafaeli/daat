@@ -1,5 +1,11 @@
 myApp.factory('Data', function($http, AuthService) {
 
+    var genericErrHandler = function(res) {
+        if (Math.random() < 0.3) { alert("Action failed, see JS console for details."); }
+        msg = res.status+" on "+res.config.method+" to "+res.config.url+". Data was: "+res.data+" and config.data was: "+res.config.data;
+        console.log(msg);
+    };
+
     questionRoute = function(qId) { return '/questions/'+qId; };
 
     return {
@@ -33,7 +39,7 @@ myApp.factory('Data', function($http, AuthService) {
         toggleUpvoteAnswer: function(question,answer, alreadyUpvoted, cb){
             params = {alreadyUpvoted: alreadyUpvoted};
             params['authToken'] = AuthService.currentUser.authToken;
-            $http.post('/questions/'+question.id+'/answer/'+answer.id+'/toggleUpvote',params).then(cb);
+            $http.post('/questions/'+question.id+'/answer/'+answer.id+'/toggleUpvote',params).catch(genericErrHandler);
             return "ok";
         },
 

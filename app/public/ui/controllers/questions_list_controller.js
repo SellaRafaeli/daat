@@ -99,7 +99,8 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
             alreadyUpvoted ? answer.upvoters = _.without(answer.upvoters, _.findWhere(answer.upvoters, {fullName: key})) : answer.upvoters.push({fullName: key});
         }
 
-        Data.toggleUpvoteAnswer(question, answer, alreadyUpvoted, cb);
+        Data.toggleUpvoteAnswer(question, answer, alreadyUpvoted);
+        cb(); //done without waiting for server -- assuming success.
     }
 
     $scope.shortAnswer = function(answerBody){

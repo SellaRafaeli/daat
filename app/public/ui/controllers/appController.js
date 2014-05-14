@@ -25,7 +25,8 @@ function appController($scope, Data, $routeParams, AuthService){
     textFullName: "Full name",
     textPassword: "Password (optional)",
     separatedByCommas: "separated by commas",
-    loginImage: "Link to your image (optional)"
+    loginImage: "Link to your image (optional)",
+    answerWrittenAt: "Written"
 };
 
     $scope.heb = {foo: 'heb-foo',
@@ -50,14 +51,16 @@ function appController($scope, Data, $routeParams, AuthService){
         textFullName: "שם מלא",
         textPassword: "סיסמא (לא חובה)",
         separatedByCommas: "להפריד עם פסיקים",
-        loginImage: "לינק תמונה (לא חובה)"
+        loginImage: "לינק תמונה (לא חובה)",
+        answerWrittenAt: "נכתב"
+
 }
 
     $scope.texts = $scope.heb;
     //$scope.texts = $scope.eng;
-
+    moment.lang('he');
     $scope.setHeb = function(lang) { $scope.texts = $scope.heb; $scope.$apply(); };
-    $scope.setEng = function() { $scope.texts = $scope.eng; $scope.$apply(); };
+    $scope.setEng = function() { moment.lang('en'); $scope.texts = $scope.eng; $scope.$apply(); };
 
 
     $scope.$watch(function () { return AuthService.currentUser; },                       
