@@ -1,8 +1,8 @@
 function appController($scope, Data, $routeParams, AuthService){
     appCtrl = $scope; //global scope for debugging
     $scope.alert = function(s){ alert(s)};
-    $scope.log = function(s) { console.log(s) }
-
+    $scope.log = function(s) { console.log(s) };
+    $scope.ping = function(){log('pinging'); Data.ping()};
     $scope.eng = {foo: 'some-foo',
                     addQuestion: 'Add Question',
                     about: 'About',

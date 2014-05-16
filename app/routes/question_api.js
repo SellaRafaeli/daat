@@ -7,14 +7,25 @@ exports.user_data = function(req, res){
     var userId = parseInt(req.params.userId);
     getUserContent(userId, cbj(res))
 }
-//find all
-exports.list = function(req, res){
+
+exports.newest = function(req, res){
     //db.questions.find({}, cbj(res) );
-    var opts = {"sort": [["dateModified", "descending"]],
-                "limit": 20
-                }
-    db.questions.find({},opts,cbj(res));
+    var NUM_QUESTIONS_RETURNED_EACH_TIME = 3;
+    var query = {};
+    var opts = { "sort": {"dateModified": -1}, "limit": NUM_QUESTIONS_RETURNED_EACH_TIME };
+
+    req.query.sinceDate ? query['dateModified'] = {"$lt" : new Date(req.query.sinceDate)} : '';
+    db.questions.find(query,{},opts,cbj(res));
 };
+
+//exports.newest = function (req, res) {
+//    db.questions.findOne({},cbj(res));
+//    return;
+//    var dateSinceString = req.query.sinceDate || "2014-05-12T16:12:28.632Z";
+//    var dateSinceObj = new Date(dateSinceString);
+//    var options = {"sort": {"dateModified": 1}, "limit": 5}
+//    db.questions.find({"dateModified": {"$gt": dateSinceObj }},options,cbj(res));
+//}
 
 exports.getByCategory = function(req, res){
     var catName = req.params.categoryId;

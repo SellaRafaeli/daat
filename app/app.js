@@ -1,7 +1,7 @@
 //globals. Settable with GLOBAL.foo from other files.
 log   = function(s){console.log(s);};
-//db    = require("mongojs").connect('daat', ['questions','users']); //http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
-db    = require("mongojs").connect('mongodb://heroku_app24786346:5u0fans99jq5v4fu3ct0stpre8@dbh23.mongolab.com:27237/heroku_app24786346', ['questions','users']);
+db    = require("mongojs").connect('daat', ['questions','users']); //http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
+//db    = require("mongojs").connect('mongodb://heroku_app24786346:5u0fans99jq5v4fu3ct0stpre8@dbh23.mongolab.com:27237/heroku_app24786346', ['questions','users']);
 env  = (process.env.NODE_ENV || 'DEVELOPMENT').toLowerCase();
 _                   = require('lodash');
 array               = require('ensure-array');
@@ -71,11 +71,12 @@ if ('development' == app.get('env')) { app.use(express.errorHandler()); }
 //homepage
 app.get("/", function (req, res) { res.redirect('/ui'); });
 app.get("/ping", function (req, res) {
-    res.send("pong, motherfucker...");
+    //res.send("pong, motherfucker");
+    db.questions.findOne({},function(){res.send("pong")});
 });
 
 //questions
-app.get('/questions', question.list);
+app.get('/questions/newest', question.newest);
 
 app.get('/questions/users/:userId', question.user_data );
 app.get('/questions/category/:categoryId', question.getByCategory);

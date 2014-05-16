@@ -23,6 +23,7 @@ function LoginController($scope, Data, AuthService, $route){
     }
 
     $scope.handleSignup = function(signupRes) {
+        var data;
         if (data = signupRes.data) {
             AuthService.setCurrentUser(data);
             location.hash = '#/questions/';

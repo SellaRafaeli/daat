@@ -1,4 +1,5 @@
 myApp.factory('Data', function($http, AuthService) {
+    http = $http;
 
     var genericErrHandler = function(res) {
         if (Math.random() < 0.3) { alert("Action failed, see JS console for details."); }
@@ -8,12 +9,12 @@ myApp.factory('Data', function($http, AuthService) {
 
     questionRoute = function(qId) { return '/questions/'+qId; };
 
-    return {
+    var res = {
         message: 'new data from a service',
 
         //routes
         getQuestions: function(params,cb){
-            var route = params['id'] ? questionRoute(params['id']) : '/questions';
+            var route = params['id'] ? questionRoute(params['id']) : '/questions/newest';
             params['userId'] ? route = '/questions/users/'+params['userId'] : "";
             params['categoryId'] ? route = '/questions/category/'+params['categoryId'] : "";
             $http.get(route,{params: params}).then(cb);
@@ -67,6 +68,10 @@ myApp.factory('Data', function($http, AuthService) {
 //            $http.post('/questions/'+question.id+'/removeCategory', params).then(cb);
 //        },
         signup: function(params, cb){ $http.post('/signup',params).then(cb); },
-        login: function(params, cb){ $http.post('/login',params).then(cb); }
+        login: function(params, cb){ $http.post('/login',params).then(cb); },
+        ping: function(){$http.get('/ping').then(log,log)}
     };
+
+    data = res; Data = res; //globals, for debugging.
+    return res;
 });

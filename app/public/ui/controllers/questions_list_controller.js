@@ -18,8 +18,9 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
     //$scope.data = {qList: Data.qList};
     $scope.origData = $scope.data;
 
-    var getQuestionsParams = $routeParams
-    Data.getQuestions(getQuestionsParams, function(response){
+    $scope.data = {qList: []};
+    $scope.getQuestionsParams = $routeParams
+    Data.getQuestions($scope.getQuestionsParams, function(response){
         questions = [].concat(response.data); //make sure it's an array
 
         //filter stuff out from each question
@@ -57,11 +58,26 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
         });
 
         sortArrayByKeyDesc(data,'dateModified');
-        $scope.data = {qList: data,
-                       currentCategories: data[0].categories
-        };
 
+        $scope.data.qList = data;
+        $scope.data.currentCategories = data[0].categories;
     });
+
+    $scope.loadMoreQuestions = function(){
+        var that = $scope;
+        if (that.data.loadingQs) { return; }
+        that.data.loadingQs = true;
+        var params = that.getQuestionsParams;
+        lastModifiedDate = (that.data.qList.last() || {}).dateModified;
+        lastModifiedDate ? params.sinceDate = lastModifiedDate : '';
+        Data.getQuestions(params,function(res){
+                var newItems = res.data;
+                that.data.qList.addArray(newItems);
+                setTimeout(function(){ that.data.loadingQs = false;},300);
+            });
+    }
+
+
 
     $scope.$watch("data.currentCategories", function(newValue, oldValue) {
         var categories = $filter('split')(newValue);

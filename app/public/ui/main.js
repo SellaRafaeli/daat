@@ -7,6 +7,6 @@ myStrings.value('heb',
     });
 
 
-var myApp = angular.module('myApp', ['ngRoute','ui.bootstrap','textAngular', 'myStrings']);
+var myApp = angular.module('myApp', ['ngRoute','ui.bootstrap','textAngular', 'myStrings','infinite-scroll']);
 
 id = 0;
