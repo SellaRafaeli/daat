@@ -179,4 +179,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
     $scope.user = AuthService.currentUser;
 
     $scope.answerBelongsToCurrentUser = function(a){ return a.owner.id==$scope.user.id || $scope.isAdmin }
+
+    $scope.numAnswersToShow = function() { var res = (this.isq() ? 100 : 1); log("showing items: "+res); return res;}
+    $scope.orderAnswersBy = function() { var res = (this.isq() ? 'upvoters.length' : 'dateAdded'); return res }
 }

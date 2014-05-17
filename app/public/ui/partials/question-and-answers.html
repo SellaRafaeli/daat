@@ -22,7 +22,7 @@
     </div>
 
     <ul class='answer-list'>
-        <li class='answer' ng-repeat="a in q.answers | orderBy:'upvotes' | filter:filter ">
+        <li class='answer' ng-repeat="a in q.answers | orderBy: orderAnswersBy():true | filter:filter | limitTo: numAnswersToShow()">
             <answer></answer>
         </li>
     </ul>
