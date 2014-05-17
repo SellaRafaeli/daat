@@ -65,8 +65,10 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
 
     $scope.loadMoreQuestions = function(){
         log("called loadMoreQuestions..");
+
         var that = $scope;
-        if (that.data.loadingQs || that.isq()) { return; }
+        if (that.data.loadingQs || that.isq()) { return; } //return if in the middle of loading
+        if ($routeParams['userId'] || $routeParams['id'] || $routeParams['categoryId']) { return; } //don't load more if in a non-feed route. Not good -- this shouldn't be here :\
         that.data.loadingQs = true;
         var params = that.getQuestionsParams;
         lastModifiedDate = (that.data.qList.last() || {}).dateModified;
