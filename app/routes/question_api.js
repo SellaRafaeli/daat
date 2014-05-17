@@ -61,6 +61,15 @@ exports.setCategories = function(req,res){
     });
 }
 
+exports.updateTitle = function(req,res){
+    var id = parseInt(req.params.id);
+    var newTitle = req.body.newTitle;
+    db.questions.update({id: id}, {"$set": {title: newTitle}}, function(err, result) {
+        res.json({msg: "set title!"});
+    });
+}
+
+
 //exports.addCategory = function(req, res) {
 //    var id = parseInt(req.params.id);
 //    db.questions.update({id: id}, {"$push": {categories: req.body.categoryName}}, function(err, result) {

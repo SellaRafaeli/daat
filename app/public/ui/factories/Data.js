@@ -57,6 +57,11 @@ myApp.factory('Data', function($http, AuthService) {
             params['newText'] = newText;
             $http.post('/questions/'+qId+'/answer/'+aId+'/updateText', params).catch(genericErrHandler);
         },
+
+        updateQuestionTitle: function(qId, newTitle) {
+            $http.post('/questions/'+qId+'/updateTitle',
+                {authToken: AuthService.currentUser.authToken, newTitle: newTitle}).catch(genericErrHandler);
+        },
 //        addCategoryToQuestion: function(question,categoryName,cb){
 //            params = {categoryName: categoryName};
 //            params['authToken'] = AuthService.currentUser.authToken;

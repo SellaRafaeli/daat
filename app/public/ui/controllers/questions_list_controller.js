@@ -165,6 +165,16 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
             Data.updateAnswerText(q.id, a.id, a.updatedText);
         }
     }
+
+    $scope.updateQuestionTitle = function(q,event) {
+        var elem = $($(event)[0].srcElement);
+        !elem.text() ? elem.text(q.title) : ''; //defend against accidental deletion
+
+        var newTitle = elem.text();
+        if (newTitle != q.title) {
+            Data.updateQuestionTitle(q.id,newTitle);
+        }
+    }
 //    $scope.addCategoryToQuestion = function(q){
 //        var cat = prompt("איזו קטגוריה להוסיף?");
 //        if (cat) { Data.addCategoryToQuestion(q,cat,function(res){ $route.reload();}) }
@@ -180,6 +190,6 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
 
     $scope.answerBelongsToCurrentUser = function(a){ return a.owner.id==$scope.user.id || $scope.isAdmin }
 
-    $scope.numAnswersToShow = function() { var res = (this.isq() ? 100 : 1); log("showing items: "+res); return res;}
+    $scope.numAnswersToShow = function() { var res = (this.isq() ? 100 : 1); return res;}
     $scope.orderAnswersBy = function() { var res = (this.isq() ? 'upvoters.length' : 'dateAdded'); return res }
 }

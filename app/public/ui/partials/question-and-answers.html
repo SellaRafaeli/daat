@@ -3,7 +3,11 @@
     <div>
         <categories></categories>
         <div class="question">
-            <a ng-href="#/questions/{{q.link}}" ng-class="{'single-question-title': isq(), 'question-title': !isq()}"> {{q.title}} </a>
+            <a ng-attr-contenteditable="{{isq()}}"
+               ng-href="#/questions/{{q.link}}"
+               ng-class="{'single-question-title': isq(), 'question-title': !isq()}"
+               ng-blur="updateQuestionTitle(q,$event)"> {{q.title}} </a>
+
             <span ng-show=true class='question-body'> {{q.body}} </span>
          </div>
     </div>
