@@ -18,7 +18,6 @@ Tickets:
 * click on user image: display that image?
 
 * put loading gif in qList controller while loading: http://codepen.io/alextebbs/pen/tHhrz
-* if user not signed in (msg "missing valid authtoken for user") then return 401.
 
 Technical tickets:
 * refactor 'moment.js' (showing how long ago an answer was added) to an in-house solution, no need for the whole lib.
