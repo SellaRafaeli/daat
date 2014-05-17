@@ -1,30 +1,38 @@
-<div>
-    <categories></categories>
-    <div class="question">
-        <a ng-href="#/questions/{{q.link}}" ng-class="{'single-question-title': isq(), 'question-title': !isq()}"> {{q.title}} </a>
-        <span ng-show=true class='question-body'> {{q.body}} </span>
-     </div>                     
-</div>
+<div class="question-and-answers-container" ng-class="{'question-with-no-answers': !q.answers.length}">
 
-<div ng-show="allowAnswer()">
     <div>
-        <span>{{username()}}</span><span ng-show="myAnswer || user.bio">, <input class="new-answer-new-bio" ng-model="user.bio" type="text" placeholder={{texts.yourExperiencePlaceholder}}></span>
+        <categories></categories>
+        <div class="question">
+            <a ng-href="#/questions/{{q.link}}" ng-class="{'single-question-title': isq(), 'question-title': !isq()}"> {{q.title}} </a>
+            <span ng-show=true class='question-body'> {{q.body}} </span>
+         </div>
     </div>
 
-    <text-angular ta-toolbar="newAnswerToolbars" ng-model="myAnswer" autofocus></text-angular>
+    <div class='new-answer-area' ng-show="allowAnswer()">
+        <div>
+            <span>{{username()}}</span><span ng-show="myAnswer || user.bio">, <input class="new-answer-new-bio" ng-model="user.bio" type="text" placeholder={{texts.yourExperiencePlaceholder}}></span>
+        </div>
 
-    <!--<textarea class='new-answer-details-input' ng-model="myAnswer" placeholder="הוסף את התשובה שלך..." autofocus/></textarea>-->
+        <text-angular ta-toolbar="newAnswerToolbars" ng-model="myAnswer" autofocus></text-angular>
 
-    <div>{{q.myAnswer}}</div>
-    <button class='submit-button' ng-show="myAnswer" ng-click="submitAnswer()">{{texts.sendMyAnswer}}</button>
-</div>
+        <!--<textarea class='new-answer-details-input' ng-model="myAnswer" placeholder="הוסף את התשובה שלך..." autofocus/></textarea>-->
 
-<ul class='answer-list'>
-    <li class='answer' ng-repeat="a in q.answers | orderBy:'upvotes' | filter:filter ">                                                      
-        <answer></answer>
-    </li>                                                                                          
-</ul>
+        <div>{{q.myAnswer}}</div>
+        <button class='submit-button' ng-show="myAnswer" ng-click="submitAnswer()">{{texts.sendMyAnswer}}</button>
+    </div>
 
-<div>
-    {{q.myAnswer}}
+    <ul class='answer-list'>
+        <li class='answer' ng-repeat="a in q.answers | orderBy:'upvotes' | filter:filter ">
+            <answer></answer>
+        </li>
+    </ul>
+
+    <div class='question-separator' ng-show='!isq()'>
+        <div class='question-with-no-answers-suffix' ng-show="!q.answers.length">
+        </div>
+    </div>
+
+    <div>
+        {{q.myAnswer}}
+    </div>
 </div>

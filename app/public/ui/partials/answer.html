@@ -19,8 +19,11 @@
     <div class='answer-links'>
         <a class='clickable nice-link' ng-click="toggleUpvoteAnswer(q,a)"> {{answerUpvoted(a)}}</a>
         <span class='bullet'> • </span> <span class='faded'>{{texts.answerWrittenAt}}: {{a.dateAdded | relativeTime}}</span>
-        <span class='bullet'> • </span> <span class='clickable faded' ng-show=!a.editingExistingAnswer ng-click="a.editingExistingAnswer=true">Edit</span>
-                                        <span class='clickable faded' ng-show=a.editingExistingAnswer ng-click="a.editingExistingAnswer=false; updateAnswerText(q,a); log(670)">Save</span>
+        <span ng-show="answerBelongsToCurrentUser(a)">
+
+        <span class='bullet'> • </span> <a href="" class="faded" ng-show=!a.editingExistingAnswer ng-click="a.editingExistingAnswer=true">{{texts.editAnswer}}</a>
+                                        <a href="" ng-show=a.editingExistingAnswer ng-click="a.editingExistingAnswer=false; updateAnswerText(q,a)">{{texts.saveEditAnswer}}</a>
+        <span>
         <span class='bullet' ng-show=showComments> • </span>
         <a class='clickable nice-link' ng-click="showComments=!showComments" ng-init='showComments=false' ng-show=showComments>תגובות ({{a.comments.length}})</a>
     </div>

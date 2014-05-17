@@ -10,7 +10,7 @@ exports.user_data = function(req, res){
 
 exports.newest = function(req, res){
     //db.questions.find({}, cbj(res) );
-    var NUM_QUESTIONS_RETURNED_EACH_TIME = 3;
+    var NUM_QUESTIONS_RETURNED_EACH_TIME = 5;
     var query = {};
     var opts = { "sort": {"dateModified": -1}, "limit": NUM_QUESTIONS_RETURNED_EACH_TIME };
 

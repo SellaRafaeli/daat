@@ -6,7 +6,7 @@ randRange = function(min,max) { return Math.round(Math.random() * (max - min) + 
 
 //yeah, yeah, changing prototypes' native behavior is 'dangerous'. We'll cross that bridge if we ever get to it.
 Array.prototype.last = function() { return this[this.length-1]; };
-Array.prototype.addArray = function(otherArr) { debugger; this.push.apply(this, otherArr); }
+Array.prototype.addArray = function(otherArr) { this.push.apply(this, otherArr); }
 
 log = function(s){console.log(s);};
 

@@ -57,15 +57,16 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
             return question;
         });
 
-        sortArrayByKeyDesc(data,'dateModified');
+        //sortArrayByKeyDesc(data,'dateModified'); //questions arrive from server sorted by dateModified
 
         $scope.data.qList = data;
         $scope.data.currentCategories = data[0].categories;
     });
 
     $scope.loadMoreQuestions = function(){
+        log("called loadMoreQuestions..");
         var that = $scope;
-        if (that.data.loadingQs) { return; }
+        if (that.data.loadingQs || that.isq()) { return; }
         that.data.loadingQs = true;
         var params = that.getQuestionsParams;
         lastModifiedDate = (that.data.qList.last() || {}).dateModified;
@@ -177,4 +178,5 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
 
     $scope.user = AuthService.currentUser;
 
+    $scope.answerBelongsToCurrentUser = function(a){ return a.owner.id==$scope.user.id || $scope.isAdmin }
 }

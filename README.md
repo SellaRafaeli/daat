@@ -10,19 +10,19 @@ To run:
 
 Tickets:
 
-* enable edit of existing answers
 * Create seed data + process to get it along with clone
 * Add and display comments.
 * add FB-login
 * check bug in category at "House Of Cards"?
 * add option to set background
 * click on user image: display that image?
-* feed - don't load all questions at once, make it endless scroll
+
 * put loading gif in qList controller while loading: http://codepen.io/alextebbs/pen/tHhrz
 * if user not signed in (msg "missing valid authtoken for user") then return 401.
 
 Technical tickets:
-* setup configuration s.t. when deploying to prod it will use Heroku's DB
+* setup configuration s.t. when deploying to prod it will use Heroku's DB. Remove keys from commit log (and generate new keys).
+* infinite-scroll: utilize infinite-scroll-disable? doesn't seem to work so we are currently manually implementing it.
 * don't render images if there's nothing to render (to avoid JS errors)
 * localization: make localization more robust (extract to module from appController)
 * fix CSS for textAngular (for example 'quote' shows LTR)

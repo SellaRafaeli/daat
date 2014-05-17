@@ -5,7 +5,7 @@
     authService = that;
     that.currentUser = {};
     
-    that.setCurrentUser = function(ddata) {
+    that.setCurrentUser = function(data) {
             that.currentUser.authToken = data.authToken;
             that.currentUser.email = data.email; 
             that.currentUser.fullName = data.fullName;
