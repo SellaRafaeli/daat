@@ -1,7 +1,7 @@
 <div ng-show='isq()'>
 
     <div ng-show="editingCategories" >
-        <input ng-blur="editingCategories = false; setCategories(q)" type="text" ng-model="data.currentCategories">
+        <input class='categories-while-editing' ng-blur="editingCategories = false; setCategories(q)" type="text" ng-model="data.currentCategories">
         {{separatedByCommas}}
         <a href="" class="faded" ng-click='editingCategories = false'>{{texts.doneEditCats}}</a>
     </div>
