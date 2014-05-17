@@ -44,7 +44,7 @@ function appController($scope, Data, $routeParams, AuthService){
         categoriesLabelTail: 'לפחות 3, מופרדות בפסיקים',
         add: 'הוסף!',
         relatedQuestions: 'שאלות דומות',
-        sendMyAnswer: 'שלח!',
+        sendMyAnswer: 'הוסף!',
         yourExperiencePlaceholder: 'מה הניסיון שלך בנושא הזה?',
         addCategoryText: "הוסף קטגוריה",
         doneEditCats: "סיימתי",

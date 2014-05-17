@@ -22,7 +22,10 @@
         <!--<textarea class='new-answer-details-input' ng-model="myAnswer" placeholder="הוסף את התשובה שלך..." autofocus/></textarea>-->
 
         <div>{{q.myAnswer}}</div>
-        <button class='submit-button' ng-show="myAnswer" ng-click="submitAnswer()">{{texts.sendMyAnswer}}</button>
+        <!--<button class='submit-button' >{{texts.sendMyAnswer}}</button>-->
+        <button class="btn btn-large btn-primary"
+                ng-show="myAnswer"
+                ng-click="submitAnswer()"><i class="icon-white icon-ok"></i> {{texts.sendMyAnswer}}</button>
     </div>
 
     <ul class='answer-list'>

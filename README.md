@@ -21,6 +21,7 @@ Tickets:
 * if user not signed in (msg "missing valid authtoken for user") then return 401.
 
 Technical tickets:
+* refactor whole mishmash of 'loading more' - to make to correctly 'load more' in any route that requests questions (missing are by user and category)
 * setup configuration s.t. when deploying to prod it will use Heroku's DB. Remove keys from commit log (and generate new keys).
 * infinite-scroll: utilize infinite-scroll-disable? doesn't seem to work so we are currently manually implementing it.
 * don't render images if there's nothing to render (to avoid JS errors)
