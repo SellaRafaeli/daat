@@ -8,12 +8,12 @@
          <div>
              <a class="answer-user" ng-href='#/users/{{a.owner.id}}'> {{a.owner.fullName}}</a><span class="answer-user" ng-show="a.owner.bio">, {{a.owner.bio}}</span>
          </div>
-         <span class='clickable' ng-click="hide=!hide" ng-init="hide=true">
+         <span ng-click="hide=!hide" ng-init="hide=true">
             <!--<span ng-hide=!hide> {{shortAnswer(a.text)}} </span>-->
             <!--<span ng-hide=hide> {{a.text}} </span>-->
-             <span class="imgHolder" ng-hide=a.editingExistingAnswer ng-bind-html="a.text"> </span>
+             <span ng-click='clickAnswer($event)' class="imgHolder" ng-hide=a.editingExistingAnswer ng-bind-html="a.text"> </span>
              <text-angular ta-toolbar=newAnswerToolbars ng-if=a.editingExistingAnswer
-                           ng-model=a.updatedText ng-init=a.updatedText=a.text></text-angular>
+                           ng-model=a.updatedText ng-init=a.updatedText=a.text ng-click="alert('yomo')"></text-angular>
         </span>
     </div>
     <div class='answer-links'>

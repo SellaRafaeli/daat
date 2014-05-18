@@ -1,8 +1,10 @@
 function appController($scope, Data, $routeParams, AuthService){
     appCtrl = $scope; //global scope for debugging
+    makeAdmin = function() { appCtrl.isAdmin = true; appCtrl.$apply(); };
     $scope.alert = function(s){ alert(s)};
     $scope.log = function(s) { console.log(s) };
     $scope.ping = function(){log('pinging'); Data.ping()};
+
     $scope.eng = {foo: 'some-foo',
                     addQuestion: 'Add Question',
                     about: 'About',
@@ -71,4 +73,5 @@ function appController($scope, Data, $routeParams, AuthService){
         $scope.currentUser = newVal.fullName;
         newVal.fullName ? $scope.texts.login = $scope.texts.changeUser : $scope.texts.login=$scope.texts.login;
         }, true);
+
 };

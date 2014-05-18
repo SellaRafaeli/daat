@@ -41,3 +41,10 @@ myApp.directive('relatedQuestions', function(){
         templateUrl: 'partials/related-questions.html'
     }
 });
+
+myApp.directive('overlayPic', function(){
+    return {
+        restrict: 'E',
+        templateUrl: 'partials/overlay-pic.html'
+    }
+});

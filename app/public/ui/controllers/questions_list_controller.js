@@ -7,7 +7,6 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
     qs = function(){return $scope.data.qList};
     //g1.data.qList;
     //$routeParams.orderId
-    $scope.foo = [10,20,30];
 
     !AuthService.currentUser.fullName ? $location.path('/login') : '';
 
@@ -193,4 +192,12 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
 
     $scope.numAnswersToShow = function() { var res = (this.isq() ? 100 : 1); return res;}
     $scope.orderAnswersBy = function() { var res = (this.isq() ? 'upvoters.length' : 'dateAdded'); return res }
+
+    $scope.clickAnswer = function(e) {
+        if (e.srcElement.tagName == 'IMG') {
+            $scope.overlayPicSrc = $(e.srcElement).attr('src');
+            $scope.showOverlaypic = true;
+        }
+
+    }
 }

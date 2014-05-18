@@ -5,6 +5,7 @@
 @light-grey: #ccc;
 @ultra-light-grey: #eee;
 @question-title-blue: #19558d;
+@img-width: 60%;
 /* all */
 .app {  
     position: absolute;
@@ -248,20 +249,31 @@ text-angular {
     margin:5px 0;
 
     img {
-      width: 95%;
+      width: @img-width;
     }
   }
 }
 
 .imgHolder {
   img {
-    width: 95%;
+    width: @img-width;
     border: 1px solid black;
     border-radius: 20px;
+    cursor: -webkit-zoom-in; cursor: -moz-zoom-in;
   }
 }
 
 .login-img {
   float: left;
   border-radius: 20px;
+}
+
+overlay-pic {
+  img {
+    z-index: 1;
+    position: fixed;
+    border: 10px solid gray;
+    width: 40%;
+    cursor: pointer; cursor: hand;
+  }
 }

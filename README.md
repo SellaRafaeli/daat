@@ -16,7 +16,6 @@ Tickets:
 * check bug in category at "House Of Cards"?
 * add option to set background
 * click on user image: display that image?
-
 * put loading gif in qList controller while loading: http://codepen.io/alextebbs/pen/tHhrz
 
 Technical tickets:
