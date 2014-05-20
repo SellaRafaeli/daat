@@ -9,10 +9,12 @@ To run:
 > node app/app.js; #browse to localhost:8000/
 
 Tickets:
+* add FB-login -- make login work only with FB. And perhaps with some whitelist.
+* make 'config' load different settings in production vs localhost: FB app id and mongoDB connections for example.
 
 * Create seed data + process to get it along with clone
 * Add and display comments.
-* add FB-login
+
 * check bug in category at "House Of Cards"?
 * add option to set background
 * click on user image: display that image?

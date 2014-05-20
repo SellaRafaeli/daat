@@ -11,7 +11,7 @@
 // 105499322837270 is Mekomot
 window.fbAsyncInit = function() {
     FB.init({
-        appId      : '137478849618989',
+        appId      : clientConfig.facebook_app_id,
         xfbml      : true,
         version    : 'v2.0'
     });

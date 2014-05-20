@@ -6,7 +6,6 @@ myStrings.value('heb',
         bar: 'בר'
     });
 
-
 var myApp = angular.module('myApp', ['ngRoute','ui.bootstrap','textAngular', 'myStrings','infinite-scroll']);
 
 id = 0;

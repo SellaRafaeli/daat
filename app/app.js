@@ -1,7 +1,9 @@
 //globals. Settable with GLOBAL.foo from other files.
 log   = function(s){console.log(s);};
-db    = require("mongojs").connect('daat', ['questions','users']); //http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
-db    = require("mongojs").connect('mongodb://heroku_app24786346:5u0fans99jq5v4fu3ct0stpre8@dbh23.mongolab.com:27237/heroku_app24786346', ['questions','users']);
+log("Running with process.env:");
+log(process.env);
+db    = require('mongojs').connect(process.env.MONGO_CONN_STR || 'daat',['questions','users']);
+//db    = require("mongojs").connect('daat', ['questions','users']); //http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
 request = require('request'); //http module, see https://github.com/mikeal/request
 env  = (process.env.NODE_ENV || 'DEVELOPMENT').toLowerCase();
 //helpers

@@ -5,7 +5,6 @@ exports.list = function(req, res){
 };
 
 exports.fbEnter = function(req,res) {
-
     function createAndReturnUser(fbID,fbData) {
         var data = {fbID: fbID,
                     fullName: fbData.name,
