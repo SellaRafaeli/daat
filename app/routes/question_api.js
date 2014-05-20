@@ -91,12 +91,12 @@ function getUserContent(userId, cb) {
 
 
 
-//call-back json
-var cbj = function(responseObj){
-    return function(err, result) {
-        responseObj.json(result);
-    }
-}
+//call-back json - moved to global
+//var cbj = function(responseObj){
+//    return function(err, result) {
+//        responseObj.json(result);
+//    }
+//}
 
 function setHighQuestionId(){
     db.questions.find({},{"sort": "id"}, function(err, results){

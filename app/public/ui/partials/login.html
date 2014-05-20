@@ -9,6 +9,8 @@
 </style>
 
 <div ng-controller="LoginController">
+    <button ng-click=loginFB() class="btn-info btn-large"> Login FB </button>
+
   <form novalidate class="simple-form">
       {{texts.textFullName}} <input type="text" ng-model="fullName" /> <br />
       {{texts.textEmail}} <input type="text" ng-model="email" /> <br />

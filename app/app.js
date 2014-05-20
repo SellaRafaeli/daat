@@ -2,9 +2,15 @@
 log   = function(s){console.log(s);};
 db    = require("mongojs").connect('daat', ['questions','users']); //http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
 db    = require("mongojs").connect('mongodb://heroku_app24786346:5u0fans99jq5v4fu3ct0stpre8@dbh23.mongolab.com:27237/heroku_app24786346', ['questions','users']);
+request = require('request'); //http module, see https://github.com/mikeal/request
 env  = (process.env.NODE_ENV || 'DEVELOPMENT').toLowerCase();
+//helpers
+cbj = function(responseObj){ return function(err, result) {
+    responseObj.json(result); }
+}
 _                   = require('lodash');
 array               = require('ensure-array');
+
 
 GLOBAL.ROOT = __dirname;
 
@@ -101,6 +107,7 @@ app.get('/categories', category.all);
 
 //login
 app.post('/signup',users.signup);
+app.post('/fbEnter',users.fbEnter);
 app.post('/login',users.login);
 
 server = http.createServer(app);

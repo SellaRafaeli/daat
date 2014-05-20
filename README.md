@@ -17,6 +17,7 @@ Tickets:
 * add option to set background
 * click on user image: display that image?
 * put loading gif in qList controller while loading: http://codepen.io/alextebbs/pen/tHhrz
+* show only truncated answer by default in qList when not single question; click should open to display the entire question.
 
 Technical tickets:
 * refactor 'moment.js' (showing how long ago an answer was added) to an in-house solution, no need for the whole lib.

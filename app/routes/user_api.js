@@ -4,9 +4,33 @@ exports.list = function(req, res){
   res.send("respond with a resource111");
 };
 
-exports.signup = function(req,res) { // signup requires no password - just email. 
+exports.fbEnter = function(req,res) {
+
+    function createAndReturnUser(fbID,fbData) {
+        var data = {fbID: fbID,
+                    fullName: fbData.name,
+                    imgLnk: "http://graph.facebook.com/"+fbID+"/picture?type=large",
+                    fbData: fbData};
+        db.users.save(getNewUser(data), cbj(res))
+    }
+
+    //verify the fb user, then login/signup:
+    var url='https://graph.facebook.com/me?access_token='+req.body.accessToken;
+    request(url, function(err,ans,body){
+       if (err || ans.statusCode!=200) { res.json({success: false}); return;}
+       else {
+           fbData = JSON.parse(body);
+           fbID = fbData.id;
+           db.users.findOne({fbID: fbID}, function(err,user){
+              user ? res.json(user) : createAndReturnUser(fbID,fbData);
+           });
+       }
+    })
+}
+
+exports.signup = function(req,res) { // signup requires no password - just email.
     var email = req.body.email;
-    var password = req.body.password; 
+    var password = req.body.password;
     var fullName = req.body.fullName;
     var authToken = makeAuthToken();
     var imgLnk = req.body.imgLnk;
@@ -16,14 +40,15 @@ exports.signup = function(req,res) { // signup requires no password - just email
             res.json({msg: "User already exists."}); 
         }        
         else {
-            db.users.save({_id: nextUserId(),
-                            email: email,
-                            password: password,
-                            fullName: fullName,
-                            authToken: authToken,
-                            bios: [],
-                            imgLnk: imgLnk
-                            }, function(err, user) {
+            newUser = getNewUser({_id: nextUserId(),
+                email: email,
+                password: password,
+                fullName: fullName,
+                authToken: authToken,
+                bios: [],
+                imgLnk: imgLnk
+            });
+            db.users.save(newUser, function(err, user) {
                 var ans = err || user;
                 res.json(ans);
             });
@@ -64,13 +89,6 @@ function makeAuthToken(){
     return Math.random().toString(36).substring(7); 
 }
 
-//function setHighUserId(){
-//    highestQuestionId = db.questions.find().sort({id:-1}).limit(1);
-//    isNaN(highestQuestionId) ? highestQuestionId = 0 : "";
-//}
-
-//function nextUserId(){ var id = ++highestQuestionId; return id.toString(); }
-
 (nextUserId = function (){
     if (typeof highestUserId != 'undefined') {
         ++highestUserId;
@@ -85,3 +103,10 @@ function makeAuthToken(){
     }
 })()
 
+function getNewUser(params){  //used to set defaults
+    var res = params;
+    res._id = res._id || nextUserId();
+    res.bios = res.bios || [];
+    authToken = res.authToken || makeAuthToken();
+    return res;
+}

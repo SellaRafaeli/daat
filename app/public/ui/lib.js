@@ -8,6 +8,7 @@ randRange = function(min,max) { return Math.round(Math.random() * (max - min) + 
 Array.prototype.last = function() { return this[this.length-1]; };
 Array.prototype.addArray = function(otherArr) { this.push.apply(this, otherArr); }
 
-log = function(s){console.log(s);};
+log = function(){_.each(arguments,function(arg) { console.log(arg) } )};
+
 
 sortArrayByKeyDesc = function sortByKey(array, key) { return array.sort(function(a, b) { var x = a[key]; var y = b[key]; return ((x < y) ? 1 : ((x > y) ? -1 : 0)); }) };

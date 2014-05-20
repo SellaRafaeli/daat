@@ -74,7 +74,8 @@ myApp.factory('Data', function($http, AuthService) {
 //        },
         signup: function(params, cb){ $http.post('/signup',params).then(cb); },
         login: function(params, cb){ $http.post('/login',params).then(cb); },
-        ping: function(){$http.get('/ping').then(log,log)}
+        ping: function(){$http.get('/ping').then(log,log)},
+        fbEnter: function(params,cb) { $http.post('/fbEnter', params).then(cb); }
     };
 
     data = res; Data = res; //globals, for debugging.

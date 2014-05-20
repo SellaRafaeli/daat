@@ -1,6 +1,7 @@
 //main controller
 function LoginController($scope, Data, AuthService, $route){
     loginCtrl = $scope; //global for debugging
+
     $scope.email = Math.random().toString(36).substring(3)+'@domain.com'; 
     $scope.fullName = getRandomName();
     $scope.password = "123";
@@ -23,9 +24,8 @@ function LoginController($scope, Data, AuthService, $route){
     }
 
     $scope.handleSignup = function(signupRes) {
-        var data;
-        if (data = signupRes.data) {
-            AuthService.setCurrentUser(data);
+        if (signupRes.data) {
+            AuthService.setCurrentUser(signupRes.data);
             location.hash = '#/questions/';
         } else {
             alert ("can't login! : "+signupRes)
@@ -35,6 +35,25 @@ function LoginController($scope, Data, AuthService, $route){
 
     $scope.logout = function(){
         AuthService.setCurrentUser({});
+    }
+
+    $scope.loginFB = function(){
+        log("trying loginFB");
+
+        function handleResponse(response) {
+            console.log("response: ",response);
+            var tern = (response.status === 'connected') ? handleConnected(response) : log('Not connected');
+        }
+
+        function handleConnected(response){
+            log("Connected! with response: ",response);
+            var tern = (response.status === "connected") ?
+                        Data.fbEnter({accessToken: response.authResponse.accessToken},$scope.handleSignup) :
+                        alert("Can't handle facebook connection!");
+        }
+
+        FB.getLoginStatus(function(response) {
+            response.status === 'connected' ? handleConnected(response) : FB.login(handleResponse); });
     }
 
     $route.current.originalPath.indexOf('logout')>0 ? $scope.logout() : "";

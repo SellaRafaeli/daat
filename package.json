@@ -24,7 +24,8 @@
         "i18n-abide": "0.0.17",
         "socket.io": "*",
         "lodash": "*",
-        "ensure-array": "*"
+        "ensure-array": "*",
+        "request": "2.33.0"
     },
     "devDependencies": {
         "express-debug": "~1.0.3"
