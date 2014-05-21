@@ -30,7 +30,9 @@ function appController($scope, Data, $routeParams, AuthService){
     loginImage: "Link to your image (optional)",
     answerWrittenAt: "Written",
     editAnswer: "Edit",
-    saveEditAnswer: "Save"
+    saveEditAnswer: "Save",
+        fbLoginButtonText: "Login With Facebook",
+        welcomeToSite: "Welcome to Daat."
 };
 
     $scope.heb = {foo: 'heb-foo',
@@ -58,7 +60,9 @@ function appController($scope, Data, $routeParams, AuthService){
         loginImage: "לינק תמונה (לא חובה)",
         answerWrittenAt: "נכתב",
         editAnswer: "לערוך",
-        saveEditAnswer: "לשמור"
+        saveEditAnswer: "לשמור",
+        fbLoginButtonText: "להיכנס עם פייסבוק",
+        welcomeToSite: "ברוכים הבאים לדעת."
 }
 
     $scope.texts = $scope.heb;
@@ -68,10 +72,14 @@ function appController($scope, Data, $routeParams, AuthService){
     $scope.setEng = function() { moment.lang('en'); $scope.texts = $scope.eng; $scope.$apply(); };
 
 
+    //todo: aaargh... clear up this user mess.
     $scope.$watch(function () { return AuthService.currentUser; },                       
         function(newVal, oldVal) {
         $scope.currentUser = newVal.fullName;
         newVal.fullName ? $scope.texts.login = $scope.texts.changeUser : $scope.texts.login=$scope.texts.login;
         }, true);
+
+    $scope.username = function(){ return AuthService.currentUser.fullName };
+    $scope.user = AuthService.currentUser;
 
 };

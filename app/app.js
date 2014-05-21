@@ -1,7 +1,6 @@
 //globals. Settable with GLOBAL.foo from other files.
-log   = function(s){console.log(s);};
-log("Running with process.env:");
-log(process.env);
+log   = function(a,b,c){ [a,b,c].forEach(function(s){ s ? console.log(s) : ''} ) }
+log("Running with process.env:",process.env);
 db    = require('mongojs').connect(process.env.MONGO_CONN_STR || 'daat',['questions','users']);
 //db    = require("mongojs").connect('daat', ['questions','users']); //http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
 request = require('request'); //http module, see https://github.com/mikeal/request
@@ -10,9 +9,6 @@ env  = (process.env.NODE_ENV || 'DEVELOPMENT').toLowerCase();
 cbj = function(responseObj){ return function(err, result) {
     responseObj.json(result); }
 }
-_                   = require('lodash');
-array               = require('ensure-array');
-
 
 GLOBAL.ROOT = __dirname;
 

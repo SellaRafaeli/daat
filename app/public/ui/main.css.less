@@ -29,7 +29,7 @@ body {
 }
 
 .faded { color: lightgray}
-
+.hide {display: none}
 /* GENERIC */
 
 input[type=text]:focus, textarea:focus {
@@ -264,11 +264,6 @@ text-angular {
   }
 }
 
-.login-img {
-  float: left;
-  border-radius: 20px;
-}
-
 overlay-pic {
   img {
     z-index: 1;
@@ -278,3 +273,29 @@ overlay-pic {
     cursor: pointer; cursor: hand;
   }
 }
+
+#loginPage {
+  .login-img {
+    float: left;
+    border-radius: 20px;
+  }
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:100%;
+  background: url('http://24.media.tumblr.com/336248495dfd5ea44f32eeebd35108af/tumblr_n5e0gloGfW1st5lhmo1_1280.jpg') no-repeat fixed center;
+  background-size: 100% auto;
+
+  #fbLoginArea {
+    position:absolute;
+    margin-right: 7%;
+    margin-top:3%;
+
+    button {
+
+    }
+  }
+}
+

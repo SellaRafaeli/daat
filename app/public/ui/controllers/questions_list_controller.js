@@ -184,10 +184,6 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
 //        Data.removeCategoryFromQuestion(q,c,function(res){ $route.reload();});
 //    }
 
-    $scope.username = function(){ return AuthService.currentUser.fullName };
-
-    $scope.user = AuthService.currentUser;
-
     $scope.answerBelongsToCurrentUser = function(a){ return a.owner.id==$scope.user.id || $scope.isAdmin }
 
     $scope.numAnswersToShow = function() { var res = (this.isq() ? 100 : 1); return res;}

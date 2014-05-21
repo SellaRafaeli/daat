@@ -9,15 +9,14 @@ To run:
 > node app/app.js; #browse to localhost:8000/
 
 Tickets:
-* add FB-login -- make login work only with FB. And perhaps with some whitelist.
-* make 'config' load different settings in production vs localhost: FB app id and mongoDB connections for example.
+* Make login work only with FB. And perhaps with some whitelist.
 
-* Create seed data + process to get it along with clone
+* Create seed data + process to get it along with clone.
+  (Note: you can also connect to the production DB and just work on real data. Sella has the connection string for that.)
 * Add and display comments.
-
 * check bug in category at "House Of Cards"?
 * add option to set background
-* click on user image: display that image?
+* create user page
 * put loading gif in qList controller while loading: http://codepen.io/alextebbs/pen/tHhrz
 * show only truncated answer by default in qList when not single question; click should open to display the entire question.
 
