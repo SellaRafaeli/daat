@@ -68,7 +68,7 @@ function appController($scope, Data, $routeParams, AuthService){
     $scope.texts = $scope.heb;
     //$scope.texts = $scope.eng;
     moment.lang('he');
-    $scope.setHeb = function(lang) { $scope.texts = $scope.heb; $scope.$apply(); };
+    $scope.setHeb = function() { moment.lang('he'); $scope.texts = $scope.heb; $scope.$apply(); };
     $scope.setEng = function() { moment.lang('en'); $scope.texts = $scope.eng; $scope.$apply(); };
 
 

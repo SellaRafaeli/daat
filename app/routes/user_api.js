@@ -72,7 +72,7 @@ exports.ensureUserMiddleware = function(req, res, next) {
     
     var authToken = req.query.authToken || req.body.authToken;    
     db.users.findOne({authToken: authToken}, function(err, user){
-        if (user){
+        if (user && user.authToken){ //user must have valid, nonnull authToken
             req.user = user;            
             next();
         } else {
@@ -106,6 +106,6 @@ function getNewUser(params){  //used to set defaults
     var res = params;
     res._id = res._id || nextUserId();
     res.bios = res.bios || [];
-    authToken = res.authToken || makeAuthToken();
+    res.authToken = res.authToken || makeAuthToken();
     return res;
 }
