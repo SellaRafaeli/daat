@@ -9,6 +9,9 @@ env  = (process.env.NODE_ENV || 'DEVELOPMENT').toLowerCase();
 cbj = function(responseObj){ return function(err, result) {
     responseObj.json(result); }
 }
+_                   = require('lodash');
+array               = require('ensure-array');
+
 
 GLOBAL.ROOT = __dirname;
 
