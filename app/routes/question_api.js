@@ -105,7 +105,7 @@ function getUserContent(userId, cb) {
 
 function setHighQuestionId(){
     db.questions.find({},{"sort": "_id"}, function(err, results){
-        highestQuestionId = (results && results.length) ? results.pop().id : 1;
+        highestQuestionId = (results && results.length) ? results.pop()._id : 1;
         isNaN(highestQuestionId) ? highestQuestionId = 0 : "";
         console.log("set high question id at "+highestQuestionId);
     })
