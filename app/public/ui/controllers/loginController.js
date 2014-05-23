@@ -7,7 +7,7 @@ function LoginController($scope, Data, AuthService, $route){
     $scope.password = "123";
     $scope.userImgLnk = "http://lorempixel.com/400/200/people/"+randRange(1,10);
 
-    bgImgUrls = ["http://24.media.tumblr.com/f66ac1d6483c48205723e996bb2d9b80/tumblr_n5wasssGkO1st5lhmo1_1280.jpg",
+    var bgImgUrls = ["http://24.media.tumblr.com/f66ac1d6483c48205723e996bb2d9b80/tumblr_n5wasssGkO1st5lhmo1_1280.jpg",
         "http://24.media.tumblr.com/fa6c7320f352533bb56bea01c5d562f1/tumblr_n5waqc75RA1st5lhmo1_1280.jpg",
         "http://31.media.tumblr.com/67151918dbf1e1ca27ed5a0921970c81/tumblr_n5waphpp4M1st5lhmo1_1280.jpg",
         "http://37.media.tumblr.com/896656ef638e8bc5db3f6c148d70d9d5/tumblr_n5e5qd8BB81st5lhmo1_1280.jpg",
@@ -17,7 +17,7 @@ function LoginController($scope, Data, AuthService, $route){
         "http://31.media.tumblr.com/d83b99e22981d5e58e2bd74ed2494087/tumblr_n4ef3ynCZP1st5lhmo1_1280.jpg",
         "http://24.media.tumblr.com/4674f3b8059faeeb8128e74bfafd1011/tumblr_n4ef1niTku1st5lhmo1_1280.jpg"];
 
-    var bgImgUrl = randFrom(bgImgUrls);
+    bgImgUrl = randFrom(bgImgUrls);
     $("#loginPage").css('background','rgba(0, 0, 0, 0) url('+bgImgUrl+') no-repeat fixed 50% 50% / 100% padding-box border-box');
 
     $scope.signup = function(){

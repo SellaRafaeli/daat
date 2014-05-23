@@ -6,6 +6,7 @@ function appController($scope, Data, $routeParams, AuthService){
     $scope.ping = function(){log('pinging'); Data.ping()};
 
     $scope.eng = {foo: 'some-foo',
+        brand: 'Daat',
                     addQuestion: 'Add Question',
                     about: 'About',
                     main: 'Main',
@@ -32,10 +33,12 @@ function appController($scope, Data, $routeParams, AuthService){
     editAnswer: "Edit",
     saveEditAnswer: "Save",
         fbLoginButtonText: "Login With Facebook",
-        welcomeToSite: "Welcome to Daat."
+        welcomeToSite: "Welcome to ",
+        welcomeToSiteDesc: "the best Hebrew content site on the web."
 };
 
     $scope.heb = {foo: 'heb-foo',
+        brand: 'דעת',
                   addQuestion: 'הוסף שאלה',
                   about: 'אודות',
                   main: 'ראשי',
@@ -62,7 +65,8 @@ function appController($scope, Data, $routeParams, AuthService){
         editAnswer: "לערוך",
         saveEditAnswer: "לשמור",
         fbLoginButtonText: "להיכנס עם פייסבוק",
-        welcomeToSite: "ברוכים הבאים לדעת."
+        welcomeToSite: "ברוכים הבאים ל",
+        welcomeToSiteDesc: 'אתר התוכן הטוב ביותר בעברית'
 }
 
     $scope.texts = $scope.heb;

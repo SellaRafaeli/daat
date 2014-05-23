@@ -11,8 +11,8 @@
 <div id="loginPage" ng-controller="LoginController">
 
   <div id="fbLoginArea">
-      <span>{{texts.welcomeToSite}}</span>
-      <button ng-click=loginFB() class="btn-info btn-large"> {{texts.fbLoginButtonText}} </button>
+      <span>{{texts.welcomeToSite}}<span class='brand'>{{texts.brand}}</span>, {{texts.welcomeToSiteDesc}}.</span>
+      <button ng-click=loginFB() class="btn-info btn-large fb-button"> {{texts.fbLoginButtonText}} </button>
   </div>
 
 
