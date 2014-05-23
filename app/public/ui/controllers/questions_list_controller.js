@@ -39,7 +39,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
             var question = {
                     id:   q._id,
                     title: q.title,
-                    link: q.id,
+                    link: q._id,
                     body: q.text,
                     dateModified: q.dateModified || moment('1970').format(),
                     answers: _.map(q.answers,function(a){
