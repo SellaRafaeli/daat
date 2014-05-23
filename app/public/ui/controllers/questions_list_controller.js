@@ -37,7 +37,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
             var q = server_question;
 
             var question = {
-                    id:   q.id,
+                    id:   q._id,
                     title: q.title,
                     link: q.id,
                     body: q.text,
@@ -156,7 +156,8 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
     }
 
     $scope.setCategories = function(q){
-        Data.setQuestionCategories(q,$scope.data.currentCategories);
+        var categoriesArr = $filter('split')($scope.data.currentCategories);
+        Data.setQuestionCategories(q,categoriesArr);
     }
 
     $scope.updateAnswerText = function(q,a) {

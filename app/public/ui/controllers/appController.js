@@ -62,8 +62,8 @@ function appController($scope, Data, $routeParams, AuthService){
         separatedByCommas: "להפריד עם פסיקים",
         loginImage: "לינק תמונה (לא חובה)",
         answerWrittenAt: "נכתב",
-        editAnswer: "לערוך",
-        saveEditAnswer: "לשמור",
+        editAnswer: "ערוך",
+        saveEditAnswer: "שמור",
         fbLoginButtonText: "להיכנס עם פייסבוק",
         welcomeToSite: "ברוכים הבאים ל",
         welcomeToSiteDesc: 'אתר התוכן הטוב ביותר בעברית'

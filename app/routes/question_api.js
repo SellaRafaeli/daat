@@ -1,5 +1,5 @@
 exports.get = function(req, res){
-    var criteria = {'id': parseInt(req.params.id)};
+    var criteria = {'_id': parseInt(req.params.id)};
     db.questions.findOne(criteria, cbj(res) );
 };
 
@@ -18,6 +18,11 @@ exports.newest = function(req, res){
     db.questions.find(query,{},opts,cbj(res));
 };
 
+exports.adminUpdate = function(req,res) {
+    db.questions.find({},function(err,result){
+
+    });
+}
 //exports.newest = function (req, res) {
 //    db.questions.findOne({},cbj(res));
 //    return;
@@ -39,7 +44,7 @@ exports.getRelatedQuestions = function(req,res){
 
 exports.new_question = function(req, res){
     var newQuestion = {
-        id                  : getQuestionId(),
+        _id                  : getQuestionId(),
         title               : req.body['title'],
         text                : req.body['text'],
         userId              : req.user._id,
@@ -56,7 +61,7 @@ exports.new_question = function(req, res){
 exports.setCategories = function(req,res){
     var id = parseInt(req.params.id);
     var cats = array(req.body.categories);
-    db.questions.update({id: id}, {"$set": {categories: cats}}, function(err, result) {
+    db.questions.update({_id: id}, {"$set": {categories: cats}}, function(err, result) {
         res.json({msg: "set categories!"});
     });
 }
@@ -64,7 +69,7 @@ exports.setCategories = function(req,res){
 exports.updateTitle = function(req,res){
     var id = parseInt(req.params.id);
     var newTitle = req.body.newTitle;
-    db.questions.update({id: id}, {"$set": {title: newTitle}}, function(err, result) {
+    db.questions.update({_id: id}, {"$set": {title: newTitle}}, function(err, result) {
         res.json({msg: "set title!"});
     });
 }
@@ -99,7 +104,7 @@ function getUserContent(userId, cb) {
 //}
 
 function setHighQuestionId(){
-    db.questions.find({},{"sort": "id"}, function(err, results){
+    db.questions.find({},{"sort": "_id"}, function(err, results){
         highestQuestionId = (results && results.length) ? results.pop().id : 1;
         isNaN(highestQuestionId) ? highestQuestionId = 0 : "";
         console.log("set high question id at "+highestQuestionId);

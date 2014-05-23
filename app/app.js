@@ -4,7 +4,7 @@ log("Running with process.env:",process.env);
 db    = require('mongojs').connect(process.env.MONGO_CONN_STR || 'daat',['questions','users']);
 //db    = require("mongojs").connect('daat', ['questions','users']); //http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
 request = require('request'); //http module, see https://github.com/mikeal/request
-env  = (process.env.NODE_ENV || 'DEVELOPMENT').toLowerCase();
+env = process.env.MONGO_CONN_STR ? 'PROD' : 'DEV';
 //helpers
 cbj = function(responseObj){ return function(err, result) {
     responseObj.json(result); }
@@ -84,7 +84,7 @@ app.get("/ping", function (req, res) {
 
 //questions
 app.get('/questions/newest', question.newest);
-
+app.get('/questions/adminUpdate', question.adminUpdate);
 app.get('/questions/users/:userId', question.user_data );
 app.get('/questions/category/:categoryId', question.getByCategory);
 app.get('/questions/relatedQuestions', question.getRelatedQuestions);
