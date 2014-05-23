@@ -23,7 +23,7 @@ exports.updateText = function(req,res){
     var qid = parseInt(req.params.id);
     var aid = parseInt(req.params.answerId);
     var newText = req.body.newText;
-    db.questions.update({id : qid, "answers.id":aid} , {$set: {"answers.$.text": newText}}, function(){res.json({msg: "updated text"})});
+    db.questions.update({_id : qid, "answers.id":aid} , {$set: {"answers.$.text": newText}}, function(){res.json({msg: "updated text"})});
 }
 
 exports.addCommentToAnswerToQuestion = function(req, res){
@@ -74,9 +74,9 @@ exports.addCommentToAnswerToQuestion = function(req, res){
 function toggleUpvoteAnswer(qid,aid,voterUserObj, alreadyUpvoted, res){
     var userID = voterUserObj._id;
     if (alreadyUpvoted) {
-        db.questions.update({id : qid, "answers.id":aid} , {$pull: {"answers.$.upvoters": {_id: userID}}}, function(){res.json({msg: "ok"})});
+        db.questions.update({_id : qid, "answers.id":aid} , {$pull: {"answers.$.upvoters": {_id: userID}}}, function(){res.json({msg: "ok"})});
     } else {
-        db.questions.update({id : qid, "answers.id":aid} , {$addToSet: {"answers.$.upvoters": voterUserObj}}, function(){res.json({msg: "ok"})});
+        db.questions.update({_id : qid, "answers.id":aid} , {$addToSet: {"answers.$.upvoters": voterUserObj}}, function(){res.json({msg: "ok"})});
     }
 }
 
@@ -92,7 +92,7 @@ function toggleUpvoteAnswer(qid,aid,voterUserObj, alreadyUpvoted, res){
 //}
 
 function addAnswerToQuestion(questionID,newAnswer, res) {
-    db.questions.update({id: questionID}, {"$push": {answers: newAnswer}}, function(err, result) {
+    db.questions.update({_id: questionID}, {"$push": {answers: newAnswer}}, function(err, result) {
         res.json({msg: "added answer"});
     });
 }
@@ -102,7 +102,7 @@ function addBioToUser(userId, bio) {
 }
 
 function updateQuestionModifyTime(qid){
-    db.questions.update({id:qid},{"$set": {"dateModified": new Date()}},function(){});
+    db.questions.update({_id:qid},{"$set": {"dateModified": new Date()}},function(){});
 }
 
 function makeNewAnswer(req){
