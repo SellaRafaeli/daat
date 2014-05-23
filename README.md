@@ -10,7 +10,7 @@ To run:
 
 Tickets:
 * Make login work only with FB. And perhaps with some whitelist.
-
+* make a admin system to inspect/edit answers (change user that posted, etc). Simple route or script.
 * Create seed data + process to get it along with clone.
   (Note: you can also connect to the production DB and just work on real data. Sella has the connection string for that.)
 * Add and display comments.
@@ -21,6 +21,7 @@ Tickets:
 * show only truncated answer by default in qList when not single question; click should open to display the entire question.
 
 Technical tickets:
+* refactor front-end using 'browserify' to generate a single JS file to include in FE.
 * refactor 'moment.js' (showing how long ago an answer was added) to an in-house solution, no need for the whole lib.
 * refactor whole mishmash of 'loading more' - to make to correctly 'load more' in any route that requests questions (missing are by user and category)
 * setup configuration s.t. when deploying to prod it will use Heroku's DB. Remove keys from commit log (and generate new keys).
