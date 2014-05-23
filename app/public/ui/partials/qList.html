@@ -3,6 +3,7 @@
 
     <overlay-pic></overlay-pic>
 
+    <loading-pic ng-show="empty()"></loading-pic>
 
     <ul class="qList" infinite-scroll="loadMoreQuestions()">
         <input ng-show=false type="search" ng-model="filter" placeholder="חיפוש בשאלות ותשובות...">

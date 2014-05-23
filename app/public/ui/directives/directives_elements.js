@@ -50,3 +50,4 @@ myApp.directive('overlayPic', function(){
 });
 
 myApp.directive('questionAdminData', function(){ return { restrict: 'E', templateUrl: 'partials/question-admin-data.html' } });
+myApp.directive('loadingPic', function(){ return { restrict: 'E', templateUrl: 'partials/loading-pic.html' } });

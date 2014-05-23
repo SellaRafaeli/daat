@@ -55,6 +55,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
     }
 
     Data.getQuestions($scope.getQuestionsParams, function(response){
+        return
         questions = [].concat(response.data); //make sure it's an array
 
         var data = questions.map($scope.serverQuestionMapper);
@@ -66,6 +67,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
     });
 
     $scope.loadMoreQuestions = function(){
+        return
         var that = $scope;
         if (that.data.loadingQs || that.isq()) { return; } //return if in the middle of loading
         if ($routeParams['userId'] || $routeParams['id'] || $routeParams['categoryId']) { return; } //don't load more if in a non-feed route. Not good -- this shouldn't be here :\
@@ -148,7 +150,9 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
     }
 
     $scope.isSingleQuestion = function(){ var list = $scope.qList(); return list && list.length == 1; }
+    $scope.empty = function(){ var list = $scope.qList(); return !list || list.length == 0; }
     $scope.isq = $scope.isSingleQuestion;
+
 
     //returns the list of questions on page.
     $scope.qList = function() {
