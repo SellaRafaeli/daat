@@ -19,9 +19,8 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
 
     $scope.data = {qList: []};
     $scope.getQuestionsParams = $routeParams
-    Data.getQuestions($scope.getQuestionsParams, function(response){
-        questions = [].concat(response.data); //make sure it's an array
 
+    $scope.serverQuestionMapper = function(server_question ){
         //filter stuff out from each question
         function filterOut(question){
             if ($routeParams['userId']) {
@@ -33,28 +32,32 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
             return question;
         }
 
-        var data = questions.map(function(server_question ){
-            var q = server_question;
+        var q = server_question;
 
-            var question = {
-                    id:   q._id,
-                    title: q.title,
-                    link: q._id,
-                    body: q.text,
-                    dateModified: q.dateModified || moment('1970').format(),
-                    answers: _.map(q.answers,function(a){
-                        a.getUpvotes = function(){ return a.upvoters.length; };
-                        a.upvotersNames = function() { return _.map(a.upvoters,function(v){ return v.fullName}).join(", "); };
-                        a.buttonText = a.upvoters;
-                        a.isUpvotedByCurrentUser = function() { return a.upvoters[AuthService.currentUser.fullName]};
-                        return a
-                    }),
-                    categories: _.uniq(q.categories).sort()
-            };
-            sortArrayByKeyDesc(question.answers, 'dateAdded');
-            question = filterOut(question);
-            return question;
-        });
+        var question = {
+            id:   q._id,
+            title: q.title,
+            link: q._id,
+            body: q.text,
+            dateModified: q.dateModified || moment('1970').format(),
+            answers: _.map(q.answers,function(a){
+                a.getUpvotes = function(){ return a.upvoters.length; };
+                a.upvotersNames = function() { return _.map(a.upvoters,function(v){ return v.fullName}).join(", "); };
+                a.buttonText = a.upvoters;
+                a.isUpvotedByCurrentUser = function() { return a.upvoters[AuthService.currentUser.fullName]};
+                return a
+            }),
+            categories: _.uniq(q.categories).sort()
+        };
+        sortArrayByKeyDesc(question.answers, 'dateAdded');
+        question = filterOut(question);
+        return question;
+    }
+
+    Data.getQuestions($scope.getQuestionsParams, function(response){
+        questions = [].concat(response.data); //make sure it's an array
+
+        var data = questions.map($scope.serverQuestionMapper);
 
         //sortArrayByKeyDesc(data,'dateModified'); //questions arrive from server sorted by dateModified
 
@@ -73,6 +76,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
         lastModifiedDate ? params.sinceDate = lastModifiedDate : '';
         Data.getQuestions(params,function(res){
                 var newItems = res.data;
+                newItems = newItems.map($scope.serverQuestionMapper);
                 that.data.qList.addArray(newItems);
                 setTimeout(function(){ that.data.loadingQs = false;},300);
             });

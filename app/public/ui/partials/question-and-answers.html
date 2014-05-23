@@ -2,6 +2,7 @@
 
     <div>
         <categories></categories>
+        <question-admin-data ng-show=isAdmin></question-admin-data>
         <div class="question">
             <a ng-attr-contenteditable="{{isq()}}"
                ng-href="#/questions/{{q.link}}"

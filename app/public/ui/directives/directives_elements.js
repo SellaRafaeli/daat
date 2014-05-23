@@ -48,3 +48,5 @@ myApp.directive('overlayPic', function(){
         templateUrl: 'partials/overlay-pic.html'
     }
 });
+
+myApp.directive('questionAdminData', function(){ return { restrict: 'E', templateUrl: 'partials/question-admin-data.html' } });
