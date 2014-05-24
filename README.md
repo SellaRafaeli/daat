@@ -17,7 +17,6 @@ Tickets:
 * check bug in category at "House Of Cards"?
 * add option to set background
 * create user page
-* put loading gif in qList controller while loading: http://codepen.io/alextebbs/pen/tHhrz
 * show only truncated answer by default in qList when not single question; click should open to display the entire question.
 
 Technical tickets:
