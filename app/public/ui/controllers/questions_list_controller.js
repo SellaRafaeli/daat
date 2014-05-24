@@ -156,7 +156,8 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
     }
 
     $scope.answerUpvoted = function(answer){
-        return _.findWhere(answer.upvoters, {fullName: AuthService.currentUser.fullName}) ? 'בטל לייק' : 'לייק!';
+        //return _.findWhere(answer.upvoters, {fullName: AuthService.currentUser.fullName}) ? 'בטל לייק' : 'לייק!';
+        return _.findWhere(answer.upvoters, {fullName: AuthService.currentUser.fullName}) ? $scope.texts.like : $scope.texts.unlike
     }
 
     $scope.setCategories = function(q){

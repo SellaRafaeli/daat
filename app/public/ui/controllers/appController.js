@@ -3,6 +3,8 @@ function appController($scope, Data, $routeParams, AuthService){
     makeAdmin = function() { appCtrl.isAdmin = true; appCtrl.$apply(); };
     $scope.alert = function(s){ alert(s)};
     $scope.log = function(s) { console.log(s) };
+    $scope.disableElemTemp = function(elem,millisecs) { $(elem).attr('disabled','true'); setTimeout(function(){$(elem).removeAttr('disabled')},(millisecs || 2000)) } //1. extract to some module?
+
     $scope.ping = function(){log('pinging'); Data.ping()};
 
     $scope.eng = {foo: 'some-foo',
@@ -36,7 +38,9 @@ function appController($scope, Data, $routeParams, AuthService){
         welcomeToSite: "Welcome to ",
         welcomeToSiteDesc: "the best Hebrew content site on the web.",
     commentsLink: 'Comments',
-    sendCommentBtn: 'Send'
+    sendCommentBtn: 'Send',
+    like: "Like",
+    unlike: "Unlike"
 };
 
     $scope.heb = {foo: 'heb-foo',
@@ -70,7 +74,9 @@ function appController($scope, Data, $routeParams, AuthService){
         welcomeToSite: "ברוכים הבאים ל",
         welcomeToSiteDesc: 'אתר התוכן הטוב ביותר בעברית',
         commentsLink: 'תגובות',
-        sendCommentBtn: 'שלח'
+        sendCommentBtn: 'שלח',
+        like: "לייק",
+        unlike: "בטל לייק"
 }
 
     $scope.texts = $scope.heb;

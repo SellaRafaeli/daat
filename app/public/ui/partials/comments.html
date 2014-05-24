@@ -2,7 +2,7 @@
     <ul class='comments-list'>
         <div class="newCommentArea">
             <textarea ng-model="newComment" placeholder="enter your comment"></textarea>
-            <div><button ng-click="submitNewComment({qId: q.id, aId: a.id, answer: a}, $event)"> {{texts.sendCommentBtn}} </button></div>
+            <div><button ng-click="disableElemTemp($event.srcElement,500); submitNewComment({qId: q.id, aId: a.id, answer: a}, $event);"> {{texts.sendCommentBtn}} </button></div>
         </div>
         <li ng-repeat="c in a.comments" class='comment'>
             <img class='commentImg' ng-src={{c.owner.imgLnk}}></img>

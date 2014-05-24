@@ -26,7 +26,7 @@
         <!--<button class='submit-button' >{{texts.sendMyAnswer}}</button>-->
         <button class="btn btn-large btn-primary"
                 ng-show="myAnswer"
-                ng-click="submitAnswer()"><i class="icon-white icon-ok"></i> {{texts.sendMyAnswer}}</button>
+                ng-click="submitAnswer(); disableElemTemp($event.srcElement)"><i class="icon-white icon-ok"></i> {{texts.sendMyAnswer}}</button>
     </div>
 
     <ul class='answer-list'>
