@@ -23,9 +23,9 @@
 
         <span class='bullet'> • </span> <a href="" class="faded" ng-show=!a.editingExistingAnswer ng-click="a.editingExistingAnswer=true">{{texts.editAnswer}}</a>
                                         <a href="" ng-show=a.editingExistingAnswer ng-click="a.editingExistingAnswer=false; updateAnswerText(q,a)">{{texts.saveEditAnswer}}</a>
-        <span>
-        <span class='bullet' ng-show=showComments> • </span>
-        <a class='clickable nice-link' ng-click="showComments=!showComments" ng-init='showComments=false' ng-show=showComments>תגובות ({{a.comments.length}})</a>
+        </span>
+        <span class='bullet'> • </span>
+        <a class='clickable nice-link' ng-click="showComments=!showComments" ng-init='showComments=false'> {{commentsLink(a)}}</a>
     </div>
 
     <comments ng-show=showComments>

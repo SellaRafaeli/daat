@@ -34,7 +34,9 @@ function appController($scope, Data, $routeParams, AuthService){
     saveEditAnswer: "Save",
         fbLoginButtonText: "Login With Facebook",
         welcomeToSite: "Welcome to ",
-        welcomeToSiteDesc: "the best Hebrew content site on the web."
+        welcomeToSiteDesc: "the best Hebrew content site on the web.",
+    commentsLink: 'Comments',
+    sendCommentBtn: 'Send'
 };
 
     $scope.heb = {foo: 'heb-foo',
@@ -66,7 +68,9 @@ function appController($scope, Data, $routeParams, AuthService){
         saveEditAnswer: "שמור",
         fbLoginButtonText: "להיכנס עם פייסבוק",
         welcomeToSite: "ברוכים הבאים ל",
-        welcomeToSiteDesc: 'אתר התוכן הטוב ביותר בעברית'
+        welcomeToSiteDesc: 'אתר התוכן הטוב ביותר בעברית',
+        commentsLink: 'תגובות',
+        sendCommentBtn: 'שלח'
 }
 
     $scope.texts = $scope.heb;

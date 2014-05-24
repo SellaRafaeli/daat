@@ -164,24 +164,43 @@ a {
     padding-right: 10px;
     padding-bottom: 0px;
     border-style: solid;
-    border-width: 2px;
+    border-width: 4px;
     border-color: @ultra-light-grey;
     color: black;
 
+    .newCommentArea{
+      textarea {
+        resize: none;
+        width: 95%;
+        height: 76px;
+      }
+
+      button {
+        width: 60px;
+      }
+    }
+
     .comment {
         margin-bottom: 12px;
-        border: 1px solid @ultra-light-grey;
+        //border: 1px solid @ultra-light-grey;
         padding: 3px;
         margin: 10px;
+
+        .commentImg {
+          height: @answer-user-pic-size/2;
+          width: @answer-user-pic-size/2;
+        }
+
+        .comment-body {
+          margin-right: 25px;
+        }
     }
 
     .comment-user {
         color: @question-title-blue;
     }
 
-    &.comment-body {
-       
-    }
+
 }
 
 .simple-form {

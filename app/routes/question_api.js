@@ -18,9 +18,10 @@ exports.newest = function(req, res){
     db.questions.find(query,{},opts,cbj(res));
 };
 
-exports.adminUpdate = function(req,res) {
+exports.adminUpdateAll = function(req,res) {
     db.questions.find({},function(err,result){
 
+        x = 1
     });
 }
 //exports.newest = function (req, res) {

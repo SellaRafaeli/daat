@@ -28,7 +28,7 @@ myApp.factory('Data', function($http, AuthService) {
         submitComment: function(params,cb){
             params['authToken'] = AuthService.currentUser.authToken;
             var route = '/questions/'+params.questionId+'/answer/'+params.answerId+'/newComment';
-            $http.post(route,params).then(cb);
+            $http.post(route,params).catch(genericErrHandler);
             //$http.post('/questions/new/',params).then(cb);
             return "ok";
         },

@@ -9,6 +9,7 @@
             that.currentUser.authToken = data.authToken;
             that.currentUser.email = data.email; 
             that.currentUser.fullName = data.fullName;
+            that.currentUser.imgLnk = data.imgLnk;
             that.currentUser.id = data._id;
             that.currentUser.bio = data.bios && data.bios.pop();
             that.save();

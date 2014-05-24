@@ -84,7 +84,7 @@ app.get("/ping", function (req, res) {
 
 //questions
 app.get('/questions/newest', question.newest);
-app.get('/questions/adminUpdate', question.adminUpdate);
+app.get('/questions/adminUpdateAll', question.adminUpdateAll);
 app.get('/questions/users/:userId', question.user_data );
 app.get('/questions/category/:categoryId', question.getByCategory);
 app.get('/questions/relatedQuestions', question.getRelatedQuestions);

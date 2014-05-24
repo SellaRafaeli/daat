@@ -1,14 +1,16 @@
-<div>
+<div ng-controller="commentsController">
     <ul class='comments-list'>
+        <div class="newCommentArea">
+            <textarea ng-model="newComment" placeholder="enter your comment"></textarea>
+            <div><button ng-click="submitNewComment({qId: q.id, aId: a.id, answer: a}, $event)"> {{texts.sendCommentBtn}} </button></div>
+        </div>
         <li ng-repeat="c in a.comments" class='comment'>
-            <a class='comment-user' ng-href='#/user/{{c.user}}'> {{c.user}} </a>
+            <img class='commentImg' ng-src={{c.owner.imgLnk}}></img>
+            <a class='comment-user' ng-href='#/user/{{c.owner.id}}'> {{c.owner.fullName}} </a>
             <div class='comment-body'>
                 {{c.text}}
             </div>
         </li>
     </ul>
-    <div>
-        <textarea ng-model="newComment" placeholder="enter your comment"></textarea>
-    </div>
-    <button class='submit-button' ng-click="submitNewComment({qId: q.id, aId: a.id})">הוסף!</button>
+
 </div>

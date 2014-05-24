@@ -23,21 +23,16 @@ exports.updateText = function(req,res){
     var qid = parseInt(req.params.id);
     var aid = parseInt(req.params.answerId);
     var newText = req.body.newText;
+    //the $ in answers.$.text means "the array element that answered the query". See http://docs.mongodb.org/manual/reference/operator/update/positional/
     db.questions.update({_id : qid, "answers.id":aid} , {$set: {"answers.$.text": newText}}, function(){res.json({msg: "updated text"})});
 }
 
 exports.addCommentToAnswerToQuestion = function(req, res){
-//    var qID = req.params['id'];
-//    var aId = req.params['answerId'];
-//    var newComment = makeNewComment(req);
-//    //var findCrit = {id: qID};
-//    findCrit = "this.id =="+qID;
-//    var setCrit = {};
-//        setCrit["answers."+aId+".comments."+newComment.id] = newComment;
-//
-//    db.questions.update(findCrit,{"$set": setCrit}, function(err,results) {
-//        res.json({"msg": "okComment"});
-//    });
+    x =1
+    var qid = parseInt(req.params.id);
+    var aid = parseInt(req.params.answerId);
+    var newComment = makeNewComment(req);
+    db.questions.update({_id : qid, "answers.id":aid} , {$push: {"answers.$.comments": newComment}}, function(){res.json({msg: "added comment"})});
 };
 
 
@@ -113,19 +108,21 @@ function makeNewAnswer(req){
                          bio: req.body.bio,
                          imgLnk: req.user.imgLnk
         },
-        comments        : {},
+        comments        : [],
         id              : nextAnswerId(),
         upvoters        : [],
         dateAdded       : new Date()
 }
     };
 
-//function makeNewComment(req){
-//    return {
-//        text            : req.body['comment'],
-//        id              : (new Date()).getTime().toString(36)
-//    }
-//}
+function makeNewComment(req){
+    return {
+        text            : req.body['comment'],
+        id              : (new Date()).getTime().toString(36),
+        owner           : {id: req.user._id, fullName: req.user.fullName, imgLnk: req.user.imgLnk},
+        dateAdded       : new Date()
+    }
+}
 
 (nextAnswerId = function (){
     if (typeof highestAnswerId != 'undefined') {

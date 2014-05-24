@@ -16,7 +16,7 @@ exports.fbEnter = function(req,res) {
     //verify the fb user, then login/signup:
     var url='https://graph.facebook.com/me?access_token='+req.body.accessToken;
     request(url, function(err,ans,body){
-       if (err || ans.statusCode!=200) { res.json({success: false}); return;}
+       if (err || ans.statusCode!=200) { res.json({success: false, err: err}); return;}
        else {
            fbData = JSON.parse(body);
            fbID = fbData.id;

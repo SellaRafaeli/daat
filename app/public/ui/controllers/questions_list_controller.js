@@ -108,9 +108,8 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
         AuthService.set("bio",bio);
     }
 
-    $scope.submitNewComment = function(params){
-        params = {comment: this.newComment, answerId: params.aId, questionId: params.qId};
-        Data.submitComment(params,function(){ alert("submitted comment to backend"); });
+    $scope.commentsLink = function(a) {
+        return ($scope.texts.commentsLink + (a.comments.length ? ' ('+(a.comments.length)+')' : ''));
     }
 
     $scope.toggleUpvoteAnswer = function(question, answer) {
