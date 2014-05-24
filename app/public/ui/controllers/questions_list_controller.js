@@ -148,6 +148,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
 
     $scope.isSingleQuestion = function(){ var list = $scope.qList(); return list && list.length == 1; }
     $scope.isq = $scope.isSingleQuestion;
+    $scope.empty = function() {   var list = $scope.qList(); return !list || list.length == 0;  }
 
     //returns the list of questions on page.
     $scope.qList = function() {

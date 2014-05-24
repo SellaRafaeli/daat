@@ -9,7 +9,7 @@ To run:
 > node app/app.js; #browse to localhost:8000/
 
 Tickets:
-* Make login work only with FB. And perhaps with some whitelist.
+* Add whitelist system to login, to be able to throttle it sometime
 * make a admin system to inspect/edit answers (change user that posted, etc). Simple route or script.
 * Create seed data + process to get it along with clone.
   (Note: you can also connect to the production DB and just work on real data. Sella has the connection string for that.)
