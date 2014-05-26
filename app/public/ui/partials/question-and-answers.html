@@ -15,7 +15,7 @@
 
     <div class='new-answer-area' ng-show="allowAnswer()">
         <div>
-            <span>{{username()}}</span><span ng-show="myAnswer || user.bio">, <input class="new-answer-new-bio" ng-model="user.bio" type="text" placeholder={{texts.yourExperiencePlaceholder}}></span>
+            <span>{{username()}}</span><span>, <input class="new-answer-new-bio" ng-model="user.bio" type="text" placeholder={{texts.yourExperiencePlaceholder}}></span>
         </div>
 
         <text-angular ta-toolbar="newAnswerToolbars" ng-model="myAnswer" autofocus></text-angular>
