@@ -5,7 +5,7 @@ Daat is currently open-source. You can contact sella.rafaeli@gmail.com if you wa
 
 To run:
 > git clone git@github.com:SellaRafaeli/daat.git;
-> npm install
+> npm install;
 > node app/app.js; #browse to localhost:8000/
 
 Tickets:
