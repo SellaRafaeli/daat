@@ -9,6 +9,7 @@ To run:
 > node app/app.js; #browse to localhost:8000/
 
 Tickets:
+* technical (and functional) design of "following" feature, including user "feed".
 * textAngular (the WYSIWYG html editor) - add a way to add raw html and/or youtube videos
 * Add whitelist system to login, to be able to throttle it sometime
 * make a admin system to inspect/edit answers (change user that posted, etc). Simple route or script.
