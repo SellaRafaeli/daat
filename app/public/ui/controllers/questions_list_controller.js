@@ -82,9 +82,8 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
             });
     }
 
-
-
     $scope.$watch("data.currentCategories", function(newValue, oldValue) {
+        if (clientConfig.isSmallScreen) { return } //don't loading related questions on mobile, it's both heavy and UI is broken.
         var categories = $filter('split')(newValue);
         if (!(categories && categories.length)) { return; }
 
@@ -157,7 +156,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
 
     $scope.answerUpvoted = function(answer){
         //return _.findWhere(answer.upvoters, {fullName: AuthService.currentUser.fullName}) ? 'בטל לייק' : 'לייק!';
-        return _.findWhere(answer.upvoters, {fullName: AuthService.currentUser.fullName}) ? $scope.texts.like : $scope.texts.unlike
+        return _.findWhere(answer.upvoters, {fullName: AuthService.currentUser.fullName}) ? $scope.texts.unlike : $scope.texts.like
     }
 
     $scope.setCategories = function(q){
