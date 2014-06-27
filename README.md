@@ -24,7 +24,7 @@ Tickets:
 Technical tickets:
 * CSS: use smaller spinner? (do we really need the whole spinner.css file?)
 * refactor CSS to make site mobile-friendly
-* refactor front-end using 'browserify' to generate a single JS file to include in FE.
+* refactor front-end using 'browserify' to generate a single JS file to include in FE. (same for CSS.)
 * refactor 'moment.js' (showing how long ago an answer was added) to an in-house solution, no need for the whole lib.
 * refactor whole mishmash of 'loading more' - to make to correctly 'load more' in any route that requests questions (missing are by user and category)
 * setup configuration s.t. when deploying to prod it will use Heroku's DB. Remove keys from commit log (and generate new keys).
