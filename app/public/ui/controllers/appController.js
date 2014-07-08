@@ -96,4 +96,5 @@ function appController($scope, Data, $routeParams, AuthService){
     $scope.username = function(){ return AuthService.currentUser.fullName };
     $scope.user = AuthService.currentUser;
 
+    $scope.getConfig = function() { return clientConfig; }
 };

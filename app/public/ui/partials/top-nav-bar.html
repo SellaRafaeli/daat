@@ -2,6 +2,8 @@
     <div class="container-fluid">
         <!-- {{Brand and toggle get grouped for better mobile display -->
         <a class="navbar-brand" href="#" ng-click=setEng()>Daat</a>
+        <a class="navbar-brand" ng-if='getConfig().isSmallScreen' href="#questions">{{texts.main}}</a>
+        <a class="navbar-brand" ng-if='getConfig().isSmallScreen' href="#new_question">{{texts.addQuestion}}</a>
         <div class="navbar-header">
         </div>
 
