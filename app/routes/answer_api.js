@@ -32,7 +32,14 @@ exports.addCommentToAnswerToQuestion = function(req, res){
     var qid = parseInt(req.params.id);
     var aid = parseInt(req.params.answerId);
     var newComment = makeNewComment(req);
-    db.questions.update({_id : qid, "answers.id":aid} , {$push: {"answers.$.comments": newComment}}, function(){res.json({msg: "added comment"})});
+    db.questions.update({_id : qid, "answers.id":aid} , {$push: {"answers.$.comments": newComment}}, function(){ res.json({msg: "added comment"})});
+
+    //email about it. Note client may have been released. TODO: extract to worker
+    //WIP!
+    db.questions.findOne({_id: qid}, function(e, q){
+        answer = _.find(q.answers, function(a){return (a.id == aid)});
+        //mailer.send_email({})
+    })
 };
 
 

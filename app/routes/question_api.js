@@ -76,6 +76,20 @@ exports.updateTitle = function(req,res){
 }
 
 
+exports.initA2A = function(req, res) {
+    var qId = req.body.qId;
+    var fromUser = req.user.fullName;
+    var targetEmail = req.body.targetEmail;
+
+    db.questions.findOne({_id: qId}, function(e,q) {
+        //TODO: nicer string building, don't use hardcoded domain, eek
+        var body = req.user.fullName+" asked you to answer question: "+ q.title+"....you can answer it here: http://fathomless-crag-3321.herokuapp.com/ui/#/questions/"+ q._id;
+        var subj = fromUser+' would like you to answer a question on Daat: '+q.title;
+        mailer.send_email({to: targetEmail, subject: subj, body: body})
+    })
+
+    res.json({msg: "init'ed A2A"});
+}
 //exports.addCategory = function(req, res) {
 //    var id = parseInt(req.params.id);
 //    db.questions.update({id: id}, {"$push": {categories: req.body.categoryName}}, function(err, result) {

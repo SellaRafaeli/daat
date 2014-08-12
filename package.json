@@ -25,7 +25,8 @@
         "socket.io": "*",
         "lodash": "*",
         "ensure-array": "*",
-        "request": "2.33.0"
+        "request": "2.33.0",
+        "nodemailer": "*"
     },
     "devDependencies": {
         "express-debug": "~1.0.3"

@@ -62,6 +62,10 @@ myApp.factory('Data', function($http, AuthService) {
             $http.post('/questions/'+qId+'/updateTitle',
                 {authToken: AuthService.currentUser.authToken, newTitle: newTitle}).catch(genericErrHandler);
         },
+
+        initA2A: function(qId, targetEmail) {
+            $http.post('/questions/'+qId+'/initA2A', {authToken: AuthService.currentUser.authToken, qId: qId, targetEmail: targetEmail}).catch(genericErrHandler);
+        },
 //        addCategoryToQuestion: function(question,categoryName,cb){
 //            params = {categoryName: categoryName};
 //            params['authToken'] = AuthService.currentUser.authToken;

@@ -29,6 +29,7 @@
                 ng-click="submitAnswer(); disableElemTemp($event.srcElement)"><i class="icon-white icon-ok"></i> {{texts.sendMyAnswer}}</button>
     </div>
 
+    <button ng-show="isq()" ng-click="initA2A()">A2A</button>
     <ul class='answer-list'>
         <li class='answer' ng-repeat="a in q.answers | orderBy: orderAnswersBy():true | filter:filter | limitTo: numAnswersToShow()">
             <answer></answer>
