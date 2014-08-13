@@ -22,3 +22,7 @@ exports.send_email = function (opts, cb) {
 
     transporter.sendMail(mailOptions, function(error, info){ error ? console.log(error) : console.log('Message sent: ' + info.response); });
 }
+
+exports.send_email_1 = function(toEmail, subj, bodyText) {
+    this.send_email({to: toEmail, subject: subj, body: bodyText});
+}

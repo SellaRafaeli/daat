@@ -34,11 +34,17 @@ exports.addCommentToAnswerToQuestion = function(req, res){
     var newComment = makeNewComment(req);
     db.questions.update({_id : qid, "answers.id":aid} , {$push: {"answers.$.comments": newComment}}, function(){ res.json({msg: "added comment"})});
 
-    //email about it. Note client may have been released. TODO: extract to worker
-    //WIP!
+    //email owner it. Note client may have been released. TODO: extract to worker and do not in Node...
     db.questions.findOne({_id: qid}, function(e, q){
         answer = _.find(q.answers, function(a){return (a.id == aid)});
-        //mailer.send_email({})
+        db.users.findOne({_id: answer.owner.id}, function(e, u){
+            var email = u.fbData.email || u.fbData.username+"@facebook.com";
+            var subj = req.user.fullName+" just commented on your answer on Daat to the question: "+ q.title;
+            var body = subj+"...the comment was: "+newComment.text+". You can view it here: http://fathomless-crag-3321.herokuapp.com/ui/#/questions/"+qid;
+
+            mailer.send_email_1(email,subj,body);
+        });
+
     })
 };
 

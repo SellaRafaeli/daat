@@ -205,6 +205,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
     $scope.initA2A = function(){
         var qid = this.data.qList[0].id;
         var target = prompt("Who do you want to ask?");
-        target ? Data.initA2A(qid, target) : '';
+        var cb = function(){alert ("Asked to answer.");};
+        target ? Data.initA2A(qid, target, cb) : '';
     }
 }

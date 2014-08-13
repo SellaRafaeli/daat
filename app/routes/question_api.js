@@ -85,7 +85,8 @@ exports.initA2A = function(req, res) {
         //TODO: nicer string building, don't use hardcoded domain, eek
         var body = req.user.fullName+" asked you to answer question: "+ q.title+"....you can answer it here: http://fathomless-crag-3321.herokuapp.com/ui/#/questions/"+ q._id;
         var subj = fromUser+' would like you to answer a question on Daat: '+q.title;
-        mailer.send_email({to: targetEmail, subject: subj, body: body})
+        //mailer.send_email({to: targetEmail, subject: subj, body: body})
+        mailer.send_email_1(targetEmail, subj, body);
     })
 
     res.json({msg: "init'ed A2A"});
