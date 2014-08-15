@@ -1,8 +1,9 @@
 //globals. Settable with GLOBAL.foo from other files.
 log   = function(a,b,c){ [a,b,c].forEach(function(s){ s ? console.log(s) : ''} ) }
 log("Running with process.env:",process.env);
-db    = require('mongojs').connect(process.env.MONGO_CONN_STR || 'daat',['questions','users']);
+db    = require('mongojs').connect(process.env.MONGO_CONN_STR || 'daat',['questions','users','events']);
 mailer = require('./daat_mailer');
+log_event = function(userName, desc) { db.events.insert({time: Date(), userName: userName, desc: desc}); }
 //db    = require("mongojs").connect('daat', ['questions','users']); //http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
 request = require('request'); //http module, see https://github.com/mikeal/request
 env = process.env.MONGO_CONN_STR ? 'PROD' : 'DEV';
@@ -82,6 +83,11 @@ app.get("/ping", function (req, res) {
     //res.send("pong, motherfucker");
     db.questions.findOne({},function(){res.send("pong")});
 });
+
+//log
+app.get('/events', function(req,res){
+    db.events.find({},{},{"sort": {"_id":1}},cbj(res));
+})
 
 //questions
 app.get('/questions/newest', question.newest);
