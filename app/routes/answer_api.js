@@ -6,6 +6,7 @@ exports.addAnswerToQuestion = function(req, res){
     //response has been returned
     addBioToUser(newAnswer.owner.id, newAnswer.owner.bio);
     updateQuestionModifyTime(qID);
+
 };
 
 exports.toggleUpvote = function(req, res){

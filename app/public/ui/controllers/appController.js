@@ -40,7 +40,9 @@ function appController($scope, Data, $routeParams, AuthService){
     commentsLink: 'Comments',
     sendCommentBtn: 'Send',
     like: "Like",
-    unlike: "Unlike"
+    unlike: "Unlike",
+    about: "About",
+    events: "Events"
 };
 
     $scope.heb = {foo: 'heb-foo',
@@ -76,7 +78,9 @@ function appController($scope, Data, $routeParams, AuthService){
         commentsLink: 'תגובות',
         sendCommentBtn: 'שלח',
         like: "לייק",
-        unlike: "בטל לייק"
+        unlike: "בטל לייק",
+        about: "אודות",
+        events: "פיד"
 }
 
     $scope.texts = $scope.heb;
@@ -97,4 +101,5 @@ function appController($scope, Data, $routeParams, AuthService){
     $scope.user = AuthService.currentUser;
 
     $scope.getConfig = function() { return clientConfig; }
+    $scope.normalDate = normalDate;
 };

@@ -75,6 +75,7 @@ exports.ensureUserMiddleware = function(req, res, next) {
         if (user && user.authToken){ //user must have valid, nonnull authToken
             req.user = user;            
             next();
+            log_event(user.fullName, "called route "+req.path);
         } else {
             res.statusCode = 401;
             res.json({msg: "Missing valid authToken for user."});                    

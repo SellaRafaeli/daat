@@ -1,0 +1,9 @@
+
+<div ng-controller="eventsController">
+   <h1>Events</h1>
+    <ul>
+        <li ng-repeat="e in events">
+            <div>{{normalDate(e.time)}} | {{e.userName}} | {{e.desc}} </div>
+        </li>
+    </ul>
+</div>

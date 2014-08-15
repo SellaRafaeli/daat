@@ -9,16 +9,19 @@ myApp.config(['$routeProvider',
         templateUrl: base + 'login.html',
       }).
       when('/logout', {
-        templateUrl: base + 'login.html',
+        templateUrl: base + 'login.html'
       }).
       when('/about', {
-        templateUrl: base + 'about.html',
+        templateUrl: base + 'about.html'
       }).
       when('/new_question', {
-        templateUrl: base + 'new_question.html',
+        templateUrl: base + 'new_question.html'
       }).
-      when('/hello', {
-        templateUrl: base + 'hello.html',
+      when('/about', {
+        templateUrl: base + 'about.html'
+      }).
+      when('/events', {
+        templateUrl: base + 'events.html'
       }).
       when('/questions', {
         templateUrl: base + 'qList.html'
