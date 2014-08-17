@@ -102,4 +102,5 @@ function appController($scope, Data, $routeParams, AuthService){
 
     $scope.getConfig = function() { return clientConfig; }
     $scope.normalDate = normalDate;
+
 };

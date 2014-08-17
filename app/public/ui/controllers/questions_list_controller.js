@@ -84,6 +84,8 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
             });
     }
 
+    setTimeout($scope.loadMoreQuestions,100); //immediately call more after page is loaded, to ensure second page of questions.
+
     $scope.$watch("data.currentCategories", function(newValue, oldValue) {
         if (clientConfig.isSmallScreen) { return } //don't loading related questions on mobile, it's both heavy and UI is broken.
         var categories = $filter('split')(newValue);
