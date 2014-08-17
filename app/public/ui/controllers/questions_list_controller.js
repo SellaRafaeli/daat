@@ -73,7 +73,9 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
         that.data.loadingQs = true;
         var params = that.getQuestionsParams;
         lastModifiedDate = (that.data.qList.last() || {}).dateModified;
+        if (!lastModifiedDate) { return; } //happens if data.qList hasn't been initted yet, if first load was too fast.
         lastModifiedDate ? params.sinceDate = lastModifiedDate : '';
+
         Data.getQuestions(params,function(res){
                 var newItems = res.data;
                 newItems = newItems.map($scope.serverQuestionMapper);
