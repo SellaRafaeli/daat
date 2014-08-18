@@ -111,6 +111,16 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
         AuthService.set("bio",bio);
     }
 
+    $scope.saveDraft = function(){
+        localStorage['q'+this.data.qList[0].id+'draft'] = appCompressor.compress(this.myAnswer);
+        alert("Draft saved.");
+    }
+
+    $scope.loadDraft = function(){
+        if (!this.isq()) { return; }
+        $scope.myAnswer = appCompressor.decompress(localStorage['q'+this.data.qList[0].id+'draft'] || "");
+    }
+
     $scope.commentsLink = function(a) {
         return ($scope.texts.commentsLink + (a.comments.length ? ' ('+(a.comments.length)+')' : ''));
     }

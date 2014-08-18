@@ -22,11 +22,16 @@
 
         <!--<textarea class='new-answer-details-input' ng-model="myAnswer" placeholder="הוסף את התשובה שלך..." autofocus/></textarea>-->
 
-        <div>{{q.myAnswer}}</div>
+        <div ng-init="loadDraft()">{{q.myAnswer}}</div>
         <!--<button class='submit-button' >{{texts.sendMyAnswer}}</button>-->
+        <div>
         <button class="btn btn-large btn-primary"
-                ng-show="myAnswer"
+                ng-disabled="!myAnswer"
                 ng-click="submitAnswer(); disableElemTemp($event.srcElement)"><i class="icon-white icon-ok"></i> {{texts.sendMyAnswer}}</button>
+        <button class="btn btn-large btn-primary"
+                    ng-disabled="!myAnswer"
+                    ng-click="saveDraft()">{{texts.saveDraft}}</button>
+        </div>
     </div>
 
     <button ng-show="isq()" ng-click="initA2A()">A2A</button>

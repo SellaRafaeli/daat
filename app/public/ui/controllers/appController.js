@@ -42,7 +42,8 @@ function appController($scope, Data, $routeParams, AuthService){
     like: "Like",
     unlike: "Unlike",
     about: "About",
-    events: "Events"
+    events: "Events",
+    saveDraft: "Save Draft"
 };
 
     $scope.heb = {foo: 'heb-foo',
@@ -80,7 +81,8 @@ function appController($scope, Data, $routeParams, AuthService){
         like: "לייק",
         unlike: "בטל לייק",
         about: "אודות",
-        events: "פיד"
+        events: "פיד",
+        saveDraft: "לשמור טיוטא"
 }
 
     $scope.texts = $scope.heb;

@@ -8,4 +8,4 @@ myStrings.value('heb',
 
 var myApp = angular.module('myApp', ['ngRoute','ui.bootstrap','textAngular', 'myStrings','infinite-scroll']);
 
-id = 0;
+appCompressor = LZString;
