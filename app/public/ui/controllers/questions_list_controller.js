@@ -63,7 +63,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
         $scope.data.qList = [questionAlreadyLoaded];
         $scope.data.currentCategories = questionAlreadyLoaded.categories;
     }
-    else if ((loaded_questions.length > 10) && !$scope.getQuestionsParams.categoryId && !$scope.getQuestionsParams.id){
+    else if ((loaded_questions.length > 10) && !$scope.getQuestionsParams.userId && !$scope.getQuestionsParams.categoryId && !$scope.getQuestionsParams.id){
         data = loaded_questions;
         $scope.data.qList = data;
         $scope.data.currentCategories = data[0].categories;
