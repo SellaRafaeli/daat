@@ -1,6 +1,8 @@
 //main controller
+g1 = {data:[]};
 function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $http, $filter){
     //cheaters
+    previousQList = g1;
     g1 = $scope;
 
     http = $http;
@@ -54,16 +56,25 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
         return question;
     }
 
-    Data.getQuestions($scope.getQuestionsParams, function(response){
-        questions = [].concat(response.data); //make sure it's an array
 
-        var data = questions.map($scope.serverQuestionMapper);
+    var questionAlreadyLoaded = _.find(previousQList.data.qList, function(q){ return (q.id == $scope.getQuestionsParams.id) });
+    if (questionAlreadyLoaded){
+        $scope.data.qList = [questionAlreadyLoaded];
+        $scope.data.currentCategories = questionAlreadyLoaded.categories;
+    }
+    else {
+        Data.getQuestions($scope.getQuestionsParams, function(response){
+            questions = [].concat(response.data); //make sure it's an array
 
-        //sortArrayByKeyDesc(data,'dateModified'); //questions arrive from server sorted by dateModified
+            var data = questions.map($scope.serverQuestionMapper);
 
-        $scope.data.qList = data;
-        $scope.data.currentCategories = data[0].categories;
-    });
+            //sortArrayByKeyDesc(data,'dateModified'); //questions arrive from server sorted by dateModified
+
+            $scope.data.qList = data;
+            $scope.data.currentCategories = data[0].categories;
+        });
+    }
+
 
     $scope.loadMoreQuestions = function(){
         var that = $scope;
