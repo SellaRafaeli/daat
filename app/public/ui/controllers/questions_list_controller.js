@@ -1,5 +1,6 @@
 //main controller
 g1 = {data:[]};
+loaded_questions = [];
 function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $http, $filter){
     //cheaters
     previousQList = g1;
@@ -57,10 +58,15 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
     }
 
 
-    var questionAlreadyLoaded = _.find(previousQList.data.qList, function(q){ return (q.id == $scope.getQuestionsParams.id) });
+    var questionAlreadyLoaded = _.find(loaded_questions, function(q){ return (q.id == $scope.getQuestionsParams.id) });
     if (questionAlreadyLoaded){
         $scope.data.qList = [questionAlreadyLoaded];
         $scope.data.currentCategories = questionAlreadyLoaded.categories;
+    }
+    else if (loaded_questions.length > 10) {
+        data = loaded_questions;
+        $scope.data.qList = data;
+        $scope.data.currentCategories = data[0].categories;
     }
     else {
         Data.getQuestions($scope.getQuestionsParams, function(response){
@@ -69,7 +75,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
             var data = questions.map($scope.serverQuestionMapper);
 
             //sortArrayByKeyDesc(data,'dateModified'); //questions arrive from server sorted by dateModified
-
+            loaded_questions = loaded_questions.concat(data);
             $scope.data.qList = data;
             $scope.data.currentCategories = data[0].categories;
         });
@@ -95,7 +101,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
             });
     }
 
-    setTimeout($scope.loadMoreQuestions,100); //immediately call more after page is loaded, to ensure second page of questions.
+    //setTimeout($scope.loadMoreQuestions,100); //immediately call more after page is loaded, to ensure second page of questions.
 
     $scope.$watch("data.currentCategories", function(newValue, oldValue) {
         if (clientConfig.isSmallScreen) { return } //don't loading related questions on mobile, it's both heavy and UI is broken.
