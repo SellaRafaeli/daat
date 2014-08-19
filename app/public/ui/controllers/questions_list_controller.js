@@ -233,4 +233,6 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
         var cb = function(){alert ("Asked to answer.");};
         target ? Data.initA2A(qid, target, cb) : '';
     }
+
+    document.title = $scope.isq() ? $scope.singleQuestion().title : $scope.texts.title;
 }

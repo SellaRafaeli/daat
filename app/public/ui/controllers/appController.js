@@ -43,7 +43,8 @@ function appController($scope, Data, $routeParams, AuthService){
     unlike: "Unlike",
     about: "About",
     events: "Events",
-    saveDraft: "Save Draft"
+    saveDraft: "Save Draft",
+    title: "Daat - Good Content, in Hebrew"
 };
 
     $scope.heb = {foo: 'heb-foo',
@@ -82,7 +83,8 @@ function appController($scope, Data, $routeParams, AuthService){
         unlike: "בטל לייק",
         about: "אודות",
         events: "פיד",
-        saveDraft: "לשמור טיוטא"
+        saveDraft: "לשמור טיוטא",
+        title: 'דעת - תוכן טוב, בעברית'
 }
 
     $scope.texts = $scope.heb;
