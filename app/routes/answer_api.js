@@ -102,7 +102,7 @@ function toggleUpvoteAnswer(qid,aid,voterUserObj, alreadyUpvoted, res){
 
 function addAnswerToQuestion(questionID,newAnswer, res) {
     db.questions.update({_id: questionID}, {"$push": {answers: newAnswer}}, function(err, result) {
-        res.json({msg: "added answer"});
+        res.json({newAnswer: newAnswer, msg: "added answer"});
     });
 }
 

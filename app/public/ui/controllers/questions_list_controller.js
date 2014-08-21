@@ -119,12 +119,16 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
     $scope.newAnswerToolbars = [['h1','h2','h3','p'],['bold','italics','underline'],['ul','ol','quote'],['insertImage','insertLink']];
 
     $scope.submitAnswer = function(){
-        var qid = this.data.qList[0].id;
+        var currQuestion = this.data.qList[0];
+        var qid = currQuestion.id;
+
         qid = encodeURIComponent(qid);
         var answer = this.myAnswer;
         var bio = this.user.bio;
         var params = {qid: qid, answer_text: this.myAnswer, bio: bio};
-        Data.submitAnswer(params, function(res){ $route.reload();});
+        Data.submitAnswer(params, function(res){
+           currQuestion.answers.unshift(res.data.newAnswer);
+        });
         AuthService.set("bio",bio);
     }
 
