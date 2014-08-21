@@ -34,7 +34,9 @@
         </div>
     </div>
 
-    <button ng-show="isq()" ng-click="initA2A()">A2A</button>
+    <div class="admin-area" ng-show="isAdmin">
+        <button ng-show="isq()" ng-click="initA2A()">A2A</button>
+    </div>
     <ul class='answer-list'>
         <li class='answer' ng-repeat="a in q.answers | orderBy: orderAnswersBy():true | filter:filter | limitTo: numAnswersToShow()">
             <answer></answer>
