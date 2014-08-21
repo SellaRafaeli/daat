@@ -41,7 +41,7 @@ exports.addCommentToAnswerToQuestion = function(req, res){
         db.users.findOne({_id: answer.owner.id}, function(e, u){
             var email = u.fbData.email || u.fbData.username+"@facebook.com";
             var subj = req.user.fullName+" just commented on your answer on Daat to the question: "+ q.title;
-            var body = subj+"...the comment was: "+newComment.text+". You can view it here: http://fathomless-crag-3321.herokuapp.com/ui/#/questions/"+qid;
+            var body = subj+"...the comment was: "+newComment.text+". You can view it here: http://daat.herokuapp.com/ui/#/questions/"+qid;
 
             mailer.send_email_1(email,subj,body);
         });
