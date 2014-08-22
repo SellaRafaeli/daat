@@ -34,10 +34,10 @@ exports.signup = function(req,res) { // signup requires no password - just email
     var authToken = makeAuthToken();
     var imgLnk = req.body.imgLnk;
     db.users.findOne({email: email}, function(err, user){
-        if (user) { 
+        if (user) {
             //res.statusCode = 401;  //return this when client handles 400 msgs
-            res.json({msg: "User already exists."}); 
-        }        
+            res.json({msg: "User already exists."});
+        }
         else {
             newUser = getNewUser({_id: nextUserId(),
                 email: email,
@@ -65,7 +65,7 @@ exports.login = function(req, res) {
 
     db.users.findOne(criteria, function(err, user){
         user ? res.json(user) : res.json({msg: "Wrong credentials."});
-    }); //end findOne    
+    }); //end findOne
 }
   
 exports.ensureUserMiddleware = function(req, res, next) {

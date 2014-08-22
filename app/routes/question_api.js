@@ -38,6 +38,14 @@ exports.getByCategory = function(req, res){
     db.questions.find({"categories": {"$in": [catName]}}, cbj(res));
 };
 
+exports.getByTitleWord = function(req,res) {
+    var string = req.query.substring;
+    db.questions.runCommand( "text", {search: string || "ילד"}, function(err, result) {
+        matching_questions_data = result.results.map(function(q){ return {_id: q.obj._id, title: q.obj.title}});
+        res.json(matching_questions_data);
+    });
+}
+
 exports.getRelatedQuestions = function(req,res){
     var categories = array(req.query.categories);
     db.questions.find({"categories": {"$in": categories}}, cbj(res));

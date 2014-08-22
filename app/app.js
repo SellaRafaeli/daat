@@ -2,6 +2,9 @@
 log   = function(a,b,c){ [a,b,c].forEach(function(s){ s ? console.log(s) : ''} ) }
 log("Running with process.env:",process.env);
 db    = require('mongojs').connect(process.env.MONGO_CONN_STR || 'daat',['questions','users','events']);
+
+db.questions.ensureIndex({title: "text" });
+
 mailer = require('./daat_mailer');
 log_event = function(userName, desc) { db.events.insert({time: Date(), userName: userName, desc: desc}); }
 //db    = require("mongojs").connect('daat', ['questions','users']); //http://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
@@ -84,6 +87,7 @@ app.get("/ping", function (req, res) {
     db.questions.findOne({},function(){res.send("pong")});
 });
 
+
 //log
 app.get('/events', function(req,res){
     db.events.find({},{},{"sort": {"_id":-1}},cbj(res));
@@ -94,6 +98,7 @@ app.get('/questions/newest', question.newest);
 app.get('/questions/adminUpdateAll', question.adminUpdateAll);
 app.get('/questions/users/:userId', question.user_data );
 app.get('/questions/category/:categoryId', question.getByCategory);
+app.get('/questions/byTitleWord', question.getByTitleWord );
 app.get('/questions/relatedQuestions', question.getRelatedQuestions);
 app.get('/questions/:id', question.get );
 
