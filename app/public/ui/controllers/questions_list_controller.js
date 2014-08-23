@@ -196,7 +196,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
 
     $scope.setCategories = function(q){
         var categoriesArr = $filter('split')($scope.data.currentCategories);
-        Data.setQuestionCategories(q,categoriesArr);
+        Data.setQuestionCategories(q,categoriesArr,$scope.getAllCategories);
     }
 
     $scope.updateAnswerText = function(q,a) {

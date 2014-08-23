@@ -85,6 +85,8 @@ exports.setCategories = function(req,res){
     db.questions.update({_id: id}, {"$set": {categories: cats}}, function(err, result) {
         res.json({msg: "set categories!"});
     });
+
+    setAllCategories(); //bg
 }
 
 exports.updateTitle = function(req,res){

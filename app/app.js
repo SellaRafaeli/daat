@@ -90,6 +90,7 @@ app.get("/ping", function (req, res) {
 
 
 //log
+
 app.get('/events', function(req,res){
     db.events.find({},{},{"sort": {"_id":-1}},cbj(res));
 })

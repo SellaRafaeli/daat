@@ -108,9 +108,13 @@ function appController($scope, $http, Data, $routeParams, AuthService){
     $scope.normalDate = normalDate;
 
     //TODO: move this into a navbar controller
-    $http.get("/questions/allCategories").then(function(res){
-        $scope.allCategories = res.data.categories.sort();
-    })
+    $scope.getAllCategories = function(){
+        $http.get("/questions/allCategories").then(function(res){
+            $scope.allCategories = res.data.categories.sort();
+        })
+    }
+
+    $scope.getAllCategories();
 
     $scope.searchTitleKeyword = function(){
         var val = event.srcElement.value;

@@ -44,11 +44,11 @@ myApp.factory('Data', function($http, AuthService) {
             return "ok";
         },
 
-        setQuestionCategories: function(q,cats){
+        setQuestionCategories: function(q,cats,cb){
             params = {};
             params['authToken'] = AuthService.currentUser.authToken;
             params['categories'] = cats;
-            $http.post('/questions/'+q.id+'/setCategories', params).then(function(){log(arguments)});
+            $http.post('/questions/'+q.id+'/setCategories', params).then(cb);
         },
 
         updateAnswerText: function(qId, aId, newText) {
