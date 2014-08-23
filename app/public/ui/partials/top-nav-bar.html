@@ -46,9 +46,15 @@
 
     <div ng-show=titleKeywordSearch>
         <ul ng-click="titleKeywordSearch=''" id="titleKeywordSearchResults">
-            <li ng-repeat="q in searchTitleKeywordResults">
+            <li ng-repeat="i in searchTitleKeywordResults">
                 <div>
-                    <a href="/ui/#/questions/{{q._id}}">{{q.title}} (מס' תשובות: {{q.numAnswers}})</a>
+                    <a href="/ui/#/questions/{{i.type=='c' ? 'category/' : ''}}{{i._id}}">{{i.title}}
+                        <span ng-show="(i.type=='q') && (i.numAnswers > 1)">
+                            ({{i.numAnswers}} תשובות)
+                        </span>
+                        <span ng-show="(i.type=='q') && (i.numAnswers == 1)">
+                            (תשובה אחת)
+                        </span>
                 </div>
             </li>
         </ul>

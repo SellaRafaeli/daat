@@ -101,6 +101,7 @@ app.get('/questions/users/:userId', question.user_data );
 app.get('/questions/category/:categoryId', question.getByCategory);
 app.get('/questions/byTitleWord', question.getByTitleWord );
 app.get('/questions/relatedQuestions', question.getRelatedQuestions);
+app.get('/questions/allCategories', question.getAllCategories); //should be under categories namespace..
 app.get('/questions/:id', question.get );
 
 app.post('/questions/new/', users.ensureUserMiddleware, question.new_question);

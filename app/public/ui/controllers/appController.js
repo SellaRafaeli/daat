@@ -108,10 +108,22 @@ function appController($scope, $http, Data, $routeParams, AuthService){
     $scope.normalDate = normalDate;
 
     //TODO: move this into a navbar controller
+    $http.get("/questions/allCategories").then(function(res){
+        $scope.allCategories = res.data.categories.sort();
+    })
+
     $scope.searchTitleKeyword = function(){
         var val = event.srcElement.value;
+        if (val.length < 3) {
+            $scope.searchTitleKeywordResults = [];
+            return;
+        }
+
+        categoryNames = $scope.allCategories.filter(function(s){return s.indexOf(val)!=-1});
+        categoryItems = categoryNames.map(function(item) { return {type: "c", _id: item, "title": item+" (קטגוריה)"}});
+
         $http.get("/questions/byTitleWord?substring="+val).then(function(res){
-            $scope.searchTitleKeywordResults = res.data;
+            $scope.searchTitleKeywordResults = res.data.concat(categoryItems);
         })
 
     }

@@ -38,7 +38,7 @@ exports.getByCategory = function(req, res){
     db.questions.find({"categories": {"$in": [catName]}}, cbj(res));
 };
 
-//search keyword
+//search keyword.
 exports.getByTitleWord = function(req,res) {
     var string = req.query.substring;
     if (string.length < 3) { res.json([]); return; }
@@ -50,7 +50,7 @@ exports.getByTitleWord = function(req,res) {
             //result should be result.results if using the runCommand on text.
             matching_questions_data = result.map(function(item){
                 var q = item;
-                return {_id: q._id, title: q.title, numAnswers: q.answers.length}
+                return {type: "q", _id: q._id, title: q.title, numAnswers: q.answers.length}
             });
             res.json(matching_questions_data);
         }
@@ -111,6 +111,10 @@ exports.initA2A = function(req, res) {
 
     res.json({msg: "init'ed A2A"});
 }
+
+exports.getAllCategories = function(req,res){
+    res.json({categories: allCategoriesArray});
+}
 //exports.addCategory = function(req, res) {
 //    var id = parseInt(req.params.id);
 //    db.questions.update({id: id}, {"$push": {categories: req.body.categoryName}}, function(err, result) {
@@ -129,6 +133,8 @@ exports.initA2A = function(req, res) {
 function getUserContent(userId, cb) {
     db.questions.find({"answers.owner.id": userId}, cb);
 }
+
+
 
 
 
@@ -154,4 +160,20 @@ function getQuestionId() {
     return id;
 }
 
+function setAllCategories(){
+    db.questions.find({},function(err,result){
+        var allCategories = [];
+        result.forEach(function(q){
+            allCategories = allCategories.concat(q.categories);
+        });
+
+        uniqueAllCategories = allCategories.filter(function(elem, pos, self) {
+            return self.indexOf(elem) == pos;
+        });
+
+        allCategoriesArray = uniqueAllCategories
+    });
+}
+
 setHighQuestionId();
+setAllCategories();
