@@ -1,4 +1,4 @@
-function appController($scope, Data, $routeParams, AuthService){
+function appController($scope, $http, Data, $routeParams, AuthService){
     appCtrl = $scope; //global scope for debugging
     makeAdmin = function() { appCtrl.isAdmin = true; appCtrl.$apply(); };
     $scope.alert = function(s){ alert(s)};
@@ -107,4 +107,12 @@ function appController($scope, Data, $routeParams, AuthService){
     $scope.getConfig = function() { return clientConfig; }
     $scope.normalDate = normalDate;
 
+    //TODO: move this into a navbar controller
+    $scope.searchTitleKeyword = function(){
+        var val = event.srcElement.value;
+        $http.get("/questions/byTitleWord?substring="+val).then(function(res){
+            $scope.searchTitleKeywordResults = res.data;
+        })
+
+    }
 };

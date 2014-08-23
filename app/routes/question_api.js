@@ -41,7 +41,10 @@ exports.getByCategory = function(req, res){
 exports.getByTitleWord = function(req,res) {
     var string = req.query.substring;
     db.questions.runCommand( "text", {search: string || "ילד"}, function(err, result) {
-        matching_questions_data = result.results.map(function(q){ return {_id: q.obj._id, title: q.obj.title}});
+        matching_questions_data = result.results.map(function(item){
+            var q = item.obj
+            return {_id: q._id, title: q.title, numAnswers: q.answers.length}
+        });
         res.json(matching_questions_data);
     });
 }

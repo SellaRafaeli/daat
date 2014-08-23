@@ -7,11 +7,9 @@
     <div class="loading-gif"><div ng-show='empty()' class="spinner">LOADING</div></div>
 
     <ul class="qList" infinite-scroll="loadMoreQuestions()">
-        <input ng-show=false type="search" ng-model="filter" placeholder="חיפוש בשאלות ותשובות...">
 
-        <li ng-repeat="q in data.qList | filter:filter ">
+        <li ng-repeat="q in data.qList">
             <question-and-answers></question-and-answers>
-
         </li>
     </ul>
     <!--<div ng-show=data.loadingQs>Loading data...</div>-->

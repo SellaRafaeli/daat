@@ -32,6 +32,7 @@
                         <!--<li><a href="#">Separated link</a></li>                        -->
                     </ul>
                 </li>
+                <li><input type="text" ng-model="titleKeywordSearch" ng-change="searchTitleKeyword()" placeholder="חיפוש בשאלות ותשובות..."/></li>
             </ul>
             <!--<form class="navbar-form navbar-right" role="search">-->
                 <!--<div class="form-group">-->
@@ -42,4 +43,15 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
     <div ng-show='false' class="flash"><span class="text">Alpha Version</span></div>
+
+    <div ng-show=titleKeywordSearch>
+        <ul ng-click="titleKeywordSearch=''" id="titleKeywordSearchResults">
+            <li ng-repeat="q in searchTitleKeywordResults">
+                <div>
+                    <a href="/ui/#/questions/{{q._id}}">{{q.title}} (מס' תשובות: {{q.numAnswers}})</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
 </nav>
