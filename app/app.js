@@ -4,7 +4,7 @@ log("Running with process.env:",process.env);
 db    = require('mongojs').connect(process.env.MONGO_CONN_STR || 'daat',['questions','users','events']);
 
 //db.adminCommand( { setParameter: true, textSearchEnabled : true});
-db.questions.ensureIndex({title: "text" });
+db.questions.ensureIndex({title: "text" }); //as of 23.8.14 does not work in production because I don't have admin auth to run db.adminCommand( { setParameter: true, textSearchEnabled : true}) to enable text search.
 
 mailer = require('./daat_mailer');
 log_event = function(userName, desc) { db.events.insert({time: Date(), userName: userName, desc: desc}); }

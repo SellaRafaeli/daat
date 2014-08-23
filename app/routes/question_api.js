@@ -38,13 +38,18 @@ exports.getByCategory = function(req, res){
     db.questions.find({"categories": {"$in": [catName]}}, cbj(res));
 };
 
+//search keyword
 exports.getByTitleWord = function(req,res) {
     var string = req.query.substring;
-    db.questions.runCommand( "text", {search: string || "ילד"}, function(err, result) {
+    if (string.length < 3) { res.json([]); return; }
+    //db.questions.runCommand( "text", {search: string || "ילד"}, function(err, result) {
+    //NOT INDEXED! The above live should be used but as of 23.8 can't use a text index in Heroku.
+    db.questions.find({"title": {$regex: string}}, function(err, result) {
         if (err) { res.json(err); }
         else {
-            matching_questions_data = result.results.map(function(item){
-                var q = item.obj
+            //result should be result.results if using the runCommand on text.
+            matching_questions_data = result.map(function(item){
+                var q = item;
                 return {_id: q._id, title: q.title, numAnswers: q.answers.length}
             });
             res.json(matching_questions_data);
