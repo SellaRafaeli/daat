@@ -18,25 +18,28 @@
             <span>{{username()}}</span><span>, <input class="new-answer-new-bio" ng-model="user.bio" type="text" placeholder={{texts.yourExperiencePlaceholder}}></span>
         </div>
 
-        <text-angular ta-toolbar="newAnswerToolbars" ng-model="myAnswer" autofocus></text-angular>
+        <text-angular ta-toolbar="newAnswerToolbars" ng-click=initAddingAnswerMode() ng-init="Add Answer..." ng-model="myAnswer">
+            (לחץ להוסיף תשובה)
+        </text-angular>
 
         <!--<textarea class='new-answer-details-input' ng-model="myAnswer" placeholder="הוסף את התשובה שלך..." autofocus/></textarea>-->
 
         <div ng-init="loadDraft()">{{q.myAnswer}}</div>
         <!--<button class='submit-button' >{{texts.sendMyAnswer}}</button>-->
-        <div>
-        <button class="btn btn-large btn-primary"
-                ng-disabled="!myAnswer"
-                ng-click="submitAnswer(); disableElemTemp($event.srcElement)"><i class="icon-white icon-ok"></i> {{texts.sendMyAnswer}}</button>
-        <button class="btn btn-large btn-primary"
+        <div ng-show="addingAnswerMode">
+            <button class="btn btn-large btn-primary"
                     ng-disabled="!myAnswer"
-                    ng-click="saveDraft()">{{texts.saveDraft}}</button>
+                    ng-click="submitAnswer(); disableElemTemp($event.srcElement)"><i class="icon-white icon-ok"></i> {{texts.sendMyAnswer}}</button>
+            <button class="btn btn-large btn-primary"
+                        ng-disabled="!myAnswer"
+                        ng-click="saveDraft()">{{texts.saveDraft}}</button>
         </div>
     </div>
 
     <div class="admin-area" ng-show="isAdmin">
         <button ng-show="isq()" ng-click="initA2A()">A2A</button>
     </div>
+
     <ul class='answer-list'>
         <li class='answer' ng-repeat="a in q.answers | orderBy: orderAnswersBy():true | filter:filter | limitTo: numAnswersToShow()">
             <answer></answer>

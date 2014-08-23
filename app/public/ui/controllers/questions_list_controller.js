@@ -116,7 +116,8 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
         });
     });
 
-    $scope.newAnswerToolbars = [['h1','h2','h3','p'],['bold','italics','underline'],['ul','ol','quote'],['insertImage','insertLink']];
+    //$scope.newAnswerToolbars = [['h1','h2','h3','p'],['bold','italics','underline'],['ul','ol','quote'],['insertImage','insertLink']];
+    $scope.newAnswerToolbars = [['h1','h2','h3','p','bold','italics','underline','ul','ol','quote','insertImage','insertLink']];
 
     $scope.submitAnswer = function(){
         var currQuestion = this.data.qList[0];
@@ -242,6 +243,14 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
         var target = prompt("Who do you want to ask?");
         var cb = function(){alert ("Asked to answer.");};
         target ? Data.initA2A(qid, target, cb) : '';
+    }
+
+    $scope.initAddingAnswerMode = function(){
+        $scope.addingAnswerMode = true;
+        $('.ta-toolbar').show(); //jQuery-style hack (not ng-style) because it's an external component and it's easier this way.
+        $('#taTextElement').height(100);
+        $('#taTextElement').html("");
+        console.log("in init adding answer mode");
     }
 
     document.title = $scope.isq() ? $scope.singleQuestion().title : $scope.texts.title;
