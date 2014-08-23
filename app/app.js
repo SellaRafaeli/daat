@@ -3,7 +3,7 @@ log   = function(a,b,c){ [a,b,c].forEach(function(s){ s ? console.log(s) : ''} )
 log("Running with process.env:",process.env);
 db    = require('mongojs').connect(process.env.MONGO_CONN_STR || 'daat',['questions','users','events']);
 
-db.adminCommand( { setParameter: true, textSearchEnabled : true});
+//db.adminCommand( { setParameter: true, textSearchEnabled : true});
 db.questions.ensureIndex({title: "text" });
 
 mailer = require('./daat_mailer');
