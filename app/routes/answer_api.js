@@ -33,12 +33,32 @@ exports.addCommentToAnswerToQuestion = function(req, res){
     var qid = parseInt(req.params.id);
     var aid = parseInt(req.params.answerId);
     var newComment = makeNewComment(req);
-    db.questions.update({_id : qid, "answers.id":aid} , {$push: {"answers.$.comments": newComment}}, function(){ res.json({msg: "added comment"})});
+    if (req.body.fatherComment) {
+        var fatherCommentID = req.body.fatherComment;
+        db.questions.findOne({_id : qid, "answers.id":aid}, function(err, result) {
 
+            var answer = _.where(result.answers, function(a) { return a.id == 1 })
+            var foundFather = null;
+            function findId(baseCommentsArr, targetID) {
+                _.each(baseCommentsArr,function(c) {
+                    log(c);
+                    if (c.id == targetID) { foundFather = c; }
+                    else {
+                        findId( (c.subcomments || []),targetID)
+                    }
+                });
+            }
+            findId(x.comments, fatherCommentID);
+        });
+    }
+    else {
+        db.questions.update({_id : qid, "answers.id":aid} , {$push: {"answers.$.comments": newComment}}, function(){ res.json({msg: "added comment"})});
+    }
     //email owner it. Note client may have been released. TODO: extract to worker and do not in Node...
     db.questions.findOne({_id: qid}, function(e, q){
         answer = _.find(q.answers, function(a){return (a.id == aid)});
         db.users.findOne({_id: answer.owner.id}, function(e, u){
+            if (!u.fbData) return;
             var email = u.fbData.email || u.fbData.username+"@facebook.com";
             var subj = req.user.fullName+" just commented on your answer on Daat to the question: "+ q.title;
             var body = subj+"...the comment was: "+newComment.text+". You can view it here: http://daat.herokuapp.com/ui/#/questions/"+qid;
@@ -48,7 +68,6 @@ exports.addCommentToAnswerToQuestion = function(req, res){
 
     })
 };
-
 
 //exports.upvoteComment = function(req, res) {
 //    var qID = req.params['id'];
@@ -134,7 +153,8 @@ function makeNewComment(req){
         text            : req.body['comment'],
         id              : (new Date()).getTime().toString(36),
         owner           : {id: req.user._id, fullName: req.user.fullName, imgLnk: req.user.imgLnk},
-        dateAdded       : new Date()
+        dateAdded       : new Date(),
+        subcomments     : []
     }
 }
 
