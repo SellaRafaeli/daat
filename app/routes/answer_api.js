@@ -34,21 +34,25 @@ exports.addCommentToAnswerToQuestion = function(req, res){
     var aid = parseInt(req.params.answerId);
     var newComment = makeNewComment(req);
     if (req.body.fatherComment) {
-        var fatherCommentID = req.body.fatherComment;
+        var fatherCommentID = req.body.fatherComment.id;
         db.questions.findOne({_id : qid, "answers.id":aid}, function(err, result) {
 
-            var answer = _.where(result.answers, function(a) { return a.id == 1 })
+            var answer = _.find(result.answers, function(a) { return a.id == aid })
             var foundFather = null;
             function findId(baseCommentsArr, targetID) {
                 _.each(baseCommentsArr,function(c) {
-                    log(c);
                     if (c.id == targetID) { foundFather = c; }
                     else {
                         findId( (c.subcomments || []),targetID)
                     }
                 });
             }
-            findId(x.comments, fatherCommentID);
+            findId(answer.comments, fatherCommentID);
+            if (foundFather) {
+                foundFather.subcomments = foundFather.subcomments || [];
+                foundFather.subcomments.push(newComment);
+                //now save it back to db somehow
+            }
         });
     }
     else {
