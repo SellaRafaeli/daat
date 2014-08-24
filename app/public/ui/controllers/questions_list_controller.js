@@ -246,6 +246,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
     }
 
     $scope.initAddingAnswerMode = function(){
+        if ($scope.addingAnswerMode) { return; }
         $scope.addingAnswerMode = true;
         $('.ta-toolbar').show(); //jQuery-style hack (not ng-style) because it's an external component and it's easier this way.
         $('#taTextElement').height(100);
