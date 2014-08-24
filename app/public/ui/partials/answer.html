@@ -32,6 +32,6 @@
         <a class='clickable nice-link' ng-click="showComments=!showComments" ng-init='showComments=false'> {{commentsLink(a)}}</a>
     </div>
 
-    <comments ng-show=showComments>
+    <comments ng-show=showComments ng-init="showComments=true">
     </comments>    
 </div>

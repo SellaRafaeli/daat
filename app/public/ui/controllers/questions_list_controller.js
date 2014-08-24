@@ -47,6 +47,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
                 a.getUpvotes = function(){ return a.upvoters.length; };
                 a.upvotersNames = function() { return _.map(a.upvoters,function(v){ return v.fullName}).join(", "); };
                 a.buttonText = a.upvoters;
+                a.comments.forEach(function(c){c.subcomments = c.subcomments || []}); //ensure subcomments exist
                 a.isUpvotedByCurrentUser = function() { return a.upvoters[AuthService.currentUser.fullName]};
                 return a
             }),

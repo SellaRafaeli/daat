@@ -1,4 +1,29 @@
+<script type="text/ng-template" id="tree_item_renderer.html">
+    <div class="comment">
+        <a class='comment-user' ng-href='#/user/{{c.owner.id}}'> {{c.owner.fullName}} </a>
+        <div class='comment-body'>
+            {{c.text}} | {{c.id}}
+        </div>
+        <a ng-show=false class="clickable" ng-click="addSubComment(c)">addNode</a>
+        <a class="clickable" ng-click="showMe=!showMe" ng-init="showMe=false">(הגב)</a>
+        <div ng-show="showMe">
+            <textarea ng-model=newReply>{{c.text}}</textarea>
+            <button class="clickable" ng-click="addSubComment({questionId: q.id, answerId: a.id, answer: a, fatherComment: c, newComment: newReply}, $event.srcElement)">save</button>
+        </div>
+
+        <ul>
+            <li ng-repeat="c in c.subcomments" ng-include="'tree_item_renderer.html'"></li>
+        </ul>
+    </div>
+</script>
+
+
+
+
 <div ng-controller="commentsController">
+    <ul>
+        <li ng-repeat="c in a.comments" ng-include="'tree_item_renderer.html'"></li>
+    </ul>
     <ul class='comments-list'>
         <div class="newCommentArea">
             <textarea ng-model="newComment" placeholder="הוסף תגובה..."></textarea>
