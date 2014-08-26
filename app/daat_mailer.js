@@ -20,6 +20,12 @@ exports.send_email = function (opts, cb) {
         //html: '<b>Hello world ✔</b>' // html body
     };
 
+    x=1;
+    if (isDevelopment) {
+        log('Skipping sending mail (because in development mode) with options:',mailOptions);
+        return
+    }
+
     transporter.sendMail(mailOptions, function(error, info){ error ? console.log(error) : console.log('Message sent: ' + info.response); });
 }
 

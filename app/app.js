@@ -18,7 +18,6 @@ cbj = function(responseObj){ return function(err, result) {
 _                   = require('lodash');
 array               = require('ensure-array');
 
-
 GLOBAL.ROOT = __dirname;
 
 require(GLOBAL.ROOT + '/init/constants.js');
@@ -43,6 +42,7 @@ var express             = require('express'),
 //log(cfg);
 
 var app                 = express();
+isDevelopment           = app.get('env')=='development'
 
 app.use(function(req, res, next) {
     var end = res.end;
@@ -77,7 +77,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // development only
-if ('development' == app.get('env')) { app.use(express.errorHandler()); }
+if (isDevelopment) { app.use(express.errorHandler()); }
 
 /* routes */
 

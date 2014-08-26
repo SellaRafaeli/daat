@@ -35,7 +35,7 @@ exports.addCommentToAnswerToQuestion = function(req, res){
     var newComment = makeNewComment(req);
     if (req.body.fatherComment) {
         var fatherCommentID = req.body.fatherComment.id;
-        db.questions.findOne({_id : qid, "answers.id":aid}, function(err, result) {
+        db.questions.findOne({_id : qid, "answers.id":aid}, {"answers.$.id": 1}, function(err, result) {
 
             var answer = _.find(result.answers, function(a) { return a.id == aid })
             var foundFather = null;
@@ -51,7 +51,9 @@ exports.addCommentToAnswerToQuestion = function(req, res){
             if (foundFather) {
                 foundFather.subcomments = foundFather.subcomments || [];
                 foundFather.subcomments.push(newComment);
-                //now save it back to db somehow
+                db.questions.update({_id : qid, "answers.id":aid}, {$set: {"answers.$.comments": answer.comments}}, function(e,r2) {
+                    x = 1;
+                });
             }
         });
     }
