@@ -209,12 +209,14 @@ top-nav-bar {
     .newCommentArea{
 
       textarea {
-        .rounded(5px);
+        //.rounded(5px);
         border-color: lightgray;
         resize: none;
         width: 95%;
-        height: 76px;
-
+        //height: 20px;
+        &:focus {
+          height: 76px;
+        }
       }
 
       button {
