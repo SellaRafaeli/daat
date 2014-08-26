@@ -2,13 +2,14 @@
     <div class="comment">
         <a class='comment-user' ng-href='#/user/{{c.owner.id}}'> {{c.owner.fullName}} </a>
         <div class='comment-body'>
-            {{c.text}} | {{c.id}}
+            {{c.text}} <span ng-show=isAdmin>comment ID is: {{c.id}}</span>
         </div>
         <a ng-show=false class="clickable" ng-click="addSubComment(c)">addNode</a>
-        <a class="clickable" ng-click="showMe=!showMe" ng-init="showMe=false">(הגב)</a>
-        <div ng-show="showMe">
-            <textarea ng-model=newReply>{{c.text}}</textarea>
-            <button class="clickable" ng-click="addSubComment({questionId: q.id, answerId: a.id, answer: a, fatherComment: c, newComment: newReply}, $event.srcElement)">save</button>
+        <span class='faded'>{{texts.answerWrittenAt}}: {{c.dateAdded | relativeTime}}</span>
+        <a class="clickable" ng-show='c.id && isHover' ng-click="showMe=!showMe" ng-init="showMe=false">(הגב)</a>
+        <div class="newCommentArea" ng-show="showMe">
+            <textarea placeholder="הוסף תגובה..." ng-model=newReply>{{c.text}}</textarea>
+            <button class="clickable" ng-click="addSubComment({questionId: q.id, answerId: a.id, answer: a, fatherComment: c, newComment: newReply}, $event.srcElement)">{{texts.sendCommentBtn}}</button>
         </div>
 
         <ul>
@@ -20,22 +21,26 @@
 
 
 
-<div ng-controller="commentsController">
-    <ul>
-        <li ng-repeat="c in a.comments" ng-include="'tree_item_renderer.html'"></li>
-    </ul>
+<div ng-controller="commentsController" ng-mouseenter="isHover = true" ng-mouseleave="isHover = false">
     <ul class='comments-list'>
         <div class="newCommentArea">
             <textarea ng-model="newComment" placeholder="הוסף תגובה..."></textarea>
             <div><button ng-click="disableElemTemp($event.srcElement,500); submitNewComment({qId: q.id, aId: a.id, answer: a}, $event);"> {{texts.sendCommentBtn}} </button></div>
         </div>
-        <li ng-repeat="c in a.comments" class='comment'>
-            <img class='commentImg' ng-src={{c.owner.imgLnk}}></img>
-            <a class='comment-user' ng-href='#/user/{{c.owner.id}}'> {{c.owner.fullName}} </a>
-            <div class='comment-body'>
-                {{c.text}}
-            </div>
-        </li>
+        <li ng-repeat="c in a.comments" ng-include="'tree_item_renderer.html'"></li>
     </ul>
+    <!--<ul class='comments-list'>-->
+        <!--<div class="newCommentArea">-->
+            <!--<textarea ng-model="newComment" placeholder="הוסף תגובה..."></textarea>-->
+            <!--<div><button ng-click="disableElemTemp($event.srcElement,500); submitNewComment({qId: q.id, aId: a.id, answer: a}, $event);"> {{texts.sendCommentBtn}} </button></div>-->
+        <!--</div>-->
+        <!--<li ng-repeat="c in a.comments" class='comment'>-->
+            <!--<img class='commentImg' ng-src={{c.owner.imgLnk}}></img>-->
+            <!--<a class='comment-user' ng-href='#/user/{{c.owner.id}}'> {{c.owner.fullName}} </a>-->
+            <!--<div class='comment-body'>-->
+                <!--{{c.text}}-->
+            <!--</div>-->
+        <!--</li>-->
+    <!--</ul>-->
 
 </div>

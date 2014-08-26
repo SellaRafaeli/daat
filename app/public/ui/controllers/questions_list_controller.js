@@ -23,6 +23,19 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
     $scope.data = {qList: []};
     $scope.getQuestionsParams = $routeParams
 
+
+    $scope.getNumComments = function(commentsArr) { //count recursively how many comments+subcomments are for answer
+        var counter = 0;
+        function countComments(baseCommentsArr, targetID) {
+            _.each(baseCommentsArr,function(c) {
+                counter+=1;
+                countComments( (c.subcomments || []))
+            });
+        };
+        countComments(commentsArr);
+        return counter;
+    }
+
     $scope.serverQuestionMapper = function(server_question ){
         //filter stuff out from each question
         function filterOut(question){
@@ -47,7 +60,8 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
                 a.getUpvotes = function(){ return a.upvoters.length; };
                 a.upvotersNames = function() { return _.map(a.upvoters,function(v){ return v.fullName}).join(", "); };
                 a.buttonText = a.upvoters;
-                a.comments.forEach(function(c){c.subcomments = c.subcomments || []}); //ensure subcomments exist
+                a.comments.forEach(function(c){c.subcomments = c.subcomments || []}); //ensure subcomments exist. TODO: script-verify this in DB and remove this func.
+                a.numComments = $scope.getNumComments(a.comments);
                 a.isUpvotedByCurrentUser = function() { return a.upvoters[AuthService.currentUser.fullName]};
                 return a
             }),
@@ -145,7 +159,7 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
     }
 
     $scope.commentsLink = function(a) {
-        return ($scope.texts.commentsLink + (a.comments.length ? ' ('+(a.comments.length)+')' : ''));
+        return ($scope.texts.commentsLink + (a.numComments ? ' ('+(a.numComments)+')' : ''));
     }
 
     $scope.toggleUpvoteAnswer = function(question, answer) {
