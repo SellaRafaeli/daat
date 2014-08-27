@@ -1,3 +1,4 @@
+<a class="boxclose" id="boxclose"></a>
 <div id="newQuestionCtrl" ng-controller="newQuestionCtrl">
     {{texts.enterNewQuestion}}
     <div class="new-question-input-area">
@@ -11,6 +12,7 @@
         <div ng-show="false && newQuestionTitle">
             <textarea ng-model="newQuestionDetails" class='details-input' placeholder='הוסף פרטים לשאלה?' autofocus></textarea>
         </div>
-        <button ng-show="newQuestionTitle" class='btn btn-large btn-primary' ng-click="submitNewQuestion(); disableElemTemp($event.srcElement)">{{texts.add}}</button>
+        <button ng-disabled="!newQuestionTitle" class='btn btn-large btn-primary' ng-click="submitNewQuestion(); disableElemTemp($event.srcElement)">{{texts.add}}</button>
+        <button class='btn btn-large btn-primary' ng-click="hideAddQuestion(); disableElemTemp($event.srcElement)">{{texts.cancel}}</button>
     </div>
 </div>

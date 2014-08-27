@@ -44,7 +44,8 @@ function appController($scope, $http, Data, $routeParams, AuthService){
     about: "About",
     events: "Events",
     saveDraft: "Save Draft",
-    title: "Daat - Good Content, in Hebrew"
+    title: "Daat - Good Content, in Hebrew",
+    cancel: "Cancel"
 };
 
     $scope.heb = {foo: 'heb-foo',
@@ -84,7 +85,8 @@ function appController($scope, $http, Data, $routeParams, AuthService){
         about: "אודות",
         events: "פיד",
         saveDraft: "לשמור טיוטא",
-        title: 'דעת - תוכן טוב, בעברית'
+        title: 'דעת - תוכן טוב, בעברית',
+        cancel: "לא משנה"
 }
 
     $scope.texts = $scope.heb;
