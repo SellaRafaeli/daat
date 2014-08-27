@@ -13,4 +13,9 @@ function newQuestionCtrl($scope, Data, $route, $routeParams, AuthService, $locat
         params = {title: title, details: details, categories: categoriesArr}
         Data.submitQuestion(params,cb);
     }
+
+    $scope.hideAddQuestion = function() {
+        //hackishly accessing the app controller. I don't care.
+        appCtrl.showAddQuestion = false
+    }
 }

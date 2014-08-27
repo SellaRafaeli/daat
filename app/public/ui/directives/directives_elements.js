@@ -42,6 +42,13 @@ myApp.directive('relatedQuestions', function(){
     }
 });
 
+myApp.directive('newQuestion', function(){
+    return {
+        restrict: 'E',
+        templateUrl: 'partials/new_question.html'
+    }
+});
+
 myApp.directive('overlayPic', function(){
     return {
         restrict: 'E',
