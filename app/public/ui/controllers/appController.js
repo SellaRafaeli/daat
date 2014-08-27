@@ -50,7 +50,7 @@ function appController($scope, $http, Data, $routeParams, AuthService){
     $scope.heb = {foo: 'heb-foo',
         brand: 'דעת',
                   addQuestion: 'הוסף שאלה',
-                  about: 'אודות',
+                  about: 'דעת אודות',
                   main: 'ראשי',
                   login: 'להיכנס',
                   logout: 'לצאת',
@@ -123,7 +123,7 @@ function appController($scope, $http, Data, $routeParams, AuthService){
             return;
         }
 
-        categoryNames = $scope.allCategories.filter(function(s){return s.indexOf(val)!=-1});
+        categoryNames = $scope.allCategories.filter(function(s){return (s && s.indexOf(val)!=-1)});
         categoryItems = categoryNames.map(function(item) { return {type: "c", _id: item, "title": item+" (קטגוריה)"}});
 
         $http.get("/questions/byTitleWord?substring="+val).then(function(res){
