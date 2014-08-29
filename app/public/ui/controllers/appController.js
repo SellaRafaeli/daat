@@ -1,6 +1,9 @@
-function appController($scope, $http, Data, $routeParams, AuthService){
+function appController($scope, $http, Data, $routeParams, AuthService, $location){
     appCtrl = $scope; //global scope for debugging
     makeAdmin = function() { appCtrl.isAdmin = true; appCtrl.$apply(); };
+
+//    qsParams = $location.search();
+//    if (qsParams.admin) makeAdmin();
     $scope.alert = function(s){ alert(s)};
     $scope.log = function(s) { console.log(s) };
     $scope.disableElemTemp = function(elem,millisecs) { $(elem).attr('disabled','true'); setTimeout(function(){$(elem).removeAttr('disabled')},(millisecs || 2000)) } //1. extract to some module?

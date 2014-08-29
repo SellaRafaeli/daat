@@ -18,12 +18,12 @@ exports.newest = function(req, res){
     db.questions.find(query,{},opts,cbj(res));
 };
 
-exports.adminUpdateAll = function(req,res) {
-    db.questions.find({},function(err,result){
-
-        x = 1
-    });
-}
+//exports.adminUpdateAll = function(req,res) {
+//    db.questions.find({},function(err,result){
+//
+//        x = 1
+//    });
+//}
 //exports.newest = function (req, res) {
 //    db.questions.findOne({},cbj(res));
 //    return;
