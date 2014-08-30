@@ -265,7 +265,8 @@ function qListCtrl($scope, Data, $route, $routeParams, AuthService, $location, $
         $scope.addingAnswerMode = true;
         $('.ta-toolbar').show(); //jQuery-style hack (not ng-style) because it's an external component and it's easier this way.
         $('#taTextElement').height(100);
-        $('#taTextElement').html("");
+        var initialText = '(לחץ להוסיף תשובה)'; //super-breaky, oh well.
+        $('#taTextElement').text().toString().trim() == '(לחץ להוסיף תשובה)' ? $('#taTextElement').html("") : '';
         console.log("in init adding answer mode");
     }
 
