@@ -34,6 +34,7 @@ This repo is the main codebase behind the production of Q&A website [Daat](http:
 * SPA, no pages refreshes, questions are cached in client
 * WYSIWYG editing
 * Nested comment threads
+* Notifications by mail
 * Toaster triangles
 
 ## Pull Requests
