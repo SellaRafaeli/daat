@@ -2,7 +2,7 @@
 
 Daat is a Q&A platform. Users can ask questions, post answers, comments upvotes and discuss. Quality content floats to the top, by ranking. Tech stack is complete JavaScript (Angular, Node, Mongo).
 
-This repo is the main codebase behind the Q&A website [Daat](http://daat.herokuapp.com/ui/#/).
+This repo is the main codebase behind the production of Q&A website [Daat](http://daat.herokuapp.com/ui/#/).
 
 ## Install
 
